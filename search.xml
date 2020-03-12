@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>卷积神经网络的特点以及训练过程</title>
+    <url>/2020/03/12/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E7%89%B9%E7%82%B9%E4%BB%A5%E5%8F%8A%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[<h2 id="卷积神经网络的特点以及训练过程"><a href="#卷积神经网络的特点以及训练过程" class="headerlink" title="卷积神经网络的特点以及训练过程"></a>卷积神经网络的特点以及训练过程</h2><p>首先明确：卷积神经网络的训练是为了得到<strong>卷积核</strong>，方便之后进行其他操作</p>
+<h3 id="卷积神经网络的特点"><a href="#卷积神经网络的特点" class="headerlink" title="卷积神经网络的特点"></a>卷积神经网络的特点</h3><h4 id="1、局部感知："><a href="#1、局部感知：" class="headerlink" title="1、局部感知："></a>1、局部感知：</h4><p>一般认为图像的空间联系是局部的像素联系比较密切，而距离较远的像素相关性较弱，因此，每个神经元没必要对全局图像进行感知，只要对<strong>局部</strong>进行感知，然后在更高层将局部的信息综合起来得到全局信息。</p>
+<h4 id="2、参数共享："><a href="#2、参数共享：" class="headerlink" title="2、参数共享："></a>2、参数共享：</h4><p>在局部连接中，每个神经元的参数都是一样的，即：同一个卷积核在图像中都是共享的。（理解：卷积操作实际是在提取一个个局部信息，而局部信息的一些统计特性和其他部分是一样的，也就意味着这部分学到的特征也可以用到另一部分上。所以对图像上的所有位置，都能使用同样的学习特征。）卷积核共享有个问题：提取特征不充分，可以通过<strong>增加多个卷积核</strong>来弥补，可以学习多种特征。</p>
+<h4 id="3、采样-池化-层："><a href="#3、采样-池化-层：" class="headerlink" title="3、采样(池化)层："></a>3、采样(池化)层：</h4><p>在通过卷积得到特征后，基于局部相关性原理进行亚采样，在减少数据量的同时保留有用信息。（压缩数据和参数的量，减少过拟合）（max-polling 和average-polling）</p>
+<h3 id="多核卷积"><a href="#多核卷积" class="headerlink" title="多核卷积"></a>多核卷积</h3><p>通过<strong>权值共享</strong>可以了解到：用一个卷积核操作只能得到<strong>一部分</strong>的特征，但是得不到全部特征，这时候就必须引入多卷积核来尽可能多的获取图像矩阵的<strong>全部特征</strong>，即每个卷积核学习不同特征（卷积核不同的值）来提取原图特征。</p>
+<p>下面图片经过三个卷积核的卷积操作得到三个特征图，每个特征图体现原图不同特征。需要注意的是，在多核卷积的过程中每个卷积核的大小应该是相同的。</p>
+<p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200312213105.png" alt=""></p>
+<h3 id="池化"><a href="#池化" class="headerlink" title="池化"></a>池化</h3><p>池化层往往在卷积层后面，通过池化<strong>降低</strong>卷积层输出的特征向量，同时降低<strong>过拟合</strong>发生。</p>
+<h3 id="卷积神经网络CNN究竟是怎样一步一步工作"><a href="#卷积神经网络CNN究竟是怎样一步一步工作" class="headerlink" title="卷积神经网络CNN究竟是怎样一步一步工作"></a>卷积神经网络CNN究竟是怎样一步一步工作</h3><p>参考：<a href="https://www.jianshu.com/p/fe428f0b32c1" target="_blank" rel="noopener">https://www.jianshu.com/p/fe428f0b32c1</a></p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>CNN</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2020/03/11/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
