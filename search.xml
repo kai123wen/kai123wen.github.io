@@ -12,6 +12,31 @@
 <p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200312213105.png" alt=""></p>
 <h3 id="池化"><a href="#池化" class="headerlink" title="池化"></a>池化</h3><p>池化层往往在卷积层后面，通过池化<strong>降低</strong>卷积层输出的特征向量，同时降低<strong>过拟合</strong>发生。</p>
 <h3 id="卷积神经网络CNN究竟是怎样一步一步工作"><a href="#卷积神经网络CNN究竟是怎样一步一步工作" class="headerlink" title="卷积神经网络CNN究竟是怎样一步一步工作"></a>卷积神经网络CNN究竟是怎样一步一步工作</h3><p>参考：<a href="https://www.jianshu.com/p/fe428f0b32c1" target="_blank" rel="noopener">https://www.jianshu.com/p/fe428f0b32c1</a></p>
+<h3 id="卷积的实际使用"><a href="#卷积的实际使用" class="headerlink" title="卷积的实际使用"></a>卷积的实际使用</h3><h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><p>代码中自行实现了卷积的操作，因为使用的卷积核都是对称的，所以不需要对其进行180旋转的操作</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pylab</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convolve</span><span class="params">(img, fil, mode=<span class="string">'same'</span>)</span>:</span>  <span class="comment"># 分别提取三个通道</span></span><br><span class="line">    <span class="keyword">if</span> mode == <span class="string">'fill'</span>:</span><br><span class="line">        h = fil.shape[<span class="number">0</span>] // <span class="number">2</span></span><br><span class="line">        w = fil.shape[<span class="number">1</span>] // <span class="number">2</span></span><br><span class="line">        img = np.pad(img, ((h, h), (w, w), (<span class="number">0</span>, <span class="number">0</span>)), <span class="string">'constant'</span>)</span><br><span class="line">    conv_b = _convolve(img[:, :, <span class="number">0</span>], fil)  <span class="comment"># 然后去进行卷积操作</span></span><br><span class="line">    conv_g = _convolve(img[:, :, <span class="number">1</span>], fil)</span><br><span class="line">    conv_r = _convolve(img[:, :, <span class="number">2</span>], fil)</span><br><span class="line"></span><br><span class="line">    dstack = np.dstack([conv_b, conv_g, conv_r])  <span class="comment"># 将卷积后的三个通道合并</span></span><br><span class="line">    <span class="keyword">return</span> dstack  <span class="comment"># 返回卷积后的结果</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_convolve</span><span class="params">(img, fil)</span>:</span></span><br><span class="line">    fil_heigh = fil.shape[<span class="number">0</span>]  <span class="comment"># 获取卷积核(滤波)的高度</span></span><br><span class="line">    fil_width = fil.shape[<span class="number">1</span>]  <span class="comment"># 获取卷积核(滤波)的宽度</span></span><br><span class="line"></span><br><span class="line">    conv_heigh = img.shape[<span class="number">0</span>] - fil.shape[<span class="number">0</span>] + <span class="number">1</span>  <span class="comment"># 确定卷积结果的大小</span></span><br><span class="line">    conv_width = img.shape[<span class="number">1</span>] - fil.shape[<span class="number">1</span>] + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    conv = np.zeros((conv_heigh, conv_width), dtype=<span class="string">'uint8'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(conv_heigh):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(conv_width):  <span class="comment"># 逐点相乘并求和得到每一个点</span></span><br><span class="line">            conv[i][j] = wise_element_sum(img[i:i + fil_heigh, j:j + fil_width], fil)</span><br><span class="line">    <span class="keyword">return</span> conv</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wise_element_sum</span><span class="params">(img, fil)</span>:</span></span><br><span class="line">    res = (img * fil).sum()</span><br><span class="line">    <span class="keyword">if</span> (res &lt; <span class="number">0</span>):</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">    <span class="keyword">elif</span> res &gt; <span class="number">255</span>:</span><br><span class="line">        res = <span class="number">255</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">img = plt.imread(<span class="string">"../res/test_jpg.jpg"</span>)  <span class="comment"># 在这里读取图片</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 卷积核应该是奇数行，奇数列的</span></span><br><span class="line">fil = np.array([[<span class="number">-1</span>, <span class="number">-1</span>, <span class="number">0</span>],</span><br><span class="line">                [<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">                [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line">res = convolve(img, fil, <span class="string">'fill'</span>)</span><br><span class="line">plt.imshow(res)  <span class="comment"># 显示卷积后的图片</span></span><br><span class="line">pylab.show()</span><br></pre></td></tr></table></figure>
+
+<h4 id="代码说明"><a href="#代码说明" class="headerlink" title="代码说明"></a>代码说明</h4><p>首先构造一个卷积核（当然在实际使用中是通过训练得到的），然后通过这个卷积核对图像进行操作。</p>
+<p>代码中<strong>kernal</strong>即为卷积核，将图片和卷积核都转为numpy类型，然后进行卷积操作。</p>
+<h5 id="对图片进行模糊"><a href="#对图片进行模糊" class="headerlink" title="对图片进行模糊"></a>对图片进行模糊</h5><p>假设我们使用图片</p>
+<p><img src="https://lodev.org/cgtutor/images/photo3.jpg" alt=""></p>
+<p>使用kernal为</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0.0, 0.2,  0.0,</span><br><span class="line">0.2, 0.2,  0.2,</span><br><span class="line">0.0, 0.2,  0.0</span><br></pre></td></tr></table></figure>
+
+<p>即我们通过将图片局部进行类似平均化的操作，达到模糊目的。</p>
+<p>得到结果：</p>
+<p><img src="https://lodev.org/cgtutor/images/filterblur.jpg" alt=""></p>
+<p>如果我们使用更大的卷积核来对图片操作，kernal设置为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0, 0, 1, 0, 0,</span><br><span class="line">0, 1, 1, 1, 0,</span><br><span class="line">1, 1, 1, 1, 1,</span><br><span class="line">0, 1, 1, 1, 0,</span><br><span class="line">0, 0, 1, 0, 0,</span><br></pre></td></tr></table></figure>
+
+<p>我们会得到更模糊的图片：</p>
+<p><img src="https://lodev.org/cgtutor/images/filterblurmore.jpg" alt=""></p>
+<h4 id="更多的关于图像模糊与图像锐化"><a href="#更多的关于图像模糊与图像锐化" class="headerlink" title="更多的关于图像模糊与图像锐化"></a>更多的关于图像模糊与图像锐化</h4><p>更加详细的可以仔细阅读链接：<a href="https://lodev.org/cgtutor/filtering.html" target="_blank" rel="noopener">https://lodev.org/cgtutor/filtering.html</a></p>
+<h3 id="在运行过程中遇到的问题"><a href="#在运行过程中遇到的问题" class="headerlink" title="在运行过程中遇到的问题"></a>在运行过程中遇到的问题</h3><h5 id="关于-jpg-与-png的不同之处"><a href="#关于-jpg-与-png的不同之处" class="headerlink" title="关于 .jpg 与 .png的不同之处"></a>关于 .jpg 与 .png的不同之处</h5><p>对于jpg和png图像的不同之处，之前一直是没有了解，都是混用，但是在这次图像卷积实验中，看出了不同之处。</p>
+<p><strong>如果你把上面代码中的.jpg文件改为.png文件，那么就无法得到正常的结果</strong>，为什么呢？</p>
+<p>这还要从jpg和png的不同之处说起。</p>
+<p>.jpg 是由<strong>三通道</strong>组成的，Red（红色）Green（绿色）Blue（蓝色），也就是说转为numpy后的shape为(x,x,3)</p>
+<p>.png是由<strong>四通道</strong>组成的，Red（红色）Green（绿色）Blue（蓝色）和Alpha，其中Alpha通道一般用做透明度参数，这就是为啥透明图像都保存成了png格式，一般在程序开发过程中会用到透明背景的图片，这些图片都是.png类型的。.png图像转为numpy后的shape为(x,x,4)。</p>
+<p>这算是自己的无知采坑了吧。</p>
 ]]></content>
       <categories>
         <category>深度学习</category>
@@ -19,23 +44,5 @@
       <tags>
         <tag>CNN</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2020/03/11/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
   </entry>
 </search>
