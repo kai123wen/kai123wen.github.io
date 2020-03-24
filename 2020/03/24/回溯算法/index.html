@@ -69,7 +69,7 @@
 
 
 
-  <meta name="keywords" content="CNN," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -80,22 +80,18 @@
 
 
 
-<meta name="description" content="卷积神经网络的特点以及训练过程首先明确：卷积神经网络的训练是为了得到卷积核，方便之后进行其他操作 卷积神经网络的特点1、局部感知：一般认为图像的空间联系是局部的像素联系比较密切，而距离较远的像素相关性较弱，因此，每个神经元没必要对全局图像进行感知，只要对局部进行感知，然后在更高层将局部的信息综合起来得到全局信息。 2、参数共享：在局部连接中，每个神经元的参数都是一样的，即：同一个卷积核在图像中都是">
+<meta name="description" content="回溯算法回溯法实际是一种避免不必要搜索的穷举式搜索法。 用回溯法解题一般步骤：  确定问题解空间，判断是使用子集树还是使用排列树 以深度优先的方式搜索解空间树，在搜索过程中要判断要是用剪枝函数避免无效搜索。  回溯算法可分为递归回溯和迭代回溯 递归回溯算法步骤： 实例：回溯法解决 0 1 背包问题Package.h 123456789101112131415161718192021#pragma">
 <meta property="og:type" content="article">
-<meta property="og:title" content="卷积神经网络的特点以及训练过程">
-<meta property="og:url" content="http://yoursite.com/2020/03/12/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E7%89%B9%E7%82%B9%E4%BB%A5%E5%8F%8A%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B/index.html">
+<meta property="og:title" content="回溯算法">
+<meta property="og:url" content="http://yoursite.com/2020/03/24/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="开文见章的博客">
-<meta property="og:description" content="卷积神经网络的特点以及训练过程首先明确：卷积神经网络的训练是为了得到卷积核，方便之后进行其他操作 卷积神经网络的特点1、局部感知：一般认为图像的空间联系是局部的像素联系比较密切，而距离较远的像素相关性较弱，因此，每个神经元没必要对全局图像进行感知，只要对局部进行感知，然后在更高层将局部的信息综合起来得到全局信息。 2、参数共享：在局部连接中，每个神经元的参数都是一样的，即：同一个卷积核在图像中都是">
-<meta property="og:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200312213105.png">
-<meta property="og:image" content="https://lodev.org/cgtutor/images/photo3.jpg">
-<meta property="og:image" content="https://lodev.org/cgtutor/images/filterblur.jpg">
-<meta property="og:image" content="https://lodev.org/cgtutor/images/filterblurmore.jpg">
-<meta property="article:published_time" content="2020-03-12T14:02:00.000Z">
-<meta property="article:modified_time" content="2020-03-13T16:02:26.134Z">
+<meta property="og:description" content="回溯算法回溯法实际是一种避免不必要搜索的穷举式搜索法。 用回溯法解题一般步骤：  确定问题解空间，判断是使用子集树还是使用排列树 以深度优先的方式搜索解空间树，在搜索过程中要判断要是用剪枝函数避免无效搜索。  回溯算法可分为递归回溯和迭代回溯 递归回溯算法步骤： 实例：回溯法解决 0 1 背包问题Package.h 123456789101112131415161718192021#pragma">
+<meta property="og:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200324164158.png">
+<meta property="article:published_time" content="2020-03-24T14:02:00.000Z">
+<meta property="article:modified_time" content="2020-03-24T15:33:06.389Z">
 <meta property="article:author" content="开文见章">
-<meta property="article:tag" content="CNN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200312213105.png">
+<meta name="twitter:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200324164158.png">
 
 
 
@@ -125,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/03/12/卷积神经网络的特点以及训练过程/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/03/24/回溯算法/"/>
 
 
 
 
 
-  <title>卷积神经网络的特点以及训练过程 | 开文见章的博客</title>
+  <title>回溯算法 | 开文见章的博客</title>
   
 
 
@@ -302,7 +298,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/12/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E7%89%B9%E7%82%B9%E4%BB%A5%E5%8F%8A%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="开文见章">
@@ -319,7 +315,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">卷积神经网络的特点以及训练过程</h1>
+          <h1 class="post-title" itemprop="name headline">回溯算法</h1>
         
 
         <div class="post-meta">
@@ -331,8 +327,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-12T22:02:00+08:00">
-                2020-03-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-24T22:02:00+08:00">
+                2020-03-24
               </time>
             
 
@@ -354,8 +350,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
-                    <span itemprop="name">深度学习</span>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -391,40 +387,35 @@
       
 
       
-        <h2 id="卷积神经网络的特点以及训练过程"><a href="#卷积神经网络的特点以及训练过程" class="headerlink" title="卷积神经网络的特点以及训练过程"></a>卷积神经网络的特点以及训练过程</h2><p>首先明确：卷积神经网络的训练是为了得到<strong>卷积核</strong>，方便之后进行其他操作</p>
-<h3 id="卷积神经网络的特点"><a href="#卷积神经网络的特点" class="headerlink" title="卷积神经网络的特点"></a>卷积神经网络的特点</h3><h4 id="1、局部感知："><a href="#1、局部感知：" class="headerlink" title="1、局部感知："></a>1、局部感知：</h4><p>一般认为图像的空间联系是局部的像素联系比较密切，而距离较远的像素相关性较弱，因此，每个神经元没必要对全局图像进行感知，只要对<strong>局部</strong>进行感知，然后在更高层将局部的信息综合起来得到全局信息。</p>
-<h4 id="2、参数共享："><a href="#2、参数共享：" class="headerlink" title="2、参数共享："></a>2、参数共享：</h4><p>在局部连接中，每个神经元的参数都是一样的，即：同一个卷积核在图像中都是共享的。（理解：卷积操作实际是在提取一个个局部信息，而局部信息的一些统计特性和其他部分是一样的，也就意味着这部分学到的特征也可以用到另一部分上。所以对图像上的所有位置，都能使用同样的学习特征。）卷积核共享有个问题：提取特征不充分，可以通过<strong>增加多个卷积核</strong>来弥补，可以学习多种特征。</p>
-<h4 id="3、采样-池化-层："><a href="#3、采样-池化-层：" class="headerlink" title="3、采样(池化)层："></a>3、采样(池化)层：</h4><p>在通过卷积得到特征后，基于局部相关性原理进行亚采样，在减少数据量的同时保留有用信息。（压缩数据和参数的量，减少过拟合）（max-polling 和average-polling）</p>
-<h3 id="多核卷积"><a href="#多核卷积" class="headerlink" title="多核卷积"></a>多核卷积</h3><p>通过<strong>权值共享</strong>可以了解到：用一个卷积核操作只能得到<strong>一部分</strong>的特征，但是得不到全部特征，这时候就必须引入多卷积核来尽可能多的获取图像矩阵的<strong>全部特征</strong>，即每个卷积核学习不同特征（卷积核不同的值）来提取原图特征。</p>
-<p>下面图片经过三个卷积核的卷积操作得到三个特征图，每个特征图体现原图不同特征。需要注意的是，在多核卷积的过程中每个卷积核的大小应该是相同的。</p>
-<p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200312213105.png" alt=""></p>
-<h3 id="池化"><a href="#池化" class="headerlink" title="池化"></a>池化</h3><p>池化层往往在卷积层后面，通过池化<strong>降低</strong>卷积层输出的特征向量，同时降低<strong>过拟合</strong>发生。</p>
-<h3 id="卷积神经网络CNN究竟是怎样一步一步工作"><a href="#卷积神经网络CNN究竟是怎样一步一步工作" class="headerlink" title="卷积神经网络CNN究竟是怎样一步一步工作"></a>卷积神经网络CNN究竟是怎样一步一步工作</h3><p>参考：<a href="https://www.jianshu.com/p/fe428f0b32c1" target="_blank" rel="noopener">https://www.jianshu.com/p/fe428f0b32c1</a></p>
-<h3 id="卷积的实际使用"><a href="#卷积的实际使用" class="headerlink" title="卷积的实际使用"></a>卷积的实际使用</h3><h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><p>代码中自行实现了卷积的操作，因为使用的卷积核都是对称的，所以不需要对其进行180旋转的操作</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pylab</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convolve</span><span class="params">(img, fil, mode=<span class="string">'same'</span>)</span>:</span>  <span class="comment"># 分别提取三个通道</span></span><br><span class="line">    <span class="keyword">if</span> mode == <span class="string">'fill'</span>:</span><br><span class="line">        h = fil.shape[<span class="number">0</span>] // <span class="number">2</span></span><br><span class="line">        w = fil.shape[<span class="number">1</span>] // <span class="number">2</span></span><br><span class="line">        img = np.pad(img, ((h, h), (w, w), (<span class="number">0</span>, <span class="number">0</span>)), <span class="string">'constant'</span>)</span><br><span class="line">    conv_b = _convolve(img[:, :, <span class="number">0</span>], fil)  <span class="comment"># 然后去进行卷积操作</span></span><br><span class="line">    conv_g = _convolve(img[:, :, <span class="number">1</span>], fil)</span><br><span class="line">    conv_r = _convolve(img[:, :, <span class="number">2</span>], fil)</span><br><span class="line"></span><br><span class="line">    dstack = np.dstack([conv_b, conv_g, conv_r])  <span class="comment"># 将卷积后的三个通道合并</span></span><br><span class="line">    <span class="keyword">return</span> dstack  <span class="comment"># 返回卷积后的结果</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_convolve</span><span class="params">(img, fil)</span>:</span></span><br><span class="line">    fil_heigh = fil.shape[<span class="number">0</span>]  <span class="comment"># 获取卷积核(滤波)的高度</span></span><br><span class="line">    fil_width = fil.shape[<span class="number">1</span>]  <span class="comment"># 获取卷积核(滤波)的宽度</span></span><br><span class="line"></span><br><span class="line">    conv_heigh = img.shape[<span class="number">0</span>] - fil.shape[<span class="number">0</span>] + <span class="number">1</span>  <span class="comment"># 确定卷积结果的大小</span></span><br><span class="line">    conv_width = img.shape[<span class="number">1</span>] - fil.shape[<span class="number">1</span>] + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    conv = np.zeros((conv_heigh, conv_width), dtype=<span class="string">'uint8'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(conv_heigh):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(conv_width):  <span class="comment"># 逐点相乘并求和得到每一个点</span></span><br><span class="line">            conv[i][j] = wise_element_sum(img[i:i + fil_heigh, j:j + fil_width], fil)</span><br><span class="line">    <span class="keyword">return</span> conv</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wise_element_sum</span><span class="params">(img, fil)</span>:</span></span><br><span class="line">    res = (img * fil).sum()</span><br><span class="line">    <span class="keyword">if</span> (res &lt; <span class="number">0</span>):</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">    <span class="keyword">elif</span> res &gt; <span class="number">255</span>:</span><br><span class="line">        res = <span class="number">255</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">img = plt.imread(<span class="string">"../res/test_jpg.jpg"</span>)  <span class="comment"># 在这里读取图片</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 卷积核应该是奇数行，奇数列的</span></span><br><span class="line">fil = np.array([[<span class="number">-1</span>, <span class="number">-1</span>, <span class="number">0</span>],</span><br><span class="line">                [<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">                [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line">res = convolve(img, fil, <span class="string">'fill'</span>)</span><br><span class="line">plt.imshow(res)  <span class="comment"># 显示卷积后的图片</span></span><br><span class="line">pylab.show()</span><br></pre></td></tr></table></figure>
+        <h2 id="回溯算法"><a href="#回溯算法" class="headerlink" title="回溯算法"></a>回溯算法</h2><p>回溯法实际是一种避免不必要搜索的穷举式搜索法。</p>
+<p>用回溯法解题一般步骤：</p>
+<ol>
+<li>确定问题解空间，判断是使用子集树还是使用排列树</li>
+<li>以深度优先的方式搜索解空间树，在搜索过程中要判断要是用剪枝函数避免无效搜索。</li>
+</ol>
+<p>回溯算法可分为<strong>递归回溯</strong>和<strong>迭代回溯</strong></p>
+<h3 id="递归回溯"><a href="#递归回溯" class="headerlink" title="递归回溯"></a>递归回溯</h3><h4 id="算法步骤："><a href="#算法步骤：" class="headerlink" title="算法步骤："></a>算法步骤：</h4><p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200324164158.png" alt=""></p>
+<h4 id="实例：回溯法解决-0-1-背包问题"><a href="#实例：回溯法解决-0-1-背包问题" class="headerlink" title="实例：回溯法解决 0 1 背包问题"></a>实例：回溯法解决 0 1 背包问题</h4><p>Package.h</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Package</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">int</span> bestPrice = <span class="number">0</span>; <span class="comment">// 最大价值</span></span><br><span class="line">	Package();</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">getBest</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">static</span> <span class="keyword">int</span> num = <span class="number">3</span>; <span class="comment">// 物品数量</span></span><br><span class="line">	<span class="keyword">int</span> content = <span class="number">30</span>; <span class="comment">// 背包容量</span></span><br><span class="line">	<span class="keyword">int</span> w[num] = &#123; <span class="number">20</span>,<span class="number">15</span>,<span class="number">15</span> &#125;; <span class="comment">// 物品重量</span></span><br><span class="line">	<span class="keyword">int</span> v[num] = &#123; <span class="number">40</span>,<span class="number">25</span>,<span class="number">25</span> &#125;; <span class="comment">// 物品价值</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> currentPrice = <span class="number">0</span>; <span class="comment">// 当前价值</span></span><br><span class="line">	<span class="keyword">int</span> currentPath[<span class="number">3</span>] = &#123; <span class="number">0</span> &#125;; <span class="comment">// 当前路径</span></span><br><span class="line">	<span class="keyword">int</span> bestPath[<span class="number">3</span>] = &#123; <span class="number">0</span> &#125;; <span class="comment">// 最优路径</span></span><br><span class="line">	<span class="keyword">int</span> currentWeight = <span class="number">0</span>; <span class="comment">// 当前背包中物品重量</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<h4 id="代码说明"><a href="#代码说明" class="headerlink" title="代码说明"></a>代码说明</h4><p>首先构造一个卷积核（当然在实际使用中是通过训练得到的），然后通过这个卷积核对图像进行操作。</p>
-<p>代码中<strong>kernal</strong>即为卷积核，将图片和卷积核都转为numpy类型，然后进行卷积操作。</p>
-<h5 id="对图片进行模糊"><a href="#对图片进行模糊" class="headerlink" title="对图片进行模糊"></a>对图片进行模糊</h5><p>假设我们使用图片</p>
-<p><img src="https://lodev.org/cgtutor/images/photo3.jpg" alt=""></p>
-<p>使用kernal为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0.0, 0.2,  0.0,</span><br><span class="line">0.2, 0.2,  0.2,</span><br><span class="line">0.0, 0.2,  0.0</span><br></pre></td></tr></table></figure>
+<p>Package.cpp</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Package.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Package::getBest</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// i 表示搜索树的第i层（根节点为0）</span></span><br><span class="line">	<span class="keyword">if</span> (i &gt;= num) <span class="comment">// 搜索到了树的最后一层</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (currentPrice &gt; bestPrice) <span class="comment">// 找到更好的结果</span></span><br><span class="line">		&#123;</span><br><span class="line">			bestPrice = currentPrice; <span class="comment">// 重新定义最大价值</span></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num; i++)  <span class="comment">// 重新定义最优路径</span></span><br><span class="line">			&#123;</span><br><span class="line">				bestPath[i] = currentPath[i];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> t = <span class="number">0</span>; t &lt; <span class="number">2</span>; t++)</span><br><span class="line">		&#123;</span><br><span class="line">			currentPath[i] = t; <span class="comment">// 选择当前物品（t=0 表示不放入背包，t=1表示放入背包）</span></span><br><span class="line">			<span class="keyword">if</span> (currentWeight + t * w[i] &lt;= content)</span><br><span class="line">			&#123;</span><br><span class="line">				currentWeight += t * w[i];<span class="comment">// 更新当前重量</span></span><br><span class="line">				currentPrice += t * v[i];<span class="comment">//更新当前价值</span></span><br><span class="line">				getBest(i + <span class="number">1</span>);<span class="comment">// 继续搜索下一层</span></span><br><span class="line">				currentWeight -= t * w[i];<span class="comment">//回溯</span></span><br><span class="line">				currentPrice -= t * v[i];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Package::Package() &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>即我们通过将图片局部进行类似平均化的操作，达到模糊目的。</p>
-<p>得到结果：</p>
-<p><img src="https://lodev.org/cgtutor/images/filterblur.jpg" alt=""></p>
-<p>如果我们使用更大的卷积核来对图片操作，kernal设置为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">0, 0, 1, 0, 0,</span><br><span class="line">0, 1, 1, 1, 0,</span><br><span class="line">1, 1, 1, 1, 1,</span><br><span class="line">0, 1, 1, 1, 0,</span><br><span class="line">0, 0, 1, 0, 0,</span><br></pre></td></tr></table></figure>
+<p>mian.cpp</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Package.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Package p;</span><br><span class="line">	p.getBest(<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; p.bestPrice &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>我们会得到更模糊的图片：</p>
-<p><img src="https://lodev.org/cgtutor/images/filterblurmore.jpg" alt=""></p>
-<h4 id="另外有关图像的锐化，风格转化等更加详细的介绍可以参考下面的网址"><a href="#另外有关图像的锐化，风格转化等更加详细的介绍可以参考下面的网址" class="headerlink" title="**另外有关图像的锐化，风格转化等更加详细的介绍可以参考下面的网址"></a>**另外有关图像的锐化，风格转化等更加详细的介绍可以参考下面的网址</h4><p>我这篇博客就是根据其进行的总结，因为链接这篇文章已经说明的很清晰了，所以我就不再废话了：<a href="https://lodev.org/cgtutor/filtering.html" target="_blank" rel="noopener">https://lodev.org/cgtutor/filtering.html</a></p>
-<h3 id="在运行过程中遇到的问题"><a href="#在运行过程中遇到的问题" class="headerlink" title="在运行过程中遇到的问题"></a>在运行过程中遇到的问题</h3><h5 id="关于-jpg-与-png的不同之处"><a href="#关于-jpg-与-png的不同之处" class="headerlink" title="关于 .jpg 与 .png的不同之处"></a>关于 .jpg 与 .png的不同之处</h5><p>对于jpg和png图像的不同之处，之前一直是没有了解，都是混用，但是在这次图像卷积实验中，看出了不同之处。</p>
-<p><strong>如果你把上面代码中的.jpg文件改为.png文件，那么就无法得到正常的结果</strong>，为什么呢？</p>
-<p>这还要从jpg和png的不同之处说起。</p>
-<p>.jpg 是由<strong>三通道</strong>组成的，Red（红色）Green（绿色）Blue（蓝色），也就是说转为numpy后的shape为(x,x,3)</p>
-<p>.png是由<strong>四通道</strong>组成的，Red（红色）Green（绿色）Blue（蓝色）和Alpha，其中Alpha通道一般用做透明度参数，这就是为啥透明图像都保存成了png格式，一般在程序开发过程中会用到透明背景的图片，这些图片都是.png类型的。.png图像转为numpy后的shape为(x,x,4)。</p>
-<p>这算是自己的无知采坑了吧。</p>
+<h4 id="剪枝优化："><a href="#剪枝优化：" class="headerlink" title="剪枝优化："></a>剪枝优化：</h4><p>上面的的代码中其实已经进行了一步剪枝操作（所谓剪枝，就是提前将不符合条件的去掉），在</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (currentWeight + t * w[i] &lt;&#x3D; content)</span><br></pre></td></tr></table></figure>
+
+<p>处判断是否符合背包容量要求来进行剪枝避免无效搜索。</p>
+<p>除此之外，当目前已经放入背包中的物品的价值 + 还没有考虑的物品总价值 仍然小于 目前得到的最大价值bestPrice时， 就没有继续搜索下去的必要了，就可以进行剪枝。</p>
+<p>添加剪枝函数bound后的代码：</p>
+<p>Package.h</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Package</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">int</span> bestPrice = <span class="number">0</span>; <span class="comment">// 最大价值</span></span><br><span class="line">	Package();</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">getBest</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">bound</span><span class="params">(<span class="keyword">int</span> i)</span></span>; <span class="comment">// 对于剩下的总物品的价值比当前所计算出物品总价值小的情况进行剪枝</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">static</span> <span class="keyword">int</span> num = <span class="number">3</span>; <span class="comment">// 物品数量</span></span><br><span class="line">	<span class="keyword">int</span> content = <span class="number">30</span>; <span class="comment">// 背包容量</span></span><br><span class="line">	<span class="keyword">int</span> w[num] = &#123; <span class="number">20</span>,<span class="number">15</span>,<span class="number">15</span> &#125;; <span class="comment">// 物品重量</span></span><br><span class="line">	<span class="keyword">int</span> v[num] = &#123; <span class="number">40</span>,<span class="number">25</span>,<span class="number">25</span> &#125;; <span class="comment">// 物品价值</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> currentPrice = <span class="number">0</span>; <span class="comment">// 当前价值</span></span><br><span class="line">	<span class="keyword">int</span> currentPath[<span class="number">3</span>] = &#123; <span class="number">0</span> &#125;; <span class="comment">// 当前路径</span></span><br><span class="line">	<span class="keyword">int</span> bestPath[<span class="number">3</span>] = &#123; <span class="number">0</span> &#125;; <span class="comment">// 最优路径</span></span><br><span class="line">	<span class="keyword">int</span> currentWeight = <span class="number">0</span>; <span class="comment">// 当前背包中物品重量</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>Package.cpp</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Package.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Package::getBest</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// i 表示搜索树的第i层（根节点为0）</span></span><br><span class="line">	<span class="keyword">if</span> (i &gt;= num) <span class="comment">// 搜索到了树的最后一层</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (currentPrice &gt; bestPrice) <span class="comment">// 找到更好的结果</span></span><br><span class="line">		&#123;</span><br><span class="line">			bestPrice = currentPrice; <span class="comment">// 重新定义最大价值</span></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num; i++)  <span class="comment">// 重新定义最优路径</span></span><br><span class="line">			&#123;</span><br><span class="line">				bestPath[i] = currentPath[i];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> t = <span class="number">0</span>; t &lt;= <span class="number">1</span>; t++)</span><br><span class="line">		&#123;</span><br><span class="line">			currentPath[i] = t; <span class="comment">// 选择当前物品（0 表示不放入背包，1表示放入背包）</span></span><br><span class="line">			<span class="keyword">if</span> (currentWeight + t * w[i] &lt;= content &amp;&amp; bound(i))</span><br><span class="line">			&#123;</span><br><span class="line">				currentWeight += t * w[i];<span class="comment">// 更新当前重量</span></span><br><span class="line">				currentPrice += t * v[i];<span class="comment">//更新当前价值</span></span><br><span class="line">				getBest(i + <span class="number">1</span>);<span class="comment">// 继续搜索下一层</span></span><br><span class="line">				currentWeight -= t * w[i];</span><br><span class="line">				currentPrice -= t * v[i];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当剩下的所有物品全都放入背包仍不能超过当前所找到的最大价值时，进行剪枝</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Package::bound</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> flag = <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">int</span> tempPrice = currentPrice;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> t = i; t &lt;= num; t++)</span><br><span class="line">	&#123;</span><br><span class="line">		tempPrice += v[t];</span><br><span class="line">		<span class="keyword">if</span> (tempPrice &gt; bestPrice)</span><br><span class="line">		&#123;</span><br><span class="line">			flag = <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> flag;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Package::Package() &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -448,12 +439,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/CNN/" rel="tag"># CNN</a>
-          
-        </div>
-      
 
       
       
@@ -463,8 +448,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/12/%E7%90%86%E8%A7%A3%E5%85%AC%E9%92%A5%E4%B8%8E%E7%A7%81%E9%92%A5/" rel="next" title="理解公钥与私钥">
-                <i class="fa fa-chevron-left"></i> 理解公钥与私钥
+              <a href="/2020/03/16/HTTP%E4%B8%8EHTTPS%E6%8F%A1%E6%89%8B%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/" rel="next" title="HTTP与HTTPS握手的那些事">
+                <i class="fa fa-chevron-left"></i> HTTP与HTTPS握手的那些事
               </a>
             
           </div>
@@ -472,10 +457,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/16/HTTP%E4%B8%8EHTTPS%E6%8F%A1%E6%89%8B%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/" rel="prev" title="HTTP与HTTPS握手的那些事">
-                HTTP与HTTPS握手的那些事 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -641,7 +622,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#卷积神经网络的特点以及训练过程"><span class="nav-number">1.</span> <span class="nav-text">卷积神经网络的特点以及训练过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#卷积神经网络的特点"><span class="nav-number">1.1.</span> <span class="nav-text">卷积神经网络的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、局部感知："><span class="nav-number">1.1.1.</span> <span class="nav-text">1、局部感知：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、参数共享："><span class="nav-number">1.1.2.</span> <span class="nav-text">2、参数共享：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、采样-池化-层："><span class="nav-number">1.1.3.</span> <span class="nav-text">3、采样(池化)层：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多核卷积"><span class="nav-number">1.2.</span> <span class="nav-text">多核卷积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#池化"><span class="nav-number">1.3.</span> <span class="nav-text">池化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卷积神经网络CNN究竟是怎样一步一步工作"><span class="nav-number">1.4.</span> <span class="nav-text">卷积神经网络CNN究竟是怎样一步一步工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卷积的实际使用"><span class="nav-number">1.5.</span> <span class="nav-text">卷积的实际使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码："><span class="nav-number">1.5.1.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码说明"><span class="nav-number">1.5.2.</span> <span class="nav-text">代码说明</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对图片进行模糊"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">对图片进行模糊</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#另外有关图像的锐化，风格转化等更加详细的介绍可以参考下面的网址"><span class="nav-number">1.5.3.</span> <span class="nav-text">**另外有关图像的锐化，风格转化等更加详细的介绍可以参考下面的网址</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在运行过程中遇到的问题"><span class="nav-number">1.6.</span> <span class="nav-text">在运行过程中遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#关于-jpg-与-png的不同之处"><span class="nav-number">1.6.0.1.</span> <span class="nav-text">关于 .jpg 与 .png的不同之处</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#回溯算法"><span class="nav-number">1.</span> <span class="nav-text">回溯算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#递归回溯"><span class="nav-number">1.1.</span> <span class="nav-text">递归回溯</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法步骤："><span class="nav-number">1.1.1.</span> <span class="nav-text">算法步骤：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例：回溯法解决-0-1-背包问题"><span class="nav-number">1.1.2.</span> <span class="nav-text">实例：回溯法解决 0 1 背包问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#剪枝优化："><span class="nav-number">1.1.3.</span> <span class="nav-text">剪枝优化：</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
