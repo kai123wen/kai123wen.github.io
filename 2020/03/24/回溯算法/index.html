@@ -89,7 +89,7 @@
 <meta property="og:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200324164158.png">
 <meta property="og:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200325232458.png">
 <meta property="article:published_time" content="2020-03-24T14:02:00.000Z">
-<meta property="article:modified_time" content="2020-03-25T15:31:46.139Z">
+<meta property="article:modified_time" content="2020-03-25T15:39:28.013Z">
 <meta property="article:author" content="开文见章">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200324164158.png">
@@ -405,7 +405,7 @@
 <p>mian.cpp</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Package.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Package p;</span><br><span class="line">	p.getBest(<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; p.bestPrice &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="剪枝优化："><a href="#剪枝优化：" class="headerlink" title="剪枝优化："></a>剪枝优化：</h4><p>上面的的代码中其实已经进行了一步剪枝操作（所谓剪枝，就是提前将不符合条件的去掉），在</p>
+<h5 id="剪枝优化："><a href="#剪枝优化：" class="headerlink" title="剪枝优化："></a>剪枝优化：</h5><p>上面的的代码中其实已经进行了一步剪枝操作（所谓剪枝，就是提前将不符合条件的去掉），在</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (currentWeight + t * w[i] &lt;&#x3D; content)</span><br></pre></td></tr></table></figure>
 
 <p>处判断是否符合背包容量要求来进行剪枝避免无效搜索。</p>
@@ -635,7 +635,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#回溯算法"><span class="nav-number">1.</span> <span class="nav-text">回溯算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#递归回溯"><span class="nav-number">1.1.</span> <span class="nav-text">递归回溯</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法步骤："><span class="nav-number">1.1.1.</span> <span class="nav-text">算法步骤：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例：回溯法解决-0-1-背包问题"><span class="nav-number">1.1.2.</span> <span class="nav-text">实例：回溯法解决 0 1 背包问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#剪枝优化："><span class="nav-number">1.1.3.</span> <span class="nav-text">剪枝优化：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例：解决TSP问题："><span class="nav-number">1.1.4.</span> <span class="nav-text">实例：解决TSP问题：</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#回溯算法"><span class="nav-number">1.</span> <span class="nav-text">回溯算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#递归回溯"><span class="nav-number">1.1.</span> <span class="nav-text">递归回溯</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法步骤："><span class="nav-number">1.1.1.</span> <span class="nav-text">算法步骤：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例：回溯法解决-0-1-背包问题"><span class="nav-number">1.1.2.</span> <span class="nav-text">实例：回溯法解决 0 1 背包问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#剪枝优化："><span class="nav-number">1.1.2.1.</span> <span class="nav-text">剪枝优化：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例：解决TSP问题："><span class="nav-number">1.1.3.</span> <span class="nav-text">实例：解决TSP问题：</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
