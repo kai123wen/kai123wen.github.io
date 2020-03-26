@@ -12,7 +12,7 @@
 <p>回溯算法可分为<strong>递归回溯</strong>和<strong>迭代回溯</strong></p>
 <p>这篇文章使用<strong>递归回溯</strong>来进行解决，递归回溯更加简单直观，便于理解。</p>
 <h4 id="递归回溯算法步骤："><a href="#递归回溯算法步骤：" class="headerlink" title="递归回溯算法步骤："></a>递归回溯算法步骤：</h4><p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200324164158.png" alt=""></p>
-<h4 id="实例：回溯法解决-0-1-背包问题"><a href="#实例：回溯法解决-0-1-背包问题" class="headerlink" title="实例：回溯法解决 0 1 背包问题"></a>实例：回溯法解决 0 1 背包问题</h4><p>0 1 背包问题适合使用子集树来进行解决，对子集树的描述如下：</p>
+<h4 id="子集树实例：解决-0-1-背包问题"><a href="#子集树实例：解决-0-1-背包问题" class="headerlink" title="子集树实例：解决 0 1 背包问题"></a>子集树实例：解决 0 1 背包问题</h4><p>0 1 背包问题适合使用子集树来进行解决，对子集树的描述如下：</p>
 <p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200326150128.png" alt=""></p>
 <p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200326151435.png" alt=""></p>
 <p>Package.h</p>

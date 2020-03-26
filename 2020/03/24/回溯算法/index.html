@@ -80,19 +80,19 @@
 
 
 
-<meta name="description" content="回溯算法回溯法实际是一种避免不必要搜索的穷举式搜索法。 用回溯法解题一般步骤：  确定问题解空间，判断是使用子集树还是使用排列树 以深度优先的方式搜索解空间树，在搜索过程中要判断要是用剪枝函数避免无效搜索。  回溯算法可分为递归回溯和迭代回溯 这篇文章使用递归回溯来进行解决，递归回溯更加简单直观，便于理解。 递归回溯算法步骤： 实例：回溯法解决 0 1 背包问题0 1 背包问题适合使用子集树来进行">
+<meta name="description" content="回溯算法回溯法实际是一种避免不必要搜索的穷举式搜索法。 用回溯法解题一般步骤：  确定问题解空间，判断是使用子集树还是使用排列树 以深度优先的方式搜索解空间树，在搜索过程中要判断要是用剪枝函数避免无效搜索。  回溯算法可分为递归回溯和迭代回溯 这篇文章使用递归回溯来进行解决，递归回溯更加简单直观，便于理解。 递归回溯算法步骤： 子集树实例：解决 0 1 背包问题0 1 背包问题适合使用子集树来进行">
 <meta property="og:type" content="article">
 <meta property="og:title" content="回溯算法">
 <meta property="og:url" content="http://yoursite.com/2020/03/24/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="开文见章的博客">
-<meta property="og:description" content="回溯算法回溯法实际是一种避免不必要搜索的穷举式搜索法。 用回溯法解题一般步骤：  确定问题解空间，判断是使用子集树还是使用排列树 以深度优先的方式搜索解空间树，在搜索过程中要判断要是用剪枝函数避免无效搜索。  回溯算法可分为递归回溯和迭代回溯 这篇文章使用递归回溯来进行解决，递归回溯更加简单直观，便于理解。 递归回溯算法步骤： 实例：回溯法解决 0 1 背包问题0 1 背包问题适合使用子集树来进行">
+<meta property="og:description" content="回溯算法回溯法实际是一种避免不必要搜索的穷举式搜索法。 用回溯法解题一般步骤：  确定问题解空间，判断是使用子集树还是使用排列树 以深度优先的方式搜索解空间树，在搜索过程中要判断要是用剪枝函数避免无效搜索。  回溯算法可分为递归回溯和迭代回溯 这篇文章使用递归回溯来进行解决，递归回溯更加简单直观，便于理解。 递归回溯算法步骤： 子集树实例：解决 0 1 背包问题0 1 背包问题适合使用子集树来进行">
 <meta property="og:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200324164158.png">
 <meta property="og:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200326150128.png">
 <meta property="og:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200326151435.png">
 <meta property="og:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200326145736.png">
 <meta property="og:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200325232458.png">
 <meta property="article:published_time" content="2020-03-24T14:02:00.000Z">
-<meta property="article:modified_time" content="2020-03-26T12:56:49.582Z">
+<meta property="article:modified_time" content="2020-03-26T13:00:38.712Z">
 <meta property="article:author" content="开文见章">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200324164158.png">
@@ -400,7 +400,7 @@
 <p>回溯算法可分为<strong>递归回溯</strong>和<strong>迭代回溯</strong></p>
 <p>这篇文章使用<strong>递归回溯</strong>来进行解决，递归回溯更加简单直观，便于理解。</p>
 <h4 id="递归回溯算法步骤："><a href="#递归回溯算法步骤：" class="headerlink" title="递归回溯算法步骤："></a>递归回溯算法步骤：</h4><p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200324164158.png" alt=""></p>
-<h4 id="实例：回溯法解决-0-1-背包问题"><a href="#实例：回溯法解决-0-1-背包问题" class="headerlink" title="实例：回溯法解决 0 1 背包问题"></a>实例：回溯法解决 0 1 背包问题</h4><p>0 1 背包问题适合使用子集树来进行解决，对子集树的描述如下：</p>
+<h4 id="子集树实例：解决-0-1-背包问题"><a href="#子集树实例：解决-0-1-背包问题" class="headerlink" title="子集树实例：解决 0 1 背包问题"></a>子集树实例：解决 0 1 背包问题</h4><p>0 1 背包问题适合使用子集树来进行解决，对子集树的描述如下：</p>
 <p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200326150128.png" alt=""></p>
 <p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200326151435.png" alt=""></p>
 <p>Package.h</p>
@@ -660,7 +660,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#回溯算法"><span class="nav-number">1.</span> <span class="nav-text">回溯算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#递归回溯算法步骤："><span class="nav-number">1.0.1.</span> <span class="nav-text">递归回溯算法步骤：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例：回溯法解决-0-1-背包问题"><span class="nav-number">1.0.2.</span> <span class="nav-text">实例：回溯法解决 0 1 背包问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#剪枝优化："><span class="nav-number">1.0.2.1.</span> <span class="nav-text">剪枝优化：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排列树实例：全排列问题"><span class="nav-number">1.0.3.</span> <span class="nav-text">排列树实例：全排列问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排列树实例：解决TSP问题："><span class="nav-number">1.0.4.</span> <span class="nav-text">排列树实例：解决TSP问题：</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#回溯算法"><span class="nav-number">1.</span> <span class="nav-text">回溯算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#递归回溯算法步骤："><span class="nav-number">1.0.1.</span> <span class="nav-text">递归回溯算法步骤：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子集树实例：解决-0-1-背包问题"><span class="nav-number">1.0.2.</span> <span class="nav-text">子集树实例：解决 0 1 背包问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#剪枝优化："><span class="nav-number">1.0.2.1.</span> <span class="nav-text">剪枝优化：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排列树实例：全排列问题"><span class="nav-number">1.0.3.</span> <span class="nav-text">排列树实例：全排列问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排列树实例：解决TSP问题："><span class="nav-number">1.0.4.</span> <span class="nav-text">排列树实例：解决TSP问题：</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
