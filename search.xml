@@ -292,51 +292,6 @@
       </tags>
   </entry>
   <entry>
-    <title>卷积神经网络的特点以及训练过程</title>
-    <url>/2020/03/12/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E7%89%B9%E7%82%B9%E4%BB%A5%E5%8F%8A%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B/</url>
-    <content><![CDATA[<h2 id="卷积神经网络的特点以及训练过程"><a href="#卷积神经网络的特点以及训练过程" class="headerlink" title="卷积神经网络的特点以及训练过程"></a>卷积神经网络的特点以及训练过程</h2><p>首先明确：卷积神经网络的训练是为了得到<strong>卷积核</strong>，方便之后进行其他操作</p>
-<h3 id="卷积神经网络的特点"><a href="#卷积神经网络的特点" class="headerlink" title="卷积神经网络的特点"></a>卷积神经网络的特点</h3><h4 id="1、局部感知："><a href="#1、局部感知：" class="headerlink" title="1、局部感知："></a>1、局部感知：</h4><p>一般认为图像的空间联系是局部的像素联系比较密切，而距离较远的像素相关性较弱，因此，每个神经元没必要对全局图像进行感知，只要对<strong>局部</strong>进行感知，然后在更高层将局部的信息综合起来得到全局信息。</p>
-<h4 id="2、参数共享："><a href="#2、参数共享：" class="headerlink" title="2、参数共享："></a>2、参数共享：</h4><p>在局部连接中，每个神经元的参数都是一样的，即：同一个卷积核在图像中都是共享的。（理解：卷积操作实际是在提取一个个局部信息，而局部信息的一些统计特性和其他部分是一样的，也就意味着这部分学到的特征也可以用到另一部分上。所以对图像上的所有位置，都能使用同样的学习特征。）卷积核共享有个问题：提取特征不充分，可以通过<strong>增加多个卷积核</strong>来弥补，可以学习多种特征。</p>
-<h4 id="3、采样-池化-层："><a href="#3、采样-池化-层：" class="headerlink" title="3、采样(池化)层："></a>3、采样(池化)层：</h4><p>在通过卷积得到特征后，基于局部相关性原理进行亚采样，在减少数据量的同时保留有用信息。（压缩数据和参数的量，减少过拟合）（max-polling 和average-polling）</p>
-<h3 id="多核卷积"><a href="#多核卷积" class="headerlink" title="多核卷积"></a>多核卷积</h3><p>通过<strong>权值共享</strong>可以了解到：用一个卷积核操作只能得到<strong>一部分</strong>的特征，但是得不到全部特征，这时候就必须引入多卷积核来尽可能多的获取图像矩阵的<strong>全部特征</strong>，即每个卷积核学习不同特征（卷积核不同的值）来提取原图特征。</p>
-<p>下面图片经过三个卷积核的卷积操作得到三个特征图，每个特征图体现原图不同特征。需要注意的是，在多核卷积的过程中每个卷积核的大小应该是相同的。</p>
-<p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200312213105.png" alt=""></p>
-<h3 id="池化"><a href="#池化" class="headerlink" title="池化"></a>池化</h3><p>池化层往往在卷积层后面，通过池化<strong>降低</strong>卷积层输出的特征向量，同时降低<strong>过拟合</strong>发生。</p>
-<h3 id="卷积神经网络CNN究竟是怎样一步一步工作"><a href="#卷积神经网络CNN究竟是怎样一步一步工作" class="headerlink" title="卷积神经网络CNN究竟是怎样一步一步工作"></a>卷积神经网络CNN究竟是怎样一步一步工作</h3><p>参考：<a href="https://www.jianshu.com/p/fe428f0b32c1" target="_blank" rel="noopener">https://www.jianshu.com/p/fe428f0b32c1</a></p>
-<h3 id="卷积的实际使用"><a href="#卷积的实际使用" class="headerlink" title="卷积的实际使用"></a>卷积的实际使用</h3><h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><p>代码中自行实现了卷积的操作，因为使用的卷积核都是对称的，所以不需要对其进行180旋转的操作</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pylab</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convolve</span><span class="params">(img, fil, mode=<span class="string">'same'</span>)</span>:</span>  <span class="comment"># 分别提取三个通道</span></span><br><span class="line">    <span class="keyword">if</span> mode == <span class="string">'fill'</span>:</span><br><span class="line">        h = fil.shape[<span class="number">0</span>] // <span class="number">2</span></span><br><span class="line">        w = fil.shape[<span class="number">1</span>] // <span class="number">2</span></span><br><span class="line">        img = np.pad(img, ((h, h), (w, w), (<span class="number">0</span>, <span class="number">0</span>)), <span class="string">'constant'</span>)</span><br><span class="line">    conv_b = _convolve(img[:, :, <span class="number">0</span>], fil)  <span class="comment"># 然后去进行卷积操作</span></span><br><span class="line">    conv_g = _convolve(img[:, :, <span class="number">1</span>], fil)</span><br><span class="line">    conv_r = _convolve(img[:, :, <span class="number">2</span>], fil)</span><br><span class="line"></span><br><span class="line">    dstack = np.dstack([conv_b, conv_g, conv_r])  <span class="comment"># 将卷积后的三个通道合并</span></span><br><span class="line">    <span class="keyword">return</span> dstack  <span class="comment"># 返回卷积后的结果</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_convolve</span><span class="params">(img, fil)</span>:</span></span><br><span class="line">    fil_heigh = fil.shape[<span class="number">0</span>]  <span class="comment"># 获取卷积核(滤波)的高度</span></span><br><span class="line">    fil_width = fil.shape[<span class="number">1</span>]  <span class="comment"># 获取卷积核(滤波)的宽度</span></span><br><span class="line"></span><br><span class="line">    conv_heigh = img.shape[<span class="number">0</span>] - fil.shape[<span class="number">0</span>] + <span class="number">1</span>  <span class="comment"># 确定卷积结果的大小</span></span><br><span class="line">    conv_width = img.shape[<span class="number">1</span>] - fil.shape[<span class="number">1</span>] + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    conv = np.zeros((conv_heigh, conv_width), dtype=<span class="string">'uint8'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(conv_heigh):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(conv_width):  <span class="comment"># 逐点相乘并求和得到每一个点</span></span><br><span class="line">            conv[i][j] = wise_element_sum(img[i:i + fil_heigh, j:j + fil_width], fil)</span><br><span class="line">    <span class="keyword">return</span> conv</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wise_element_sum</span><span class="params">(img, fil)</span>:</span></span><br><span class="line">    res = (img * fil).sum()</span><br><span class="line">    <span class="keyword">if</span> (res &lt; <span class="number">0</span>):</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">    <span class="keyword">elif</span> res &gt; <span class="number">255</span>:</span><br><span class="line">        res = <span class="number">255</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">img = plt.imread(<span class="string">"../res/test_jpg.jpg"</span>)  <span class="comment"># 在这里读取图片</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 卷积核应该是奇数行，奇数列的</span></span><br><span class="line">fil = np.array([[<span class="number">-1</span>, <span class="number">-1</span>, <span class="number">0</span>],</span><br><span class="line">                [<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">                [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line">res = convolve(img, fil, <span class="string">'fill'</span>)</span><br><span class="line">plt.imshow(res)  <span class="comment"># 显示卷积后的图片</span></span><br><span class="line">pylab.show()</span><br></pre></td></tr></table></figure>
-
-<h4 id="代码说明"><a href="#代码说明" class="headerlink" title="代码说明"></a>代码说明</h4><p>首先构造一个卷积核（当然在实际使用中是通过训练得到的），然后通过这个卷积核对图像进行操作。</p>
-<p>代码中<strong>kernal</strong>即为卷积核，将图片和卷积核都转为numpy类型，然后进行卷积操作。</p>
-<h5 id="对图片进行模糊"><a href="#对图片进行模糊" class="headerlink" title="对图片进行模糊"></a>对图片进行模糊</h5><p>假设我们使用图片</p>
-<p><img src="https://lodev.org/cgtutor/images/photo3.jpg" alt=""></p>
-<p>使用kernal为</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0.0, 0.2,  0.0,</span><br><span class="line">0.2, 0.2,  0.2,</span><br><span class="line">0.0, 0.2,  0.0</span><br></pre></td></tr></table></figure>
-
-<p>即我们通过将图片局部进行类似平均化的操作，达到模糊目的。</p>
-<p>得到结果：</p>
-<p><img src="https://lodev.org/cgtutor/images/filterblur.jpg" alt=""></p>
-<p>如果我们使用更大的卷积核来对图片操作，kernal设置为：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0, 0, 1, 0, 0,</span><br><span class="line">0, 1, 1, 1, 0,</span><br><span class="line">1, 1, 1, 1, 1,</span><br><span class="line">0, 1, 1, 1, 0,</span><br><span class="line">0, 0, 1, 0, 0,</span><br></pre></td></tr></table></figure>
-
-<p>我们会得到更模糊的图片：</p>
-<p><img src="https://lodev.org/cgtutor/images/filterblurmore.jpg" alt=""></p>
-<h4 id="另外有关图像的锐化，风格转化等更加详细的介绍可以参考下面的网址"><a href="#另外有关图像的锐化，风格转化等更加详细的介绍可以参考下面的网址" class="headerlink" title="**另外有关图像的锐化，风格转化等更加详细的介绍可以参考下面的网址"></a>**另外有关图像的锐化，风格转化等更加详细的介绍可以参考下面的网址</h4><p>我这篇博客就是根据其进行的总结，因为链接这篇文章已经说明的很清晰了，所以我就不再废话了：<a href="https://lodev.org/cgtutor/filtering.html" target="_blank" rel="noopener">https://lodev.org/cgtutor/filtering.html</a></p>
-<h3 id="在运行过程中遇到的问题"><a href="#在运行过程中遇到的问题" class="headerlink" title="在运行过程中遇到的问题"></a>在运行过程中遇到的问题</h3><h5 id="关于-jpg-与-png的不同之处"><a href="#关于-jpg-与-png的不同之处" class="headerlink" title="关于 .jpg 与 .png的不同之处"></a>关于 .jpg 与 .png的不同之处</h5><p>对于jpg和png图像的不同之处，之前一直是没有了解，都是混用，但是在这次图像卷积实验中，看出了不同之处。</p>
-<p><strong>如果你把上面代码中的.jpg文件改为.png文件，那么就无法得到正常的结果</strong>，为什么呢？</p>
-<p>这还要从jpg和png的不同之处说起。</p>
-<p>.jpg 是由<strong>三通道</strong>组成的，Red（红色）Green（绿色）Blue（蓝色），也就是说转为numpy后的shape为(x,x,3)</p>
-<p>.png是由<strong>四通道</strong>组成的，Red（红色）Green（绿色）Blue（蓝色）和Alpha，其中Alpha通道一般用做透明度参数，这就是为啥透明图像都保存成了png格式，一般在程序开发过程中会用到透明背景的图片，这些图片都是.png类型的。.png图像转为numpy后的shape为(x,x,4)。</p>
-<p>这算是自己的无知采坑了吧。</p>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>CNN</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>理解公钥与私钥</title>
     <url>/2020/03/12/%E7%90%86%E8%A7%A3%E5%85%AC%E9%92%A5%E4%B8%8E%E7%A7%81%E9%92%A5/</url>
     <content><![CDATA[<h1 id="理解公钥与私钥"><a href="#理解公钥与私钥" class="headerlink" title="理解公钥与私钥"></a>理解公钥与私钥</h1><h3 id="一、公钥算法与私钥算法"><a href="#一、公钥算法与私钥算法" class="headerlink" title="一、公钥算法与私钥算法"></a>一、公钥算法与私钥算法</h3><p><strong>1、私钥算法</strong></p>
@@ -399,5 +354,50 @@
       <categories>
         <category>计算机网络</category>
       </categories>
+  </entry>
+  <entry>
+    <title>卷积神经网络的特点以及训练过程</title>
+    <url>/2020/03/12/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E7%89%B9%E7%82%B9%E4%BB%A5%E5%8F%8A%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[<h2 id="卷积神经网络的特点以及训练过程"><a href="#卷积神经网络的特点以及训练过程" class="headerlink" title="卷积神经网络的特点以及训练过程"></a>卷积神经网络的特点以及训练过程</h2><p>首先明确：卷积神经网络的训练是为了得到<strong>卷积核</strong>，方便之后进行其他操作</p>
+<h3 id="卷积神经网络的特点"><a href="#卷积神经网络的特点" class="headerlink" title="卷积神经网络的特点"></a>卷积神经网络的特点</h3><h4 id="1、局部感知："><a href="#1、局部感知：" class="headerlink" title="1、局部感知："></a>1、局部感知：</h4><p>一般认为图像的空间联系是局部的像素联系比较密切，而距离较远的像素相关性较弱，因此，每个神经元没必要对全局图像进行感知，只要对<strong>局部</strong>进行感知，然后在更高层将局部的信息综合起来得到全局信息。</p>
+<h4 id="2、参数共享："><a href="#2、参数共享：" class="headerlink" title="2、参数共享："></a>2、参数共享：</h4><p>在局部连接中，每个神经元的参数都是一样的，即：同一个卷积核在图像中都是共享的。（理解：卷积操作实际是在提取一个个局部信息，而局部信息的一些统计特性和其他部分是一样的，也就意味着这部分学到的特征也可以用到另一部分上。所以对图像上的所有位置，都能使用同样的学习特征。）卷积核共享有个问题：提取特征不充分，可以通过<strong>增加多个卷积核</strong>来弥补，可以学习多种特征。</p>
+<h4 id="3、采样-池化-层："><a href="#3、采样-池化-层：" class="headerlink" title="3、采样(池化)层："></a>3、采样(池化)层：</h4><p>在通过卷积得到特征后，基于局部相关性原理进行亚采样，在减少数据量的同时保留有用信息。（压缩数据和参数的量，减少过拟合）（max-polling 和average-polling）</p>
+<h3 id="多核卷积"><a href="#多核卷积" class="headerlink" title="多核卷积"></a>多核卷积</h3><p>通过<strong>权值共享</strong>可以了解到：用一个卷积核操作只能得到<strong>一部分</strong>的特征，但是得不到全部特征，这时候就必须引入多卷积核来尽可能多的获取图像矩阵的<strong>全部特征</strong>，即每个卷积核学习不同特征（卷积核不同的值）来提取原图特征。</p>
+<p>下面图片经过三个卷积核的卷积操作得到三个特征图，每个特征图体现原图不同特征。需要注意的是，在多核卷积的过程中每个卷积核的大小应该是相同的。</p>
+<p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200312213105.png" alt=""></p>
+<h3 id="池化"><a href="#池化" class="headerlink" title="池化"></a>池化</h3><p>池化层往往在卷积层后面，通过池化<strong>降低</strong>卷积层输出的特征向量，同时降低<strong>过拟合</strong>发生。</p>
+<h3 id="卷积神经网络CNN究竟是怎样一步一步工作"><a href="#卷积神经网络CNN究竟是怎样一步一步工作" class="headerlink" title="卷积神经网络CNN究竟是怎样一步一步工作"></a>卷积神经网络CNN究竟是怎样一步一步工作</h3><p>参考：<a href="https://www.jianshu.com/p/fe428f0b32c1" target="_blank" rel="noopener">https://www.jianshu.com/p/fe428f0b32c1</a></p>
+<h3 id="卷积的实际使用"><a href="#卷积的实际使用" class="headerlink" title="卷积的实际使用"></a>卷积的实际使用</h3><h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><p>代码中自行实现了卷积的操作，因为使用的卷积核都是对称的，所以不需要对其进行180旋转的操作</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pylab</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convolve</span><span class="params">(img, fil, mode=<span class="string">'same'</span>)</span>:</span>  <span class="comment"># 分别提取三个通道</span></span><br><span class="line">    <span class="keyword">if</span> mode == <span class="string">'fill'</span>:</span><br><span class="line">        h = fil.shape[<span class="number">0</span>] // <span class="number">2</span></span><br><span class="line">        w = fil.shape[<span class="number">1</span>] // <span class="number">2</span></span><br><span class="line">        img = np.pad(img, ((h, h), (w, w), (<span class="number">0</span>, <span class="number">0</span>)), <span class="string">'constant'</span>)</span><br><span class="line">    conv_b = _convolve(img[:, :, <span class="number">0</span>], fil)  <span class="comment"># 然后去进行卷积操作</span></span><br><span class="line">    conv_g = _convolve(img[:, :, <span class="number">1</span>], fil)</span><br><span class="line">    conv_r = _convolve(img[:, :, <span class="number">2</span>], fil)</span><br><span class="line"></span><br><span class="line">    dstack = np.dstack([conv_b, conv_g, conv_r])  <span class="comment"># 将卷积后的三个通道合并</span></span><br><span class="line">    <span class="keyword">return</span> dstack  <span class="comment"># 返回卷积后的结果</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_convolve</span><span class="params">(img, fil)</span>:</span></span><br><span class="line">    fil_heigh = fil.shape[<span class="number">0</span>]  <span class="comment"># 获取卷积核(滤波)的高度</span></span><br><span class="line">    fil_width = fil.shape[<span class="number">1</span>]  <span class="comment"># 获取卷积核(滤波)的宽度</span></span><br><span class="line"></span><br><span class="line">    conv_heigh = img.shape[<span class="number">0</span>] - fil.shape[<span class="number">0</span>] + <span class="number">1</span>  <span class="comment"># 确定卷积结果的大小</span></span><br><span class="line">    conv_width = img.shape[<span class="number">1</span>] - fil.shape[<span class="number">1</span>] + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    conv = np.zeros((conv_heigh, conv_width), dtype=<span class="string">'uint8'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(conv_heigh):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(conv_width):  <span class="comment"># 逐点相乘并求和得到每一个点</span></span><br><span class="line">            conv[i][j] = wise_element_sum(img[i:i + fil_heigh, j:j + fil_width], fil)</span><br><span class="line">    <span class="keyword">return</span> conv</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wise_element_sum</span><span class="params">(img, fil)</span>:</span></span><br><span class="line">    res = (img * fil).sum()</span><br><span class="line">    <span class="keyword">if</span> (res &lt; <span class="number">0</span>):</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">    <span class="keyword">elif</span> res &gt; <span class="number">255</span>:</span><br><span class="line">        res = <span class="number">255</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">img = plt.imread(<span class="string">"../res/test_jpg.jpg"</span>)  <span class="comment"># 在这里读取图片</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 卷积核应该是奇数行，奇数列的</span></span><br><span class="line">fil = np.array([[<span class="number">-1</span>, <span class="number">-1</span>, <span class="number">0</span>],</span><br><span class="line">                [<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">                [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line">res = convolve(img, fil, <span class="string">'fill'</span>)</span><br><span class="line">plt.imshow(res)  <span class="comment"># 显示卷积后的图片</span></span><br><span class="line">pylab.show()</span><br></pre></td></tr></table></figure>
+
+<h4 id="代码说明"><a href="#代码说明" class="headerlink" title="代码说明"></a>代码说明</h4><p>首先构造一个卷积核（当然在实际使用中是通过训练得到的），然后通过这个卷积核对图像进行操作。</p>
+<p>代码中<strong>kernal</strong>即为卷积核，将图片和卷积核都转为numpy类型，然后进行卷积操作。</p>
+<h5 id="对图片进行模糊"><a href="#对图片进行模糊" class="headerlink" title="对图片进行模糊"></a>对图片进行模糊</h5><p>假设我们使用图片</p>
+<p><img src="https://lodev.org/cgtutor/images/photo3.jpg" alt=""></p>
+<p>使用kernal为</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0.0, 0.2,  0.0,</span><br><span class="line">0.2, 0.2,  0.2,</span><br><span class="line">0.0, 0.2,  0.0</span><br></pre></td></tr></table></figure>
+
+<p>即我们通过将图片局部进行类似平均化的操作，达到模糊目的。</p>
+<p>得到结果：</p>
+<p><img src="https://lodev.org/cgtutor/images/filterblur.jpg" alt=""></p>
+<p>如果我们使用更大的卷积核来对图片操作，kernal设置为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0, 0, 1, 0, 0,</span><br><span class="line">0, 1, 1, 1, 0,</span><br><span class="line">1, 1, 1, 1, 1,</span><br><span class="line">0, 1, 1, 1, 0,</span><br><span class="line">0, 0, 1, 0, 0,</span><br></pre></td></tr></table></figure>
+
+<p>我们会得到更模糊的图片：</p>
+<p><img src="https://lodev.org/cgtutor/images/filterblurmore.jpg" alt=""></p>
+<h4 id="另外有关图像的锐化，风格转化等更加详细的介绍可以参考下面的网址"><a href="#另外有关图像的锐化，风格转化等更加详细的介绍可以参考下面的网址" class="headerlink" title="**另外有关图像的锐化，风格转化等更加详细的介绍可以参考下面的网址"></a>**另外有关图像的锐化，风格转化等更加详细的介绍可以参考下面的网址</h4><p>我这篇博客就是根据其进行的总结，因为链接这篇文章已经说明的很清晰了，所以我就不再废话了：<a href="https://lodev.org/cgtutor/filtering.html" target="_blank" rel="noopener">https://lodev.org/cgtutor/filtering.html</a></p>
+<h3 id="在运行过程中遇到的问题"><a href="#在运行过程中遇到的问题" class="headerlink" title="在运行过程中遇到的问题"></a>在运行过程中遇到的问题</h3><h5 id="关于-jpg-与-png的不同之处"><a href="#关于-jpg-与-png的不同之处" class="headerlink" title="关于 .jpg 与 .png的不同之处"></a>关于 .jpg 与 .png的不同之处</h5><p>对于jpg和png图像的不同之处，之前一直是没有了解，都是混用，但是在这次图像卷积实验中，看出了不同之处。</p>
+<p><strong>如果你把上面代码中的.jpg文件改为.png文件，那么就无法得到正常的结果</strong>，为什么呢？</p>
+<p>这还要从jpg和png的不同之处说起。</p>
+<p>.jpg 是由<strong>三通道</strong>组成的，Red（红色）Green（绿色）Blue（蓝色），也就是说转为numpy后的shape为(x,x,3)</p>
+<p>.png是由<strong>四通道</strong>组成的，Red（红色）Green（绿色）Blue（蓝色）和Alpha，其中Alpha通道一般用做透明度参数，这就是为啥透明图像都保存成了png格式，一般在程序开发过程中会用到透明背景的图片，这些图片都是.png类型的。.png图像转为numpy后的shape为(x,x,4)。</p>
+<p>这算是自己的无知采坑了吧。</p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>CNN</tag>
+      </tags>
   </entry>
 </search>
