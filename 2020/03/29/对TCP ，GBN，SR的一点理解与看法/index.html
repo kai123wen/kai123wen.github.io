@@ -69,7 +69,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="TCP," />
 
 
 
@@ -80,19 +80,27 @@
 
 
 
-<meta name="description" content="理解公钥与私钥一、公钥算法与私钥算法1、私钥算法 私钥加密算法，又称 对称加密算法，因为这种算法解密密钥和加密密钥是相同的。也正因为同一密钥既用于加密又用于解密，所以这个密钥是不能公开的。常见的有《DES加密算法》、《AES加密算法》。 2、公钥算法 公钥加密算法，也就是 非对称加密算法，这种算法加密和解密的密码不一样，一个是公钥，另一个是私钥：  公钥和私钥成对出现 公开的密钥叫公钥，只有自己知">
+<meta name="description" content="对TCP ，GBN，SR的一点理解总结看到这个题目应该就知道这是大学生写的，这篇博客的写作是因为我在复习《计算机网络自顶向下方法》时对TCP进行的部分总结。看过这本书的人应该都知道，书中在介绍TCP使用的流水线可靠数据传输之前，先介绍了两种能够保证可靠数据传输的模型：GBN 、 SR 对于GBN与SR的讲解参考：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_22238021&#x2F;article&#x2F;d">
 <meta property="og:type" content="article">
-<meta property="og:title" content="理解公钥与私钥">
-<meta property="og:url" content="http://yoursite.com/2020/03/12/%E7%90%86%E8%A7%A3%E5%85%AC%E9%92%A5%E4%B8%8E%E7%A7%81%E9%92%A5/index.html">
+<meta property="og:title" content="HTTP与HTTPS握手的那些事">
+<meta property="og:url" content="http://yoursite.com/2020/03/29/%E5%AF%B9TCP%20%EF%BC%8CGBN%EF%BC%8CSR%E7%9A%84%E4%B8%80%E7%82%B9%E7%90%86%E8%A7%A3%E4%B8%8E%E7%9C%8B%E6%B3%95/index.html">
 <meta property="og:site_name" content="开文见章的博客">
-<meta property="og:description" content="理解公钥与私钥一、公钥算法与私钥算法1、私钥算法 私钥加密算法，又称 对称加密算法，因为这种算法解密密钥和加密密钥是相同的。也正因为同一密钥既用于加密又用于解密，所以这个密钥是不能公开的。常见的有《DES加密算法》、《AES加密算法》。 2、公钥算法 公钥加密算法，也就是 非对称加密算法，这种算法加密和解密的密码不一样，一个是公钥，另一个是私钥：  公钥和私钥成对出现 公开的密钥叫公钥，只有自己知">
-<meta property="og:image" content="http://img.blog.csdn.net/20150502122610368">
-<meta property="og:image" content="http://img.blog.csdn.net/20150502122733376">
-<meta property="article:published_time" content="2020-03-12T14:02:00.000Z">
-<meta property="article:modified_time" content="2020-03-16T05:12:17.616Z">
+<meta property="og:description" content="对TCP ，GBN，SR的一点理解总结看到这个题目应该就知道这是大学生写的，这篇博客的写作是因为我在复习《计算机网络自顶向下方法》时对TCP进行的部分总结。看过这本书的人应该都知道，书中在介绍TCP使用的流水线可靠数据传输之前，先介绍了两种能够保证可靠数据传输的模型：GBN 、 SR 对于GBN与SR的讲解参考：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_22238021&#x2F;article&#x2F;d">
+<meta property="og:image" content="https://img-blog.csdn.net/20180515170820411">
+<meta property="og:image" content="https://img-blog.csdn.net/20180515171134973">
+<meta property="og:image" content="https://img-blog.csdn.net/20180515171145273">
+<meta property="og:image" content="https://img-blog.csdn.net/20131221205915906?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHBwcmluY2U=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20131221205827921?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHBwcmluY2U=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20131221205953984?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHBwcmluY2U=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20131221210033265?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHBwcmluY2U=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20180515172149736">
+<meta property="og:image" content="https://img-blog.csdn.net/20180515173509325">
+<meta property="article:published_time" content="2020-03-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-29T03:03:36.230Z">
 <meta property="article:author" content="开文见章">
+<meta property="article:tag" content="TCP">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20150502122610368">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20180515170820411">
 
 
 
@@ -122,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/03/12/理解公钥与私钥/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/03/29/对TCP ，GBN，SR的一点理解与看法/"/>
 
 
 
 
 
-  <title>理解公钥与私钥 | 开文见章的博客</title>
+  <title>HTTP与HTTPS握手的那些事 | 开文见章的博客</title>
   
 
 
@@ -299,7 +307,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/12/%E7%90%86%E8%A7%A3%E5%85%AC%E9%92%A5%E4%B8%8E%E7%A7%81%E9%92%A5/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/29/%E5%AF%B9TCP%20%EF%BC%8CGBN%EF%BC%8CSR%E7%9A%84%E4%B8%80%E7%82%B9%E7%90%86%E8%A7%A3%E4%B8%8E%E7%9C%8B%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="开文见章">
@@ -316,7 +324,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">理解公钥与私钥</h1>
+          <h1 class="post-title" itemprop="name headline">HTTP与HTTPS握手的那些事</h1>
         
 
         <div class="post-meta">
@@ -328,8 +336,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-12T22:02:00+08:00">
-                2020-03-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-29T00:00:00+08:00">
+                2020-03-29
               </time>
             
 
@@ -388,62 +396,103 @@
       
 
       
-        <h1 id="理解公钥与私钥"><a href="#理解公钥与私钥" class="headerlink" title="理解公钥与私钥"></a>理解公钥与私钥</h1><h3 id="一、公钥算法与私钥算法"><a href="#一、公钥算法与私钥算法" class="headerlink" title="一、公钥算法与私钥算法"></a>一、公钥算法与私钥算法</h3><p><strong>1、私钥算法</strong></p>
-<p><strong>私钥加密算法</strong>，又称 <strong>对称加密算法</strong>，因为这种算法解密密钥和加密密钥是相同的。也正因为同一密钥既用于加密又用于解密，所以这个密钥是不能公开的。常见的有《<a href="http://songlee24.github.io/2014/12/06/des-encrypt/" target="_blank" rel="noopener">DES加密算法</a>》、《<a href="http://songlee24.github.io/2014/12/13/aes-encrypt/" target="_blank" rel="noopener">AES加密算法</a>》。</p>
-<p><strong>2、公钥算法</strong></p>
-<p><strong>公钥加密算法</strong>，也就是 <strong>非对称加密算法</strong>，这种算法加密和解密的密码不一样，一个是公钥，另一个是私钥：</p>
+        <h1 id="对TCP-，GBN，SR的一点理解总结"><a href="#对TCP-，GBN，SR的一点理解总结" class="headerlink" title="对TCP ，GBN，SR的一点理解总结"></a>对TCP ，GBN，SR的一点理解总结</h1><p>看到这个题目应该就知道这是大学生写的，这篇博客的写作是因为我在复习《计算机网络自顶向下方法》时对TCP进行的部分总结。看过这本书的人应该都知道，书中在介绍TCP使用的流水线可靠数据传输之前，先介绍了两种能够保证可靠数据传输的模型：GBN 、 SR</p>
+<h2 id="对于GBN与SR的讲解"><a href="#对于GBN与SR的讲解" class="headerlink" title="对于GBN与SR的讲解"></a>对于GBN与SR的讲解</h2><p>参考：<a href="https://blog.csdn.net/qq_22238021/article/details/80325285" target="_blank" rel="noopener">https://blog.csdn.net/qq_22238021/article/details/80325285</a></p>
+<h3 id="rdt-3-0-协议性能分析"><a href="#rdt-3-0-协议性能分析" class="headerlink" title="rdt 3.0 协议性能分析"></a>rdt 3.0 协议性能分析</h3><p>假设有两台主机，分别位于美国西海岸和东海岸，它们之间的往返传播实验 RTT 大约为 30ms，假定它们通过一条速率 R 为 1Gbps 的信道相连。包括首部字段和数据的分组长 L 为 1000 bytes(8000 bits)，所以发送一个分组进入 1Gbps 链路实际所需时间是：</p>
+<p>t_trans = L / R = (8000 bit/pkt) / (10^9 bit/s) = 8 μs/pkt</p>
+<p>所以，如果发送端在 t = 0 时刻开始发送分组，则在 8μs 后，该分组全部进入了发送端信道。接着该分组经过 15ms 的旅途到达接收端，即该分组的最后 1 bit 在时刻 t = RTT/2 + L/R = 15.008ms 时到达接收端。假设 ACK 分组很小，可以忽略其发送时间，且接收端一旦收到一个数据分组的最后 1bit 后立刻发送 ACK，则 ACK 在时刻 t = RTT + L/R = 30.008ms 时回送到发送端。也就是说，经过 30.008ms 后发送端才可以发送下一个分组。</p>
+<p>设<strong>利用率</strong>为：<strong>发送端实际忙于将发送比特送进信道的那部分时间与发送时间之比</strong>。则</p>
+<p>U_sender = (L/R) / (RTT + L/R) = 0.008 / 30.008 = 0.00027</p>
+<p>可以看到，利用率极其低下，这是不可容忍的，所以我们需要改进性能。</p>
+<h3 id="流水线技术"><a href="#流水线技术" class="headerlink" title="流水线技术"></a>流水线技术</h3><p>流水线技术是解决这种特殊性能问题的一个非常简单的方法：不使用停等方式运行，允许发送端发送多个分组而无需等待确认。</p>
+<p>虽然流水线可以直线提升 rdt 3.0 协议的性能，但是也会带来如下的影响：</p>
 <ul>
-<li>公钥和私钥成对出现</li>
-<li>公开的密钥叫公钥，只有自己知道的叫私钥</li>
-<li>用公钥加密的数据只有对应的私钥可以解密</li>
-<li>用私钥加密的数据只有对应的公钥可以解密</li>
-<li>如果可以用公钥解密，则必然是对应的私钥加的密</li>
-<li>如果可以用私钥解密，则必然是对应的公钥加的密</li>
+<li>必须增加序号的范围。因为每个传输中的分组（不计算重传的）必须有一个唯一的序号，而且也许有多个在输送中尚未确认的分组</li>
+<li>协议的发送端和接收端也必须缓存多个分组。发送方最低限度应当能缓冲那些已发送但没有确认的分组，接收方或许也需要缓存那些已正确接收的分组</li>
+<li>所需序号范围和对缓冲的要求取决于数据传输协议如何处理丢失、损坏和延时过大的分组。</li>
 </ul>
-<p>公钥和私钥是相对的，两者本身并没有规定哪一个必须是公钥或私钥。</p>
-<h3 id="二、实现数据的安全传输"><a href="#二、实现数据的安全传输" class="headerlink" title="二、实现数据的安全传输"></a>二、实现数据的安全传输</h3><p>要实现数据的安全传输，当然就要对数据进行加密了。</p>
-<p>如果使用对称加密算法，加解密使用同一个密钥，除了自己保存外，对方也要知道这个密钥，才能对数据进行解密。如果你把密钥也一起传过去，就存在密码泄漏的可能。所以我们使用<strong>非对称算法</strong>，过程如下：</p>
-<ol>
-<li>首先 接收方 生成一对密钥，即私钥和公钥；</li>
-<li>然后，接收方 将公钥发送给 发送方；</li>
-<li>发送方用收到的公钥对数据加密，再发送给接收方；</li>
-<li>接收方收到数据后，使用自己的私钥解密。</li>
-</ol>
-<p>由于在非对称算法中，公钥加密的数据必须用对应的私钥才能解密，而私钥又只有接收方自己知道，这样就保证了数据传输的安全性。</p>
-<p><a href="http://img.blog.csdn.net/20150502122610368" target="_blank" rel="noopener"><img src="http://img.blog.csdn.net/20150502122610368" alt=""></a></p>
-<h3 id="三、对信息进行数字签名"><a href="#三、对信息进行数字签名" class="headerlink" title="三、对信息进行数字签名"></a>三、对信息进行数字签名</h3><p>除了保证数据的安全传输之外，公钥体系的另一个用途就是对数据进行签名。通常<strong>“数字签名”</strong>是用来验证发送方的身份并帮助保护数据的完整性。</p>
-<p>例如：一个发送者 A 想要传些资料给大家，用自己的私钥对资料加密，即签名。这样一来，所有收到资料的人都可以用发送者的公钥进行验证，便可确认资料是由 A 发出来的了。（因为只有Ａ使用私钥签名得到的信息，才能用这个公钥来解） 采用数字签名，可以确认两点：</p>
-<ol>
-<li>保证信息是由签名者自己签名发送的，签名者不能否认或难以否认。</li>
-<li>保证信息自签发后到收到为止未曾作过任何修改。</li>
-</ol>
-<p>之所以可以确认这两点，是因为用公钥可以解密的必然是用对应的私钥加的密，而私钥只有签名者持有。</p>
-<h3 id="四、公钥算法的缺点"><a href="#四、公钥算法的缺点" class="headerlink" title="四、公钥算法的缺点"></a>四、公钥算法的缺点</h3><p>现实中，公钥机制也有它的缺点，那就是<strong>效率非常低</strong>，比常用的私钥算法（如 DES 和 AES）慢上一两个数量级都有可能。所以它不适合为大量的原始信息进行加密。为了同时兼顾安全和效率，我们通常结合使用公钥算法和私钥算法：</p>
-<ol>
-<li>首先，发送方使用对称算法对原始信息进行加密。</li>
-<li>接收方通过公钥机制生成一对密钥，一个公钥，一个私钥。</li>
-<li>接收方 将公钥发送给 发送方。</li>
-<li>发送方用公钥对对称算法的密钥进行加密，并发送给接收方。</li>
-<li>接收方用私钥进行解密得到对称算法的密钥。</li>
-<li>发送方再把已加密的原始信息发送给接收方。</li>
-<li>接收方使用对称算法的密钥进行解密。</li>
-</ol>
-<p><a href="http://img.blog.csdn.net/20150502122733376" target="_blank" rel="noopener"><img src="http://img.blog.csdn.net/20150502122733376" alt=""></a></p>
-<p><strong>总结：</strong></p>
-<ol>
-<li><p>每个用户都有一对私钥和公钥。</p>
+<p>解决流水线的差错恢复有两种基本方法，分别为 <strong>回退 N 步（Go-Back-N, GBN）</strong> 和 <strong>选择重传（Selective Repeat, SR）</strong>。</p>
+<h3 id="GBN-协议（回退-N-步协议）"><a href="#GBN-协议（回退-N-步协议）" class="headerlink" title="GBN 协议（回退 N 步协议）"></a>GBN 协议（回退 N 步协议）</h3><p>在 GBN 协议中，允许发送方发送多个分组（当有多个分组可用时）而不需等待确认，但它也受限于在流水线中未确认的分组数不能超过某个最大允许数 N。</p>
+<p><img src="https://img-blog.csdn.net/20180515170820411" alt=""></p>
+<p>上图显示了发送方看到的 GBN 协议的序号范围。将<strong>基序号（base）</strong>定义为最早的未确认分组的序号，将<strong>下一个序号（nextseqnum）</strong>定义为最小的未使用序号（即下一个待发分组的序号），则可将序号范围分割成 4 段。在 [0, base-1] 段内的序号对应于已经发送并确认的分组。[base, nextseqnum-1] 段对应已经发送但未被确认的分组。[nextseqnum, base+N-1] 段内的序号能用于那些要立即发送的分组，如果有数据来自于上层的话。最后，大于或等于 base+N 的序号是不能使用的，直到当前流水线中未确认的分组（特别是序号为 base 的分组）已得到确认为止。</p>
+<p>在上图中，把 [base, base+N-1] 看做一个长度为 N 的窗口。随着协议的运行，该窗口在序号空间向前滑动。因此，N 常被称为<strong>窗口长度（window size）</strong>，GBN 协议也常被称为<strong>滑动窗口协议（sliding-window protocol）</strong>。至于为什么需要限制 N 的范围，是因为这是流量控制的方法之一。</p>
+<p>在实践中，一个分组的序号承载在分组首部的一个固定长度的字段中。如果分组序号字段的比特数是 k，则该序号范围是 [0, 2^k - 1]。在一个有限的序号范围内，所有涉及序号的运算必须使用模 2^k 运算。</p>
+<p>下图是GBN 协议发送方扩展 FSM 描述：</p>
+<p><img src="https://img-blog.csdn.net/20180515171134973" alt=""></p>
+<p>发送方必须响应三种类型的事件：</p>
 <ul>
-<li>私钥用来进行解密和签名，是给自己用的。</li>
-<li>公钥由本人公开，用于加密和验证签名，是给别人用的。</li>
+<li><strong>上层的调用</strong>。当上层调用 <code>rdt_send()</code> 时，发送方首先检查发送窗口是否已满，即是否有 N 个已发送但未被确认的分组。如果窗口未满，则产生一个分组并将其发送，并相应地更新变量。如果窗口已满，发送方只需将数据返回给上层，隐式地指示上层该窗口已满。然后上层可能会过一会儿再试。在实际实现中，发送方更可能缓存这些数据，或者使用同步机制（如一个信号量或标志）允许上层在仅当窗口不满时才调用 <code>rdt_send()</code>。</li>
+<li><strong>收到一个ACK</strong>。在 GBN 协议中，对序号为 n 的分组的确认采取<strong>累积确认（cumulative acknowledgment）</strong>的方式，表明接收方已正确接收到序号为 n 的以前且包括 n 在内的所有分组。</li>
+<li><strong>超时事件</strong>。协议的名字“回退 N 步”来源于出现丢失和时延过长分组时发送方的行为。就像在停等协议中那样，定时器将再次用于恢复数据或确认分组的丢失。如果出现超时，<strong>发送方重传所有已发送但未被确认过的分组</strong>。上图中发送方仅使用一个定时器，如果收到了一个 ACK，但仍有已发送但未被确认的分组，则定时器被重新启动。如果没有已发送但未被确认的分组，该定时器被终止。</li>
+</ul>
+<p>下图是 GBN 协议接收方扩展 FSM 描述：</p>
+<p><img src="https://img-blog.csdn.net/20180515171145273" alt=""></p>
+<p>如果一个序号为 n 的分组被正确接收到，并且按序（即上次交付给上层的数据是序号为 n - 1 的分组），则接收方为分组 n 发送一个 ACK，并将该分组中的数据部分交付到上层。</p>
+<p>在所有其他情况下，接收方将<strong>丢弃</strong>该分组，并<strong>为最近按序接收的分组重新发送 ACK</strong>。</p>
+<p>注意到因为一次交付给上层一个分组，<strong>如果分组 k 为已接受并交付，则所有序号比 k 小的分组也已经交付</strong>。因此，使用累积确认是 GBN 的一个自然的选择。</p>
+<p>虽然 GBN 协议看起来很浪费，因为它会丢弃一个正确接收（但失序）的分组。但这样做是有道理的。因为接收方必须将数据按序交付给上层，假设现在期望接收分组 n，而分组 n + 1 却到了，因为数据必须按序交付，所以接收方可能缓存分组 n + 1，然后，在它收到并交付分组 n 后，再将该分组交付到上层。但是，如果分组 n 丢失，则该分组及分组 n + 1 最终将在发送方根据 GBN 重传规则而被重传，所以，接收方只需要直接丢弃分组 n + 1 即可。</p>
+<p>这种方法的优点是<strong>接收方不需要缓存任何失序分组</strong>，<strong>唯一需要维护的信息就是下一个按序接收的分组的序号</strong>。缺点就是<strong>随后对该分组的重传也许会丢失或出错，进而引发更多的重传。</strong></p>
+<p>可以看到，GBN 协议本身相对于 rdt 3.0 协议有了长足进步，但是仍然有它自己的性能问题，尤其是当窗口长度和带宽时延都很大的时，流水线中有很多分组更是如此。任何单个分组的差错就能引起 GBN 协议重传大量分组，事实上是很多分组根本没必要重传，所以，有了一个更加优化的协议，就是下面要说的 <strong>选择重传（SR）</strong> 协议。</p>
+<h3 id="SR-协议（选择重传协议）"><a href="#SR-协议（选择重传协议）" class="headerlink" title="SR 协议（选择重传协议）"></a>SR 协议（选择重传协议）</h3><p>SR 协议在 GBN 协议的基础上进行了改进，它通过让发送方仅重传那些它怀疑在接收方出错（即丢失或受损）的分组而避免了不必要的重传。<strong>选择重传协议只重传真正丢失的分组.</strong></p>
+<p><strong><img src="https://img-blog.csdn.net/20131221205915906?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHBwcmluY2U=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></strong></p>
+<p><strong><img src="https://img-blog.csdn.net/20131221205827921?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHBwcmluY2U=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></strong></p>
+<p><strong>选择重传的接收窗口与发送窗口一样大.选择重传协议允许与接收窗口一样多的分组失序到达,并保存这些失序到达的分组,直到连续的一组分组被交付给应用层.因为发送窗口与接收窗口是相同的,所以发送出来的所有分组都可以失序到达,而且会被保留直到交付为止.但是必须强调一点,在一个可靠的协议中,接收方永远不会把分组失序地交给应用层.在他们被交付给应用层之前,先要等待那些更早发出来的分组到达.</strong></p>
+<p><strong><img src="https://img-blog.csdn.net/20131221205953984?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHBwcmluY2U=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></strong></p>
+<p><strong>计时器</strong></p>
+<p><strong>理论上选择重传协议要为每个分组使用一个计时器.当某个计时器超时后,只有相应的分组被重传.换而言之,返回N协议将所有的分组当做一个整体对待,而选择重传协议则分别对待每一个分组.但是大多数SR的运输层仅使用了一个计时器. 注意只使用一个计时器而做到跟踪所有发出去的分组的情况的做法是:标记发出分组,当ACK=Sf 时,将窗口滑过所有连续的已确认的分组,如果还有未确认的分组,则重发所有检测到的未被确认的分组并重启计时器,如果所有分组都被确认了则停止计时器.</strong></p>
+<p><strong>确认</strong></p>
+<p><strong>在GBN中确认值(ACK) 是累计的,它定义了下一个希望接收的分组序号,同时也证实了此前所有的分组都已经被完好的接收了.在SR中,确认号(ACK)只定义完好接收的那一个分组的序号,并不反馈任何其他分组的信息.</strong></p>
+<p><img src="https://img-blog.csdn.net/20131221210033265?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHBwcmluY2U=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p>下图描述了发送方与接收方的序号空间：</p>
+<p><img src="https://img-blog.csdn.net/20180515172149736" alt=""></p>
+<p>发送方的事件与动作：</p>
+<ul>
+<li><strong>从上层收到数据</strong>。当从上层接收到数据后，SR 发送方检查下一个可用于该分组的序号。如果序号位于发送方的窗口内，则将数据打包并发送；否则就像在 GBN 中一样，要么将数据缓存，要么将其返回给上层以便以后传输。</li>
+<li><strong>超时</strong>。定时器再次被用来防止丢失分组。然而，现在每个分组必须拥有其自己的逻辑定时器，因为超时发生后只能发送一个分组。</li>
+<li><strong>收到ACK</strong>。如果收到 ACK，倘若该分组序号在窗口内，则 SR 发送方将那个被确认的分组标记为已接收。若该分组的序号等于 send_base，则窗口基序号向前移动到具有最小序号的未确认分组处。如果窗口移动了并且有序号落在窗口内的未发送分组，则发送这些分组。</li>
+</ul>
+<p>接收方的事件与动作：</p>
+<ul>
+<li><strong>序号在 [rcv_base, rcv_base+N-1] 内的分组被正确接收</strong>。在此情况下，收到的分组落在接收方的窗口内，一个选择 ACK 被回送给发送方。如果该分组以前没收到过，则缓存该分组。如果该分组的序号等于接收端的基序号（rcv_base），则该分组以及以前缓存的序号连续的（起始于 rcv_base 的）分组交付给上层。然后，接收窗口按向前移动分组的编号向上交付这些分组。</li>
+<li><strong>序号在 [rcv_base-N, rcv_base-1] 内的分组被正确收到</strong>。在此情况下，必须产生一个 ACK，即使该分组是接收方以前确认过的分组。</li>
+<li><strong>其他情况</strong>。忽略该分组。</li>
+</ul>
+<p>注意上面的第二步，接收方需要重新确认（而不是忽略）已收到过的那些序号小于当前窗口基序号的分组。为什么要返回 ACK？加入按照上图中所示的发送方和接收方的序号空间，如果分组 send_base 的 ACK 没有从接收方传播回发送方，则发送方最终将重传分组 send_base，即使显然接收方已经收了该分组。<strong>如果接收方不确认该分组，则发送方窗口将永远不能向前滑动</strong>。</p>
+<p>上面的例子说明了对于 SR 协议（和很多其他协议一样） 对于哪些分组已经被正确接收，哪些没有，发送方和接收方并不总能看到相同的结果。也就是说，发送方和接收方的窗口并不总是一致。</p>
+<h4 id="窗口长度与序号空间大小"><a href="#窗口长度与序号空间大小" class="headerlink" title="窗口长度与序号空间大小"></a>窗口长度与序号空间大小</h4><p>下面这个例子说明了，如果窗口长度与序号空间大小选择不当，将会产生严重的后果。</p>
+<p><img src="https://img-blog.csdn.net/20180515173509325" alt=""></p>
+<p>在这个例子中，有四个分组序号 0、1、2、3 且窗口长度为 3。假定发送了分组 0 至 2，并且接收方被正确接收且确认了。此时，接收方窗口落在 4、5、6 个分组上，其序号分别为 3、0、1.现在考虑两种情况。</p>
+<p>在第一种情况下，如上图中的 a 图所示，对前 3 个分组的 ACK 丢失，因此发送方重传这些分组。因此，接收方下一步要接收序号为 0 的分组，即第一个发送分组的副本。</p>
+<p>在第二种情况下，如上图中的 b 图所示，对前 3 个分组的 ACK 都被正确交付。因此发送方向前移动窗口并发送第 4、5、6 个分组，其序号分别为 3、0、1.序号为 3 的分组丢失，但序号为 0 的分组到达（一个包含新数据的分组）。</p>
+<p>显然，接收方并不知道发送方那边出现了什么问题，对于接收方自己来说，上面两种情况是<strong>等价</strong>的。没有办法区分是第一个分组的重传还是第 5 个分组的初次传输。所以，窗口长度比序号空间小 1 时协议无法正常工作。但窗口应该有多小呢？</p>
+<p>答案是：<strong>窗口长度必须小于或等于序号空间大小的一半</strong>。</p>
+<h3 id="可靠数据传输过程中的分组重新排序问题"><a href="#可靠数据传输过程中的分组重新排序问题" class="headerlink" title="可靠数据传输过程中的分组重新排序问题"></a>可靠数据传输过程中的分组重新排序问题</h3><p>在前面的所有假设中，我们都是假定分组在发送方与接收方之间的信道中不能被重新排序。但是当连接两端的信道是一个网络时，分组重新排序是可能会发生的。</p>
+<p>分组重新排序的一个表现就是一个具有序号或确认号 x 的分组的旧副本可能会出现，即使发送方或接收方的窗口中都包含 x。</p>
+<p>对于分组重新排序，信道可被看成基本上是在缓存分组，并在将来任意时刻自然地释放出这些分组。由于序号可以被重新使用，那么必须小心，以免出现这样的冗余分组。</p>
+<p>实际应用中采用的方法是：**确保一个序号不被重新使用，直到发送方“确信”任何先前发送的序号为 x 的分组都不再在网络中为止。通过假定一个分组在网络中的“存活”时间不会超过某个固定最大时间量来做到这一点。在高速网络的 TCP 扩展中，最长的分组寿命被假定为大于 3 分钟 [RFC 1323]。</p>
+<h2 id="对于TCP，GBN，SR之间关系的总结"><a href="#对于TCP，GBN，SR之间关系的总结" class="headerlink" title="对于TCP，GBN，SR之间关系的总结"></a>对于TCP，GBN，SR之间关系的总结</h2><h3 id="区别："><a href="#区别：" class="headerlink" title="区别："></a>区别：</h3><h4 id="GBN："><a href="#GBN：" class="headerlink" title="GBN："></a>GBN：</h4><ul>
+<li>如果某个报文段没有被正确接收，则从这个报文段到后面的报文段都要重新发送。</li>
+<li>采用累计应答的方式。例如接收端返回ACK=3，则证明报文段3以及之前的报文段都被正确接收。<ul>
+<li>这里顺便解释一下为什么GBN可以采用累计应答的方式？怎么就能保证3之前的被正确接收了呢？这还要由GBN的工作机制来决定：在GBN机制下，在接收端的运输层一次只交付给上层一个分组，并且保证是按序交付的，因此如果分组k已接收，则所有序号小于k的分组也已经交付了。</li>
 </ul>
 </li>
-<li><p>当该用户发送文件时，用私钥签名，别人用他给的公钥解密，可以保证该信息是由他发送的。即数字签名。</p>
-</li>
-<li><p>当该用户接受文件时，别人用他的公钥加密，他用私钥解密，可以保证该信息只能由他看到。即安全传输。</p>
-</li>
-</ol>
-<p>图片来源：<a href="http://www.cnblogs.com/chnking/archive/2007/08/30/875947.html" target="_blank" rel="noopener">www.cnblogs.com/chnking/archive/2007/08/30/875947.html</a></p>
-<p>本文转自：<a href="https://songlee24.github.io/2015/05/03/public-key-and-private-key/" target="_blank" rel="noopener">https://songlee24.github.io/2015/05/03/public-key-and-private-key/</a></p>
+<li>接收端不对失序到达的分组进行缓存。</li>
+</ul>
+<h4 id="SR："><a href="#SR：" class="headerlink" title="SR："></a>SR：</h4><ul>
+<li>接收方设置缓存区，用于接收失序到达的分组。（从这里可以感受到，所谓的<strong>GBN中的发送端窗口</strong>和<strong>SR中的发送端与接收端的窗口</strong>其实就是缓存区，用于缓存分组。注意，由于GBN是单个分组交付，不设置缓存区，所以GBN的接收端是没有窗口的）</li>
+<li>为每个报文段设置单独的计时器，单个分组计时器超时只重发这一个报文段。</li>
+<li>接收端返回ACK是当前接收成功报文段的序号，SR不采用累计应答的方式。</li>
+</ul>
+<h4 id="TCP："><a href="#TCP：" class="headerlink" title="TCP："></a>TCP：</h4><ul>
+<li>TCP使用累计应答的方式。这一点与GBN类似。</li>
+<li>TCP在接收端会设置缓存，来缓存正确接收但是失序的分组，这点与SR类似。（实际上TCP RFC并没有对接收端要怎样处理失序到达的分组提出要求，但是在接收端设置缓存是实践中大家都采用的方法）</li>
+<li>TCP使用快速重传机制：如果收到对于一个特定报文段的3个冗余ACK，则在超时事件发生前就会对该报文段进行重传，这大大节约了时间。</li>
+<li>注意：TCP中的ACK是指接收端希望从发送端收到的下一字节的序号。例如发送端发送了编号为0-5的字节，这时接收端成功接收后就会发送ACK为6。</li>
+<li>注意：这里介绍的TCP这是理论上的，在实际使用过程中，大家加入了很多其他的机制等。目前计网学习的都是基础理论的知识。</li>
+</ul>
+<p>这里推荐一个教材附加的网址：<a href="http://www.ccs-labs.org/teaching/rn/animations/gbn_sr/" target="_blank" rel="noopener">http://www.ccs-labs.org/teaching/rn/animations/gbn_sr/</a></p>
+<p>通过小程序来形象的模拟了GBN和SR的工作过程！</p>
+<p>看了一个提问产生论文写作想法：<a href="https://stackoverflow.com/questions/12614393/differences-between-tcp-and-go-back-n" target="_blank" rel="noopener">https://stackoverflow.com/questions/12614393/differences-between-tcp-and-go-back-n</a></p>
 
       
     </div>
@@ -467,6 +516,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/TCP/" rel="tag"># TCP</a>
+          
+        </div>
+      
 
       
       
@@ -476,15 +531,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2020/03/24/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/" rel="next" title="回溯算法">
+                <i class="fa fa-chevron-left"></i> 回溯算法
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/12/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E7%89%B9%E7%82%B9%E4%BB%A5%E5%8F%8A%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B/" rel="prev" title="卷积神经网络的特点以及训练过程">
-                卷积神经网络的特点以及训练过程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -650,7 +705,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#理解公钥与私钥"><span class="nav-number">1.</span> <span class="nav-text">理解公钥与私钥</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、公钥算法与私钥算法"><span class="nav-number">1.0.1.</span> <span class="nav-text">一、公钥算法与私钥算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、实现数据的安全传输"><span class="nav-number">1.0.2.</span> <span class="nav-text">二、实现数据的安全传输</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、对信息进行数字签名"><span class="nav-number">1.0.3.</span> <span class="nav-text">三、对信息进行数字签名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、公钥算法的缺点"><span class="nav-number">1.0.4.</span> <span class="nav-text">四、公钥算法的缺点</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#对TCP-，GBN，SR的一点理解总结"><span class="nav-number">1.</span> <span class="nav-text">对TCP ，GBN，SR的一点理解总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对于GBN与SR的讲解"><span class="nav-number">1.1.</span> <span class="nav-text">对于GBN与SR的讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rdt-3-0-协议性能分析"><span class="nav-number">1.1.1.</span> <span class="nav-text">rdt 3.0 协议性能分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流水线技术"><span class="nav-number">1.1.2.</span> <span class="nav-text">流水线技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GBN-协议（回退-N-步协议）"><span class="nav-number">1.1.3.</span> <span class="nav-text">GBN 协议（回退 N 步协议）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SR-协议（选择重传协议）"><span class="nav-number">1.1.4.</span> <span class="nav-text">SR 协议（选择重传协议）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#窗口长度与序号空间大小"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">窗口长度与序号空间大小</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可靠数据传输过程中的分组重新排序问题"><span class="nav-number">1.1.5.</span> <span class="nav-text">可靠数据传输过程中的分组重新排序问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对于TCP，GBN，SR之间关系的总结"><span class="nav-number">1.2.</span> <span class="nav-text">对于TCP，GBN，SR之间关系的总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#区别："><span class="nav-number">1.2.1.</span> <span class="nav-text">区别：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GBN："><span class="nav-number">1.2.1.1.</span> <span class="nav-text">GBN：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SR："><span class="nav-number">1.2.1.2.</span> <span class="nav-text">SR：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP："><span class="nav-number">1.2.1.3.</span> <span class="nav-text">TCP：</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
