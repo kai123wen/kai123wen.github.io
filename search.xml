@@ -34,6 +34,12 @@ v2.pop_back();   //删除最后一个元素</code></pre><p>4.vector其他函数�
 </li>
 </ol>
 ]]></content>
+      <categories>
+        <category>编程语言</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
   </entry>
   <entry>
     <title>对TCP ，GBN，SR的一点理解总结</title>
