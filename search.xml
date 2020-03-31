@@ -26,6 +26,67 @@
       </categories>
   </entry>
   <entry>
+    <title>在 Android Device Monitor 的 File Explorer 中，无法打开某些文件夹的解决方法</title>
+    <url>/2020/03/31/%E5%9C%A8%20Android%20Device%20Monitor%20%E7%9A%84%20File%20Explorer%20%E4%B8%AD%EF%BC%8C%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E6%9F%90%E4%BA%9B%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="在-Android-Device-Monitor-的-File-Explorer-中，无法打开某些文件夹的解决方法"><a href="#在-Android-Device-Monitor-的-File-Explorer-中，无法打开某些文件夹的解决方法" class="headerlink" title="在 Android Device Monitor 的 File Explorer 中，无法打开某些文件夹的解决方法"></a>在 Android Device Monitor 的 File Explorer 中，无法打开某些文件夹的解决方法</h1><p>参考：<a href="https://www.jianshu.com/p/acf9e8240467?tdsourcetag=s_pctim_aiomsg" target="_blank" rel="noopener">https://www.jianshu.com/p/acf9e8240467?tdsourcetag=s_pctim_aiomsg</a></p>
+<p>Android Device Monitor 的 File Explorer 中，列出了模拟器内的各种文件与文件夹，有的文件夹旁边明明有箭头符号，然而却打不开，比如下面的 data 文件夹：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3386108-7c8720c91f5b7709.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/628/format/webp" alt=""></p>
+<p>File Explorer</p>
+<h1 id="1-分析"><a href="#1-分析" class="headerlink" title="1 分析"></a>1 分析</h1><p>因为 Android 的底层是 linux，所以每个文件夹都是有权限控制的，比如 data 的 Permissions（权限）是 <code>drwxrwx--x</code></p>
+<p>我们来解释一下：</p>
+<ul>
+<li>第一个字符表示的是文件类型。如果是 d，则表示是文件夹。</li>
+<li>后面跟着三个三元组。</li>
+<li>共 10 个字符。</li>
+</ul>
+<p>三个三元组各有不同的含义：</p>
+<ul>
+<li>第一个组表示<strong>文件所有者</strong>的权限。</li>
+<li>第二个组表示文件的<strong>组</strong>权限。</li>
+<li>第三个组表示<strong>所有其他用户</strong>权限。</li>
+</ul>
+<p>三元组字符的含义（顺序是 <code>rwx</code>）：</p>
+<ul>
+<li><code>r</code> - 允许读（read）</li>
+<li><code>w</code> - 允许写（write）</li>
+<li><code>x</code> - 允许执行（execute）</li>
+<li><code>-</code> - 没有上述某种权限（与位置有关）</li>
+</ul>
+<h1 id="2-解决"><a href="#2-解决" class="headerlink" title="2 解决"></a>2 解决</h1><p>使用 Android SDK 中的 adb，为文件夹设置访问权限。</p>
+<p>1、把 platform-tools 文件夹设置为环境变量：</p>
+<p>找到 Android SDK 的安装路径，如果用的是 Android Studio，可以在 File → Settings → Android SDK 中找到安装路径：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3386108-0be9cc369b9238b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/857/format/webp" alt=""></p>
+<p>Android SDK 配置</p>
+<p>把它设置为系统环境变量：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3386108-fe5fa7c476263e21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/351/format/webp" alt=""></p>
+<p>系统环境变量</p>
+<p>并加入 path。</p>
+<p>2、打开 cmd，输入以下命令，为 data 文件夹设置相应的权限：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3386108-3223ee03e67a171d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/285/format/webp" alt=""></p>
+<p>设置权限</p>
+<p><em>备注：输入两次 exit，就能退出到 windows 盘符下。</em></p>
+<p>这时，我们再打开 Android Device Monitor 的 File Explorer（会自动刷新），就可以正常打开 data 文件夹啦：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3386108-b2b968b92cec8ac8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/547/format/webp" alt=""></p>
+<p>访问 data 文件夹</p>
+<h1 id="3-命令解析"><a href="#3-命令解析" class="headerlink" title="3 命令解析"></a>3 命令解析</h1><p><code>adb shell</code> ：打开 adb shell 程序。<br><code>su</code> ：获取 root 权限。<br><code>chmod 权限 文件夹</code>：为文件夹设置权限。</p>
+<p>这里的 775，表示的是 rwxrwxr-x，每一个数字表示的是一个二进制数，比如 7，即 111，表示为这一个三元组设置所有的 rwx 权限。</p>
+<hr>
+<p>更简单的做法是直接使用命令：</p>
+<pre><code>adb root</code></pre><p>这样就不用一层一层文件夹设置权限啦O(∩_∩)O哈哈~</p>
+<h1 id="关于解决su-not-found的方法"><a href="#关于解决su-not-found的方法" class="headerlink" title="关于解决su:not found的方法"></a>关于解决su:not found的方法</h1><p>参考：<a href="https://blog.csdn.net/yh18668197127/article/details/83313482" target="_blank" rel="noopener">https://blog.csdn.net/yh18668197127/article/details/83313482</a></p>
+<p>adb shell之后su无法转到root权限,导致无法进入data/data/…</p>
+<p>在Google查询之后发现是模拟器版本的问题</p>
+<p>The play image has the Google Play store already installed and you can install apps, but there is no root access as it is a production build and not a debug build)</p>
+<p><strong>Android Studio带(Google Play)的模拟器无法获得root权限</strong></p>
+<p><strong>安装(Google APIs)的模拟器</strong></p>
+<p>(注意图片Target里的（Google Play）和（Google APIs）)</p>
+<p><img src="https://img-blog.csdn.net/20181023194917133?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3loMTg2NjgxOTcxMjc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+  </entry>
+  <entry>
     <title>C++  使用问题记录</title>
     <url>/2020/03/30/C++%20%20%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<h1 id="C-使用问题记录"><a href="#C-使用问题记录" class="headerlink" title="C++  使用问题记录"></a>C++  使用问题记录</h1><ol>
