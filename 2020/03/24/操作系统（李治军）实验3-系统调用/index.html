@@ -80,14 +80,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta name="description" content="主要参考：  https:&#x2F;&#x2F;blog.csdn.net&#x2F;wangyi_lin&#x2F;article&#x2F;details&#x2F;6921110 https:&#x2F;&#x2F;github.com&#x2F;Wangzhike&#x2F;HIT-Linux-0.11&#x2F;blob&#x2F;master&#x2F;2-syscall&#x2F;2-syscall.md  这个实验我真的是做不下去了，对于我来说，真的是很难，汇编啥的只有一点点了解，基本就是mov命令cs ip等一些简">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统（李治军）实验3 系统调用">
+<meta property="og:url" content="http://yoursite.com/2020/03/24/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E6%9D%8E%E6%B2%BB%E5%86%9B%EF%BC%89%E5%AE%9E%E9%AA%8C3-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/index.html">
 <meta property="og:site_name" content="开文见章的博客">
-<meta property="article:published_time" content="2020-03-12T02:29:36.000Z">
-<meta property="article:modified_time" content="2020-03-12T02:30:10.209Z">
+<meta property="og:description" content="主要参考：  https:&#x2F;&#x2F;blog.csdn.net&#x2F;wangyi_lin&#x2F;article&#x2F;details&#x2F;6921110 https:&#x2F;&#x2F;github.com&#x2F;Wangzhike&#x2F;HIT-Linux-0.11&#x2F;blob&#x2F;master&#x2F;2-syscall&#x2F;2-syscall.md  这个实验我真的是做不下去了，对于我来说，真的是很难，汇编啥的只有一点点了解，基本就是mov命令cs ip等一些简">
+<meta property="og:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200331170529.png">
+<meta property="article:published_time" content="2020-03-24T14:02:00.000Z">
+<meta property="article:modified_time" content="2020-03-31T09:13:58.191Z">
 <meta property="article:author" content="开文见章">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200331170529.png">
 
 
 
@@ -117,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/03/24/操作系统（李治军）实验3-系统调用/"/>
 
 
 
 
 
-  <title>tags | 开文见章的博客</title>
+  <title>操作系统（李治军）实验3 系统调用 | 开文见章的博客</title>
   
 
 
@@ -282,40 +286,188 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E6%9D%8E%E6%B2%BB%E5%86%9B%EF%BC%89%E5%AE%9E%E9%AA%8C3-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="开文见章">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="开文见章的博客">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                目前共计 4 个标签
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/C/" style="font-size: 12px; color: #ccc">C++</a> <a href="/tags/CNN/" style="font-size: 12px; color: #ccc">CNN</a> <a href="/tags/HTTP-HTTPS/" style="font-size: 12px; color: #ccc">HTTP | HTTPS</a> <a href="/tags/TCP/" style="font-size: 12px; color: #ccc">TCP</a>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">操作系统（李治军）实验3 系统调用</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-24T22:02:00+08:00">
+                2020-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>主要参考：</p>
+<ol>
+<li><a href="https://blog.csdn.net/wangyi_lin/article/details/6921110" target="_blank" rel="noopener">https://blog.csdn.net/wangyi_lin/article/details/6921110</a></li>
+<li><a href="https://github.com/Wangzhike/HIT-Linux-0.11/blob/master/2-syscall/2-syscall.md" target="_blank" rel="noopener">https://github.com/Wangzhike/HIT-Linux-0.11/blob/master/2-syscall/2-syscall.md</a></li>
+</ol>
+<p>这个实验我真的是做不下去了，对于我来说，真的是很难，汇编啥的只有一点点了解，基本就是mov命令cs ip等一些简单的东西。只能多看几遍了，第一遍看真的是啥也不懂。</p>
+<p>下面先记录记录一下我在做实验3的时候遇到的一些不明白的地方，做一下汇总记录。</p>
+<h2 id="intel汇编-和-AT-amp-T汇编-的区别"><a href="#intel汇编-和-AT-amp-T汇编-的区别" class="headerlink" title="intel汇编 和 AT&amp;T汇编 的区别"></a>intel汇编 和 AT&amp;T汇编 的区别</h2><p>参考：<a href="https://blog.csdn.net/kennyrose/article/details/7575952" target="_blank" rel="noopener">https://blog.csdn.net/kennyrose/article/details/7575952</a></p>
+<h2 id="对于-asm-volatile-函数讲解"><a href="#对于-asm-volatile-函数讲解" class="headerlink" title="对于 __ asm __ volatile  函数讲解"></a>对于 __ asm __ volatile  函数讲解</h2><p>在实验手册中首先介绍了close系统调用，但是对于下面的代码不是很明白：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int close(int fd)</span><br><span class="line">&#123;</span><br><span class="line">    long __res;</span><br><span class="line">    __asm__ volatile (&quot;int $0x80&quot;</span><br><span class="line">        : &quot;&#x3D;a&quot; (__res)</span><br><span class="line">        : &quot;0&quot; (__NR_close),&quot;b&quot; ((long)(fd)));</span><br><span class="line">    if (__res &gt;&#x3D; 0)</span><br><span class="line">        return (int) __res;</span><br><span class="line">    errno &#x3D; -__res;</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>讲解：这是gcc内嵌汇编。</p>
+<p>第一个冒号后表示汇编代码输出结果<br>第二个冒号后表示在这段汇编执行前输入<br>a 表示eax<br>b 表示ebx<br>0 表示这段代码列出的第一个寄存器即eax<br>这段代码的意思是把<strong>NR_close装入eax 把fd装入ebx 调用int指令陷入内核，内核返回后将eax的内容作为结果输出到</strong>res中。</p>
+<p>另外，下面博客介绍了GCC内嵌汇编的使用：插入C语言的一个汇编语言代码片段可以分成4部分，以“:”号加以分隔，其一般形式为：<strong><em>\</em>指令部：输出部：输入部：损坏部**</strong> <a href="https://blog.csdn.net/robbie1314/article/details/6329329" target="_blank" rel="noopener">https://blog.csdn.net/robbie1314/article/details/6329329</a></p>
+<h2 id="对include-unistd-h中添加的-NR-XXX的解释"><a href="#对include-unistd-h中添加的-NR-XXX的解释" class="headerlink" title="对include/unistd.h中添加的\NR__XXX的解释"></a>对include/unistd.h中添加的<em>\</em>NR__XXX的解释</h2><p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200331170529.png" alt=""></p>
+<p>“<em>\</em>NR__”是在Linux的源码中为每个系统调用加上的前缀。这里其实是Linux自己命名习惯，无关紧要，但是当时看着很不理解。</p>
+<h2 id="关于sys-h-中-sys-call-table的介绍："><a href="#关于sys-h-中-sys-call-table的介绍：" class="headerlink" title="关于sys.h 中 sys_call_table的介绍："></a>关于sys.h 中 sys_call_table的介绍：</h2><p><a href="https://www.cnblogs.com/alantu2018/p/8991310.html" target="_blank" rel="noopener">https://www.cnblogs.com/alantu2018/p/8991310.html</a>   <a href="https://www.cnblogs.com/wuchanming/p/4490622.html" target="_blank" rel="noopener">https://www.cnblogs.com/wuchanming/p/4490622.html</a>   <a href="https://blog.csdn.net/qq_41453285/article/details/103055378" target="_blank" rel="noopener">https://blog.csdn.net/qq_41453285/article/details/103055378</a></p>
+
       
     </div>
     
     
     
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat.jpg" alt="开文见章 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎关注微信公众号【开文见章】 只争朝夕，共同进步</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/16/HTTP%E4%B8%8EHTTPS%E6%8F%A1%E6%89%8B%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/" rel="next" title="HTTP与HTTPS握手的那些事">
+                <i class="fa fa-chevron-left"></i> HTTP与HTTPS握手的那些事
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/24/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/" rel="prev" title="回溯算法">
+                回溯算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -348,8 +500,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -441,6 +602,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#intel汇编-和-AT-amp-T汇编-的区别"><span class="nav-number">1.</span> <span class="nav-text">intel汇编 和 AT&amp;T汇编 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对于-asm-volatile-函数讲解"><span class="nav-number">2.</span> <span class="nav-text">对于 __ asm __ volatile  函数讲解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对include-unistd-h中添加的-NR-XXX的解释"><span class="nav-number">3.</span> <span class="nav-text">对include&#x2F;unistd.h中添加的\NR__XXX的解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于sys-h-中-sys-call-table的介绍："><span class="nav-number">4.</span> <span class="nav-text">关于sys.h 中 sys_call_table的介绍：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

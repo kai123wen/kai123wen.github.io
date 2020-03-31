@@ -322,6 +322,31 @@ v2.pop_back();   //删除最后一个元素</code></pre><p>4.vector其他函数�
       </categories>
   </entry>
   <entry>
+    <title>操作系统（李治军）实验3 系统调用</title>
+    <url>/2020/03/24/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E6%9D%8E%E6%B2%BB%E5%86%9B%EF%BC%89%E5%AE%9E%E9%AA%8C3-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/</url>
+    <content><![CDATA[<p>主要参考：</p>
+<ol>
+<li><a href="https://blog.csdn.net/wangyi_lin/article/details/6921110" target="_blank" rel="noopener">https://blog.csdn.net/wangyi_lin/article/details/6921110</a></li>
+<li><a href="https://github.com/Wangzhike/HIT-Linux-0.11/blob/master/2-syscall/2-syscall.md" target="_blank" rel="noopener">https://github.com/Wangzhike/HIT-Linux-0.11/blob/master/2-syscall/2-syscall.md</a></li>
+</ol>
+<p>这个实验我真的是做不下去了，对于我来说，真的是很难，汇编啥的只有一点点了解，基本就是mov命令cs ip等一些简单的东西。只能多看几遍了，第一遍看真的是啥也不懂。</p>
+<p>下面先记录记录一下我在做实验3的时候遇到的一些不明白的地方，做一下汇总记录。</p>
+<h2 id="intel汇编-和-AT-amp-T汇编-的区别"><a href="#intel汇编-和-AT-amp-T汇编-的区别" class="headerlink" title="intel汇编 和 AT&amp;T汇编 的区别"></a>intel汇编 和 AT&amp;T汇编 的区别</h2><p>参考：<a href="https://blog.csdn.net/kennyrose/article/details/7575952" target="_blank" rel="noopener">https://blog.csdn.net/kennyrose/article/details/7575952</a></p>
+<h2 id="对于-asm-volatile-函数讲解"><a href="#对于-asm-volatile-函数讲解" class="headerlink" title="对于 __ asm __ volatile  函数讲解"></a>对于 __ asm __ volatile  函数讲解</h2><p>在实验手册中首先介绍了close系统调用，但是对于下面的代码不是很明白：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int close(int fd)</span><br><span class="line">&#123;</span><br><span class="line">    long __res;</span><br><span class="line">    __asm__ volatile (&quot;int $0x80&quot;</span><br><span class="line">        : &quot;&#x3D;a&quot; (__res)</span><br><span class="line">        : &quot;0&quot; (__NR_close),&quot;b&quot; ((long)(fd)));</span><br><span class="line">    if (__res &gt;&#x3D; 0)</span><br><span class="line">        return (int) __res;</span><br><span class="line">    errno &#x3D; -__res;</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>讲解：这是gcc内嵌汇编。</p>
+<p>第一个冒号后表示汇编代码输出结果<br>第二个冒号后表示在这段汇编执行前输入<br>a 表示eax<br>b 表示ebx<br>0 表示这段代码列出的第一个寄存器即eax<br>这段代码的意思是把<strong>NR_close装入eax 把fd装入ebx 调用int指令陷入内核，内核返回后将eax的内容作为结果输出到</strong>res中。</p>
+<p>另外，下面博客介绍了GCC内嵌汇编的使用：插入C语言的一个汇编语言代码片段可以分成4部分，以“:”号加以分隔，其一般形式为：<strong><em>\</em>指令部：输出部：输入部：损坏部**</strong> <a href="https://blog.csdn.net/robbie1314/article/details/6329329" target="_blank" rel="noopener">https://blog.csdn.net/robbie1314/article/details/6329329</a></p>
+<h2 id="对include-unistd-h中添加的-NR-XXX的解释"><a href="#对include-unistd-h中添加的-NR-XXX的解释" class="headerlink" title="对include/unistd.h中添加的\NR__XXX的解释"></a>对include/unistd.h中添加的<em>\</em>NR__XXX的解释</h2><p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200331170529.png" alt=""></p>
+<p>“<em>\</em>NR__”是在Linux的源码中为每个系统调用加上的前缀。这里其实是Linux自己命名习惯，无关紧要，但是当时看着很不理解。</p>
+<h2 id="关于sys-h-中-sys-call-table的介绍："><a href="#关于sys-h-中-sys-call-table的介绍：" class="headerlink" title="关于sys.h 中 sys_call_table的介绍："></a>关于sys.h 中 sys_call_table的介绍：</h2><p><a href="https://www.cnblogs.com/alantu2018/p/8991310.html" target="_blank" rel="noopener">https://www.cnblogs.com/alantu2018/p/8991310.html</a>   <a href="https://www.cnblogs.com/wuchanming/p/4490622.html" target="_blank" rel="noopener">https://www.cnblogs.com/wuchanming/p/4490622.html</a>   <a href="https://blog.csdn.net/qq_41453285/article/details/103055378" target="_blank" rel="noopener">https://blog.csdn.net/qq_41453285/article/details/103055378</a></p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+  </entry>
+  <entry>
     <title>HTTP与HTTPS握手的那些事</title>
     <url>/2020/03/16/HTTP%E4%B8%8EHTTPS%E6%8F%A1%E6%89%8B%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/</url>
     <content><![CDATA[<p>这篇文章的起因是我在看《计算机网络自顶向下方法》时有一个题目答案中说：SMTP在应用层使用握<br>手，而HTTP不使用握手  。由于我对计算机网络掌握还不是很清楚，我就有了疑问，我知道TCP有三次握手，但是应用层的协议也有握手吗？为啥HTTP没有握手呢？</p>
