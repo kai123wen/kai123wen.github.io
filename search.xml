@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>LeetCode 练习 4月</title>
+    <url>/2020/04/02/LeetCode%20%E7%BB%83%E4%B9%A0%204%E6%9C%88/</url>
+    <content><![CDATA[<h1 id="LeetCode-练习"><a href="#LeetCode-练习" class="headerlink" title="LeetCode 练习"></a>LeetCode 练习</h1><p><a href="https://leetcode.com/discuss/general-discussion/551411/30-day-leetcoding-challenge" target="_blank" rel="noopener">https://leetcode.com/discuss/general-discussion/551411/30-day-leetcoding-challenge</a></p>
+<h2 id="4月"><a href="#4月" class="headerlink" title="4月"></a>4月</h2><h3 id="4-2-日"><a href="#4-2-日" class="headerlink" title="4.2 日"></a>4.2 日</h3><p>Given a <strong>non-empty</strong> array of integers, every element appears <em>twice</em> except for one. Find that single one.</p>
+<p><strong>Note:</strong></p>
+<p>Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</p>
+<p><strong>Example 1:</strong></p>
+<p><strong>Input:</strong> [2,2,1]<br><strong>Output:</strong> 1</p>
+<p><strong>Example 2:</strong></p>
+<p><strong>Input:</strong> [4,1,2,1,2]<br><strong>Output:</strong> 4</p>
+<p>这道题主要的要求是：程序具有线性复杂度，并且最好不使用额外的内存。</p>
+<p>除去这两个要求的话，有如下方法：</p>
+<ul>
+<li><p>第一种：先对序列进行排序，之后遍历一遍序列，如果存在一个数如 array[i] 的左边 array[i-1] 和右边 array[i+1] 均与 array[i] 不同，则这个数为要找的数（i=0以及i=n-1时进行特殊处理）</p>
+</li>
+<li><p>第二种：使用hashset，这是参考着<a href="https://www.cnblogs.com/grandyang/p/4130577.html" target="_blank" rel="noopener">https://www.cnblogs.com/grandyang/p/4130577.html</a> 看的，我之前对于hashset了解并不多，这里正好也了解一下：<a href="https://blog.csdn.net/wds1181977/article/details/51424839" target="_blank" rel="noopener">https://blog.csdn.net/wds1181977/article/details/51424839</a> 可以看到，其实在java中hashset是通过hashmap实现的，只是在键值对方面hashset 是不同的键对应同一个键值对。根据hashset的思想，可以解决该问题：遍历序列，如果当前值不在hashset中，则放入hashset，否则将同样的值移除hashset。注意：在java中有hashset，在C++中使用的是unordered_set，解决代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; st;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span> (st.count(num)) st.erase(num);</span><br><span class="line">            <span class="keyword">else</span> st.insert(num);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> *st.<span class="built_in">begin</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>但是由于上面条件的限制，不能使用上述两个方法。</p>
+<p>开始我也没有想到，想了很长时间，想过通过数学的方法，加加减减得到结果，但是经过测试后不可行。</p>
+<p>之后参考了网上的方法，使用*<em>C++的异或操作  ^ *</em> ，比如x=2,y=3 ,z=3.则x ^ y = 5，x^y^z = 2 , y ^ z = 0;</p>
+<p>下面是解决方法：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> num : nums)</span><br><span class="line">	&#123;</span><br><span class="line">		res ^= num;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
     <title>操作系统（李治军）实验3 系统调用</title>
     <url>/2020/03/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E6%9D%8E%E6%B2%BB%E5%86%9B%EF%BC%89%E5%AE%9E%E9%AA%8C3-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/</url>
     <content><![CDATA[<p>主要参考：</p>
