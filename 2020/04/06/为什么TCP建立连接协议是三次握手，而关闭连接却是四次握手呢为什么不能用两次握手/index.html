@@ -80,20 +80,21 @@
 
 
 
-<meta name="description" content="自己在githubpages + hexo 搭建自己博客遇到的问题搭建过程可以参考：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;26625249 下面是我在这一过程中遇到的问题  侧栏中的“日志”点击，产生404错误，之后hexo s 进入本地模式后，点击出现错误：Cannot GET &#x2F;archives&#x2F;%7C%7C%20archive&#x2F;  参考文章：https:&#x2F;&#x2F;blog.cs">
+<meta name="description" content="TCP 连接 我们先来补一下基础什么是 TCP 协议?传输控制协议是种面向连接、确保数据在端到端间可靠传输的协议。面向连接是插在发送数据前，需要先建立一条虚拟的链路，然后让数据在这条链路上“流动”完成传输。 ACK：用于对收到的数据进行确认，所确认的数据由确认序列号表示。 SYN：用作建立连接时的同步信号 FIN：表示后面没有数据需要发送，通常意昧着所建立的连接需要关闭了。 好了，到这里，TCP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自己在githubpages + hexo 搭建自己博客遇到的问题">
-<meta property="og:url" content="http://yoursite.com/2020/03/29/%E8%87%AA%E5%B7%B1%E5%9C%A8githubpages%20+%20hexo%20%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:title" content="为什么TCP建立连接协议是三次握手，而关闭连接却是四次握手呢?为什么不能用两次握手进行连接?">
+<meta property="og:url" content="http://yoursite.com/2020/04/06/%E4%B8%BA%E4%BB%80%E4%B9%88TCP%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E5%8D%8F%E8%AE%AE%E6%98%AF%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%8C%E8%80%8C%E5%85%B3%E9%97%AD%E8%BF%9E%E6%8E%A5%E5%8D%B4%E6%98%AF%E5%9B%9B%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%91%A2%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E7%94%A8%E4%B8%A4%E6%AC%A1%E6%8F%A1%E6%89%8B/index.html">
 <meta property="og:site_name" content="开文见章的博客">
-<meta property="og:description" content="自己在githubpages + hexo 搭建自己博客遇到的问题搭建过程可以参考：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;26625249 下面是我在这一过程中遇到的问题  侧栏中的“日志”点击，产生404错误，之后hexo s 进入本地模式后，点击出现错误：Cannot GET &#x2F;archives&#x2F;%7C%7C%20archive&#x2F;  参考文章：https:&#x2F;&#x2F;blog.cs">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/11129189-fb41ff3e1688e2cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/format/webp">
-<meta property="og:image" content="c:%5CUsers%5Cdell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200329142300580.png">
-<meta property="og:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200329142549.png">
-<meta property="article:published_time" content="2020-03-28T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-29T06:30:31.091Z">
+<meta property="og:description" content="TCP 连接 我们先来补一下基础什么是 TCP 协议?传输控制协议是种面向连接、确保数据在端到端间可靠传输的协议。面向连接是插在发送数据前，需要先建立一条虚拟的链路，然后让数据在这条链路上“流动”完成传输。 ACK：用于对收到的数据进行确认，所确认的数据由确认序列号表示。 SYN：用作建立连接时的同步信号 FIN：表示后面没有数据需要发送，通常意昧着所建立的连接需要关闭了。 好了，到这里，TCP">
+<meta property="og:image" content="https://p0.ssl.qhimgs4.com/t0109ea28835a3e16fc.webp">
+<meta property="og:image" content="https://p0.ssl.qhimgs4.com/t019775200c9ed236fc.webp">
+<meta property="og:image" content="https://p0.ssl.qhimgs4.com/t016ef9bcc61f20274c.webp">
+<meta property="og:image" content="https://p0.ssl.qhimgs4.com/t0182b5b27f763e2c07.webp">
+<meta property="article:published_time" content="2020-04-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-04-06T13:29:54.643Z">
 <meta property="article:author" content="开文见章">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/11129189-fb41ff3e1688e2cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/format/webp">
+<meta name="twitter:image" content="https://p0.ssl.qhimgs4.com/t0109ea28835a3e16fc.webp">
 
 
 
@@ -123,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/03/29/自己在githubpages + hexo 搭建自己博客遇到的问题/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/04/06/为什么TCP建立连接协议是三次握手，而关闭连接却是四次握手呢为什么不能用两次握手/"/>
 
 
 
 
 
-  <title>自己在githubpages + hexo 搭建自己博客遇到的问题 | 开文见章的博客</title>
+  <title>为什么TCP建立连接协议是三次握手，而关闭连接却是四次握手呢?为什么不能用两次握手进行连接? | 开文见章的博客</title>
   
 
 
@@ -300,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/29/%E8%87%AA%E5%B7%B1%E5%9C%A8githubpages%20+%20hexo%20%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/06/%E4%B8%BA%E4%BB%80%E4%B9%88TCP%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E5%8D%8F%E8%AE%AE%E6%98%AF%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%8C%E8%80%8C%E5%85%B3%E9%97%AD%E8%BF%9E%E6%8E%A5%E5%8D%B4%E6%98%AF%E5%9B%9B%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%91%A2%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E7%94%A8%E4%B8%A4%E6%AC%A1%E6%8F%A1%E6%89%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="开文见章">
@@ -317,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">自己在githubpages + hexo 搭建自己博客遇到的问题</h1>
+          <h1 class="post-title" itemprop="name headline">为什么TCP建立连接协议是三次握手，而关闭连接却是四次握手呢?为什么不能用两次握手进行连接?</h1>
         
 
         <div class="post-meta">
@@ -329,8 +330,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-29T00:00:00+08:00">
-                2020-03-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-06T00:00:00+08:00">
+                2020-04-06
               </time>
             
 
@@ -352,8 +353,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9D%82%E9%A1%B9/" itemprop="url" rel="index">
-                    <span itemprop="name">杂项</span>
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机网络</span>
                   </a>
                 </span>
 
@@ -389,68 +390,43 @@
       
 
       
-        <h1 id="自己在githubpages-hexo-搭建自己博客遇到的问题"><a href="#自己在githubpages-hexo-搭建自己博客遇到的问题" class="headerlink" title="自己在githubpages + hexo 搭建自己博客遇到的问题"></a>自己在githubpages + hexo 搭建自己博客遇到的问题</h1><p>搭建过程可以参考：<a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26625249</a></p>
-<p>下面是我在这一过程中遇到的问题</p>
-<ol>
-<li>侧栏中的“日志”点击，产生404错误，之后hexo s 进入本地模式后，点击出现错误：Cannot GET /archives/%7C%7C%20archive/</li>
-</ol>
-<p>参考文章：<a href="https://blog.csdn.net/qq_36852780/article/details/104680152?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task" target="_blank" rel="noopener">https://blog.csdn.net/qq_36852780/article/details/104680152?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task</a></p>
-<p><strong>访问的链接是<code>域名/archives/%7C%7C%20archive/</code>, 可见后面的多余了, 问题就是删除后面多余字符</strong></p>
-<p>解决多余字符</p>
-<p>posts的<code>class=&quot;site-state-item site-state-posts&quot;</code></p>
-<p>打开<code>博客根目录/themes/next/layout/_macro/sidebar.swig</code>, 搜索class的值, 快速定位错误位置.</p>
-<p><strong>修改之前:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if config.archive_dir !&#x3D; &#39;&#x2F;&#39; and site.posts.length &gt; 0 %&#125;</span><br><span class="line">             &lt;div class&#x3D;&quot;site-state-item site-state-posts&quot;&gt;</span><br><span class="line">             &#123;% if theme.menu.archives %&#125;</span><br><span class="line">               &lt;a href&#x3D;&quot;&#123;&#123; url_for(theme.menu.archives).split(&#39;||&#39;)[0] | trim &#125;&#125;&quot;&gt;</span><br><span class="line">             &#123;% else %&#125;</span><br><span class="line">               &lt;a href&#x3D;&quot;&#123;&#123; url_for(config.archive_dir) &#125;&#125;&quot;&gt;</span><br><span class="line">             &#123;% endif %&#125;</span><br><span class="line">                 &lt;span class&#x3D;&quot;site-state-item-count&quot;&gt;&#123;&#123; site.posts.length &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">                 &lt;span class&#x3D;&quot;site-state-item-name&quot;&gt;&#123;&#123; __(&#39;state.posts&#39;) &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">               &lt;&#x2F;a&gt;</span><br><span class="line">             &lt;&#x2F;div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p><strong>修改之后:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if config.archive_dir !&#x3D; &#39;&#x2F;&#39; and site.posts.length &gt; 0 %&#125;</span><br><span class="line">              &lt;div class&#x3D;&quot;site-state-item site-state-posts&quot;&gt;</span><br><span class="line">                &lt;a href&#x3D;&quot;&#123;&#123; url_for(config.archive_dir) &#125;&#125;&quot;&gt;</span><br><span class="line">                  &lt;span class&#x3D;&quot;site-state-item-count&quot;&gt;&#123;&#123; site.posts.length &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">                  &lt;span class&#x3D;&quot;site-state-item-name&quot;&gt;&#123;&#123; __(&#39;state.posts&#39;) &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">                &lt;&#x2F;a&gt;</span><br><span class="line">              &lt;&#x2F;div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
-
-<p>将中间的判断删掉, 保留下面else的内容即可解决该问题</p>
-<ol start="2">
-<li>为文章添加标签和分类：参考：<a href="https://juejin.im/post/5cc11c41f265da038f7745b5" target="_blank" rel="noopener">https://juejin.im/post/5cc11c41f265da038f7745b5</a></li>
-</ol>
-<ol start="3">
-<li><p>为博客添加文章搜索功能：参考：<a href="http://xhksun.com/2019/03/10/hexo-Next-主题添加搜索功能/" target="_blank" rel="noopener">http://xhksun.com/2019/03/10/hexo-Next-%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/</a></p>
-<h2 id="安装相关插件"><a href="#安装相关插件" class="headerlink" title="安装相关插件"></a>安装相关插件</h2><p>首先安装搜索插件： <code>hexo-generator-searchdb</code></p>
-<p>在hexo路径文件夹下执行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置hexo"><a href="#配置hexo" class="headerlink" title="配置hexo"></a>配置hexo</h2><p>安装完成，在hexo的配置文件<code>_config.yml</code>中添加：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置主题"><a href="#配置主题" class="headerlink" title="配置主题"></a>配置主题</h2><p>Next 主题自带搜索设置，编辑主题配置文件：<code>_config.yml</code></p>
-<p>找到文件中 Local search 的相关配置，设为 <code>true</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Local search</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>
-
-<h2 id="hexo-重新部署"><a href="#hexo-重新部署" class="headerlink" title="hexo 重新部署"></a>hexo 重新部署</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d -g</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>给Hexo Next设置阅读全文</p>
-<p>参考：<a href="https://www.jianshu.com/p/d335569a6238" target="_blank" rel="noopener">https://www.jianshu.com/p/d335569a6238</a></p>
-<p>Hexo 的 Next 主题默认是首页显示你每篇文章的全文内容，但这会使你的首页篇幅过于冗长，针对这个问题我们可以这么做：</p>
-<p>用编辑器打开themes/next 目录下的_config.yml文件</p>
-<p>找到代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">auto_excerpt:</span><br><span class="line">      enable: false</span><br><span class="line">      length: 150</span><br></pre></td></tr></table></figure>
-
-<p>将enable的 false改成true，length可以设定文章预览的文本长度。</p>
-<p>修改后重启即可。</p>
-</li>
-<li><p>next主题配置时链接图标丢失解决方案</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/11129189-fb41ff3e1688e2cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/format/webp" alt=""></p>
-</li>
-</ol>
-<p>参考：<a href="https://www.jianshu.com/p/a1777c2098b0" target="_blank" rel="noopener">https://www.jianshu.com/p/a1777c2098b0</a></p>
-<p>但是按着上面博客中的配置会出现 Cannot GET /%20/ 的问题。20%表示的是空格，所以多了个空格路径不对。以archives为例，改成“ archives: /archives/|| archive”就可以了。</p>
-<ol start="6">
-<li><p>如何添加新的图标：</p>
-<p>在<a href="http://www.fontawesome.com.cn/faicons/" target="_blank" rel="noopener">http://www.fontawesome.com.cn/faicons/</a> 网站中搜索图标，之后复制该网站的图标名称。</p>
-<p>例如我们需要archive的图标，搜索后出现如下结果：</p>
-<p><img src="C:%5CUsers%5Cdell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200329142300580.png" alt="image-20200329142300580"></p>
-<p>选择一个名字，比如我选择archive ,在根目录/theme/next/_config.yml 中需要的地方设置</p>
-<p>例如：<img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200329142549.png" alt=""></p>
-</li>
-</ol>
-<p>这样就可以了，重新部署一下。</p>
+        <p>TCP 连接</p>
+<p>我们先来补一下基础什么是 TCP 协议?传输控制协议是种面向连接、确保数据在端到端间可靠传输的协议。面向连接是插在发送数据前，需要先建立一条虚拟的链路，然后让数据在这条链路上“流动”完成传输。</p>
+<p>ACK：用于对收到的数据进行确认，所确认的数据由确认序列号表示。</p>
+<p>SYN：用作建立连接时的同步信号</p>
+<p>FIN：表示后面没有数据需要发送，通常意昧着所建立的连接需要关闭了。</p>
+<p>好了，到这里，TCP 的基础知识我们就知道了，下面我们就来看看为什么</p>
+<p>是三次握手，而不是四次或者两次，为了让你更好的理解，我把知乎上一个高赞特别形象的比喻放在这里，希望对你有所帮助。</p>
+<p><img src="https://p0.ssl.qhimgs4.com/t0109ea28835a3e16fc.webp" alt=""></p>
+<p>两次和四次都会出现问题，三次就刚刚好，希望这张图能够让你更好的理解为什么是三次握手。</p>
+<p>我们已经知道了 TCP 协议是三次握手，为什么是三次握手呢?我们先来看看下面这张 TCP 协议建立连接的时序图。</p>
+<p><img src="https://p0.ssl.qhimgs4.com/t019775200c9ed236fc.webp" alt=""></p>
+<p>总体来说就是呼叫、应答、回应，我们来详细的介绍每一步：</p>
+<p>第一步： A 机器向 B机器发出一个数据包并将 SYN 设置为 1 ，表示希望建立连接。这个包中的序列号假设是 X。</p>
+<p>第二步： B 机器收到 A机器发过来的数据包后，通过 SYN 得知这是一个建立连接的请求，于是发送一个响应包并将 SYN 、ACK 标记都置为 1。假设这个包中的序列号是 y ，而确认序列号必须是 x+l ，表示收到了 发过来的 SYN，TCP 中， SYN 被当作数据部分的一个字节。</p>
+<p>第三步： A 收到 的响应包后需进行确认，确认包中将 ACK ，并将确认序列号设置为 y+ ，表示收到了来自B 的 SYN</p>
+<p>经过这三步之后，两台服务器就建立连接了，可以进行通信数据传输了。为什么要三次握手呢?主要是为了信息对等和防止出现请求超时导致脏连接。</p>
+<p>第一是为了保证两台机器信息对等，确保两台机器都没有什么问题：</p>
+<p>只有三次握手之后才能够保证两台服务器都完全没有问题，各自具备发报和收报能力。</p>
+<p><img src="https://p0.ssl.qhimgs4.com/t016ef9bcc61f20274c.webp" alt=""></p>
+<p>为什么会出现脏连接?因为TTL 网络报文的生存时间往往都会超 TCP 请求超时时间，如果两次握手就可以创建连接 ，传输数据并释放连接后，第一个超时的连接请求才到达 B 机器的话，B 机器会以为是 A 创建新连接的请求，然后确认同意创建连接。因为 A 机器的状态不是 SYl_SENT ，所以直接丢弃了 B 的确认数据 ，以致最后只是 B 机器单方面创建连接完毕。</p>
+<p>三次握手就可以解决这个问题，因为需要 A 服务器确认了才真正的建立了连接。</p>
+<p>TCP 四次挥手</p>
+<p>上面介绍了 TCP 协议连接，有连接就有断开，相对于三次连接，断开却需要四次挥手，怎么理解呢?先看下面这个场景：</p>
+<p>A：B 啊，我不想玩了。</p>
+<p>B：哦，你不想玩了啊，我知道了。</p>
+<p>这个时候，还只是 A 不想玩了，也即 A 不会再发送数据，但是 B 能不能在 ACK 的时候，直接关闭呢?当然不可以了，很有可能 A 是发完了最后的数据就准备不玩了，但是 B 还没做完自己的事情，还是可以发送数据的，所以称为半关闭的状态。</p>
+<p>这个时候 A 可以选择不再接收数据了，也可以选择最后再接收一段数据，等待 B 也主动关闭。</p>
+<p>B：A 啊，好吧，我也不玩了，拜拜。</p>
+<p>A：好的，拜拜。</p>
+<p><img src="https://p0.ssl.qhimgs4.com/t0182b5b27f763e2c07.webp" alt=""></p>
+<p>我们结合上面的时序图和场景再来分析一下 TCP 断开过程。</p>
+<p>当 A 说“不玩了”，A 就进入 FIN_WAIT_1 的状态，B 收到“A 不玩”的消息后，发送知道了，B 就进入 CLOSE_WAIT 的状态。</p>
+<p>A 收到“B 说知道了”，就进入 FIN_WAIT_2 的状态，如果这个时候 B 直接跑路，则 A 将永远在这个状态。虽然 TCP 协议里面并没有对这个状态的处理，但是 Linux 有，可以调整 tcp_fin_timeout 这个参数，设置一个超时时间，最后 A 也会关闭的。</p>
+<p>如果 B 没有跑路，发送了“B 也不玩了”的请求到达 A 时，A 发送“知道 B 也不玩了”的 ACK 后，从 FIN_WAIT_2 状态结束，按说 A 可以跑路了，但是最后的这个 ACK 万一 B 收不到呢?则 B 会重新发一个“B 不玩了”，这个时候 A 已经跑路了的话，B 就再也收不到 ACK 了，因而 TCP 协议要求 A 最后等待一段时间 TIME_WAIT，这个时间要足够长，长到如果 B 没收到 ACK 的话，“B 说不玩了”会重发的，A 会重新发一个 ACK 并且足够时间到达 B。</p>
+<p>要求 A 等待 TIME_WAIT还有一个原因就是防止产生混乱，A 直接关闭了，但是这个时候 B是不知道的，可能在 A 关闭之前 B还发送了很多数据包，如果这时候 A 的端口被一个新的应用占用了的话，那么新的应用就会接收到上个连接中 B发送过来的数据包，这样就混乱了，虽然这个数据包是无效的，但是等待 TIME_WAIT 可以是一个双保险，因而也需要等足够长的时间，等到原来 B 发送的所有的包都死翘翘，再空出端口来。</p>
+<p>以上就是 TCP 协议三次握手，四次挥手的原因。</p>
+<p>另外参考：<a href="https://mp.weixin.qq.com/s/j2NBSTT6uM48zokY8e0mhQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/j2NBSTT6uM48zokY8e0mhQ</a></p>
 
       
     </div>
@@ -483,8 +459,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/24/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/" rel="next" title="回溯算法">
-                <i class="fa fa-chevron-left"></i> 回溯算法
+              <a href="/2020/04/02/LeetCode%20%E7%BB%83%E4%B9%A0%204%E6%9C%88/" rel="next" title="LeetCode 练习 4月">
+                <i class="fa fa-chevron-left"></i> LeetCode 练习 4月
               </a>
             
           </div>
@@ -492,10 +468,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/29/%E5%AF%B9TCP%20%EF%BC%8CGBN%EF%BC%8CSR%E7%9A%84%E4%B8%80%E7%82%B9%E7%90%86%E8%A7%A3%E4%B8%8E%E7%9C%8B%E6%B3%95/" rel="prev" title="对TCP ，GBN，SR的一点理解总结">
-                对TCP ，GBN，SR的一点理解总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -547,17 +519,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -649,22 +612,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自己在githubpages-hexo-搭建自己博客遇到的问题"><span class="nav-number">1.</span> <span class="nav-text">自己在githubpages + hexo 搭建自己博客遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装相关插件"><span class="nav-number">1.1.</span> <span class="nav-text">安装相关插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置hexo"><span class="nav-number">1.2.</span> <span class="nav-text">配置hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置主题"><span class="nav-number">1.3.</span> <span class="nav-text">配置主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo-重新部署"><span class="nav-number">1.4.</span> <span class="nav-text">hexo 重新部署</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
