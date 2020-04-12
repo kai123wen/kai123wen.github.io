@@ -90,7 +90,7 @@
 <meta property="og:image" content="c:%5CUsers%5Cdell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200329142300580.png">
 <meta property="og:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200329142549.png">
 <meta property="article:published_time" content="2020-03-29T14:02:00.000Z">
-<meta property="article:modified_time" content="2020-04-07T13:09:10.703Z">
+<meta property="article:modified_time" content="2020-04-12T06:57:17.866Z">
 <meta property="article:author" content="开文见章">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/11129189-fb41ff3e1688e2cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/format/webp">
@@ -451,6 +451,21 @@
 </li>
 </ol>
 <p>这样就可以了，重新部署一下。</p>
+<ol start="7">
+<li><p>最下面选择页面部分，向左的箭头和向右的箭头没有，显示代码：i class= fa fa-angle-right /i</p>
+<p>解决方法：</p>
+<p>打开主题文件<code>themes/你的主题/layout/_partial/pagination.ejs</code>文件，修改代码：</p>
+<p>修改前：</p>
+<pre><code>&lt;%- paginator({
+    prev_text: &quot;&lt;i class=&apos;fa fa-angle-left&apos;&gt;&lt;/i&gt;&quot;,
+    next_text: &quot;&lt;i class=&apos;fa fa-angle-right&apos;&gt;&lt;/i&gt;&quot;
+}) %&gt;</code></pre><p>修改后：</p>
+<pre><code>&lt;%- paginator({
+    prev_text: &quot;&lt;i class=&apos;fa fa-angle-left&apos;&gt;&lt;/i&gt;&quot;,
+    next_text: &quot;&lt;i class=&apos;fa fa-angle-right&apos;&gt;&lt;/i&gt;&quot;,
+    escape: false
+}) %&gt;</code></pre></li>
+</ol>
 
       
     </div>

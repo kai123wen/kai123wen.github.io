@@ -440,6 +440,21 @@ v2.pop_back();   //删除最后一个元素</code></pre><p>4.vector其他函数�
 </li>
 </ol>
 <p>这样就可以了，重新部署一下。</p>
+<ol start="7">
+<li><p>最下面选择页面部分，向左的箭头和向右的箭头没有，显示代码：i class= fa fa-angle-right /i</p>
+<p>解决方法：</p>
+<p>打开主题文件<code>themes/你的主题/layout/_partial/pagination.ejs</code>文件，修改代码：</p>
+<p>修改前：</p>
+<pre><code>&lt;%- paginator({
+    prev_text: &quot;&lt;i class=&apos;fa fa-angle-left&apos;&gt;&lt;/i&gt;&quot;,
+    next_text: &quot;&lt;i class=&apos;fa fa-angle-right&apos;&gt;&lt;/i&gt;&quot;
+}) %&gt;</code></pre><p>修改后：</p>
+<pre><code>&lt;%- paginator({
+    prev_text: &quot;&lt;i class=&apos;fa fa-angle-left&apos;&gt;&lt;/i&gt;&quot;,
+    next_text: &quot;&lt;i class=&apos;fa fa-angle-right&apos;&gt;&lt;/i&gt;&quot;,
+    escape: false
+}) %&gt;</code></pre></li>
+</ol>
 ]]></content>
       <categories>
         <category>杂项</category>
