@@ -69,7 +69,7 @@
 
 
 
-  <meta name="keywords" content="C++," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -80,17 +80,22 @@
 
 
 
-<meta name="description" content="C++  使用问题记录 将vector 转化为 vector:  12std::vector&lt;char&gt; v;std::string str(v.begin(), v.end());  字符数组与string的相互转换： 字符数组转化成string类型char ch [] &#x3D; “ABCDEFG”;string str(ch);&#x2F;&#x2F;也可string str &#x3D; ch;或者char ch">
+<meta name="description" content="PCA计算步骤 开始之前先列出PCA的计算步骤，之后对步骤进行说明。  将原始数据按列组成n行m列的矩阵X（注：n代表了特征维数；m代表了数据条数；为什么使用列向量表示一条数据：使用列向量使得在之后的矩阵相乘时更加方便，并且符合数学公式的表达方式，比如第6条中 Y &#x3D; HX，其表示将X表示的数据降维到k维，即将X投影到H表示的空间中，线性代数中一般均采用左侧为待投影空间矩阵的方式） 将X的每一行">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++  使用问题记录">
-<meta property="og:url" content="http://yoursite.com/2020/03/30/C++%20%20%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:title" content="利用PAC进行图像识别（一）">
+<meta property="og:url" content="http://yoursite.com/2020/07/10/%E5%88%A9%E7%94%A8PAC%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="开文见章的博客">
-<meta property="og:description" content="C++  使用问题记录 将vector 转化为 vector:  12std::vector&lt;char&gt; v;std::string str(v.begin(), v.end());  字符数组与string的相互转换： 字符数组转化成string类型char ch [] &#x3D; “ABCDEFG”;string str(ch);&#x2F;&#x2F;也可string str &#x3D; ch;或者char ch">
-<meta property="article:published_time" content="2020-03-30T14:02:00.000Z">
-<meta property="article:modified_time" content="2020-04-07T13:10:26.709Z">
+<meta property="og:description" content="PCA计算步骤 开始之前先列出PCA的计算步骤，之后对步骤进行说明。  将原始数据按列组成n行m列的矩阵X（注：n代表了特征维数；m代表了数据条数；为什么使用列向量表示一条数据：使用列向量使得在之后的矩阵相乘时更加方便，并且符合数学公式的表达方式，比如第6条中 Y &#x3D; HX，其表示将X表示的数据降维到k维，即将X投影到H表示的空间中，线性代数中一般均采用左侧为待投影空间矩阵的方式） 将X的每一行">
+<meta property="og:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/image-20200710155745093.png">
+<meta property="og:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/image-20200710180017753.png">
+<meta property="og:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/image-20200710180437236.png">
+<meta property="og:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/image-20200710180826185.png">
+<meta property="og:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/image-20200710181005022.png">
+<meta property="article:published_time" content="2020-07-10T14:02:00.000Z">
+<meta property="article:modified_time" content="2020-07-10T12:12:14.232Z">
 <meta property="article:author" content="开文见章">
-<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/image-20200710155745093.png">
 
 
 
@@ -120,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/03/30/C++  使用问题记录/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/07/10/利用PAC进行图像识别（一）/"/>
 
 
 
 
 
-  <title>C++  使用问题记录 | 开文见章的博客</title>
+  <title>利用PAC进行图像识别（一） | 开文见章的博客</title>
   
 
 
@@ -297,7 +302,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/30/C++%20%20%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/10/%E5%88%A9%E7%94%A8PAC%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB%EF%BC%88%E4%B8%80%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="开文见章">
@@ -314,7 +319,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">C++  使用问题记录</h1>
+          <h1 class="post-title" itemprop="name headline">利用PAC进行图像识别（一）</h1>
         
 
         <div class="post-meta">
@@ -326,8 +331,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-30T22:02:00+08:00">
-                2020-03-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-10T22:02:00+08:00">
+                2020-07-10
               </time>
             
 
@@ -349,8 +354,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
-                    <span itemprop="name">编程语言</span>
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
                   </a>
                 </span>
 
@@ -386,36 +391,73 @@
       
 
       
-        <h1 id="C-使用问题记录"><a href="#C-使用问题记录" class="headerlink" title="C++  使用问题记录"></a>C++  使用问题记录</h1><ol>
-<li><p>将vector<char> 转化为 vector<string>: </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">std::vector&lt;char&gt; v;</span><br><span class="line">std::string str(v.begin(), v.end());</span><br></pre></td></tr></table></figure>
+        <hr>
+<h2 id="PCA计算步骤"><a href="#PCA计算步骤" class="headerlink" title="PCA计算步骤"></a>PCA计算步骤</h2><hr>
+<p>开始之前先列出PCA的计算步骤，之后对步骤进行说明。</p>
+<ol>
+<li>将原始数据按列组成n行m列的矩阵X（注：n代表了特征维数；m代表了数据条数；为什么使用列向量表示一条数据：使用列向量使得在之后的矩阵相乘时更加方便，并且符合数学公式的表达方式，比如第6条中 Y = HX，其表示将X表示的数据降维到k维，即将X投影到H表示的空间中，线性代数中一般均采用左侧为待投影空间矩阵的方式）</li>
+<li>将X的每一行减去对应行的均值（注：这一过程称为：零均值化）</li>
+<li>求出X的协方差矩阵C，即 X 乘 X转置（注：虽然称为协方差矩阵，但是实际并没有除以数据条数来取平均，因为这样做也没什么用处）</li>
+<li>求出协方差矩阵的所有特征值和对应的特征向量（注：该协方差矩阵是实对称矩阵，因此所有特征值均是实数，这就保证了之后能够根据特征值大小来对特征向量进行排序）</li>
+<li>将特征向量按照其对应的特征值由大到小的顺序排列，去前k个组成矩阵H（注：k表示要将原来的矩阵X降维到k维）</li>
+<li>Y = HX ，得到的Y即表示X降维到k维后的数据（注：从这里也可以看出，对于两个矩阵相乘的本质，一种解释方法就是：右侧矩阵所代表的空间中的点投影到左侧矩阵所代表的的空间中）</li>
+</ol>
+<h2 id="PCA原理"><a href="#PCA原理" class="headerlink" title="PCA原理"></a>PCA原理</h2><h3 id="为什么要提出PCA"><a href="#为什么要提出PCA" class="headerlink" title="为什么要提出PCA"></a>为什么要提出PCA</h3><p>首先，PCA是一种数据降维方法。</p>
+<p>在机器学习中，很多情况下要处理的数据维数很高，甚至达到上万维，这种情况下机器学习要消耗大量的资源，有时设备无法支持，或者时间不允许，就必须对数据进行<strong>降维处理</strong>。</p>
+<h4 id="降维原则1：维度间相关性尽可能小"><a href="#降维原则1：维度间相关性尽可能小" class="headerlink" title="降维原则1：维度间相关性尽可能小"></a>降维原则1：维度间相关性尽可能小</h4><p>通过降维，希望能够去除一些没有用的数据，如相关性较大的数据。比如说一个数据集，有两列分别表示“男”，“女”，那么当一条数据中“男”是1，则“女”一定是0，这样的特征之间带有极强的相关性。在这种情况下，将“男”或者“女”去掉实际上没有任何信息损失。当然这是一种极端的情况。但是诸如网店数据中“下单数”和“成交单数”具有较强的相关关系，必要时二者取其一即可。</p>
+<h4 id="降维原则2：维度内各数据间分散程度尽可能大"><a href="#降维原则2：维度内各数据间分散程度尽可能大" class="headerlink" title="降维原则2：维度内各数据间分散程度尽可能大"></a>降维原则2：维度内各数据间分散程度尽可能大</h4><p>降维就意味着信息的丢失，因此在降维过程中要尽量使信息的损失降到最低。如何保证？</p>
+<p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/image-20200710155745093.png" alt=""></p>
+<p>假设我们有两个数据集，每个数据集均有两个特征。将这两个数据集表示在二维坐标系上如 图1 图2 所示。</p>
+<p>下面对这两个数据集进行降维处理，缩放到一维。直观来看，如果缩放到一维，图1明显将其投影到x1轴最好。图2明显将其投影到x2轴最好，这样能够使得数据尽可能分散，越分散保留的信息越多。</p>
+<h4 id="降维的目的与原则"><a href="#降维的目的与原则" class="headerlink" title="降维的目的与原则"></a>降维的目的与原则</h4><p>降维的目的是减少数据维数，其原则是使得保留下来的<strong>维度之间的相关性尽可能小</strong>；<strong>维度内的分散程度尽可能大</strong>。</p>
+<h4 id="保证两条原则的解决方法：协方差矩阵"><a href="#保证两条原则的解决方法：协方差矩阵" class="headerlink" title="保证两条原则的解决方法：协方差矩阵"></a>保证两条原则的解决方法：协方差矩阵</h4><p>怎样知道维度间相关性和维度内的分散程度（分散程度很自然使用方差描述）呢？答案是<strong>协方差矩阵</strong>！协方差矩阵度量的是维度与维度之间的关系，而非样本与样本之间。协方差矩阵的主对角线上的元素是各个维度上的<strong>方差</strong>，其他元素是两两维度间的<strong>协方差(即相关性)</strong>。</p>
+<ul>
+<li><p>对于<strong>原则1：维度间相关性尽可能小</strong>，翻译一下：协方差矩阵的非对角线元素之和最小。可以通过使协方差矩阵中非对角线元素都为<strong>0</strong>来实现。实现这一目的的方法就是：<strong>矩阵对角化</strong>。</p>
 </li>
-<li><p>字符数组与string的相互转换：</p>
-<p><strong>字符数组转化成string类型</strong><br>char ch [] = “ABCDEFG”;<br>string str(ch);//也可string str = ch;<br>或者<br>char ch [] = “ABCDEFG”;<br>string str;<br>str = ch;//在原有基础上添加可以用str += ch;</p>
-<p><strong>将string类型转换为字符数组</strong><br>char buf[10];<br>string str(“ABCDEFG”);<br>length = str.copy(buf, 9);<br>buf[length] = ‘\0’;<br>或者<br>char buf[10];<br>string str(“ABCDEFG”);<br>strcpy(buf, str.c_str());//strncpy(buf, str.c_str(), 10);</p>
+<li><p>对于<strong>原则2：维度内数据间分散程度尽可能大</strong>，翻译一下：协方差矩阵的对角线元素之和最大。通过对协方差矩阵对角化，我们得到对角矩阵，并且<strong>该对角矩阵对角线元素是协方差矩阵的特征值</strong>。因协方差矩阵是方阵，因此<strong>协方差矩阵的n个特征值之和等于协方差矩阵的对角线元素之和即各个维度的方差之和</strong>，由于我们是要降维（假设降到k维），因此我们只能取k个特征值作为新空间的基。如何保证各个维度方差之和最大？显然是要<strong>取最大的k个特征值</strong>。</p>
 </li>
-<li><p>Vector元素的遍历和修改</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment">    &gt; File Name: vector.cpp</span></span><br><span class="line"><span class="comment">    &gt; Author: </span></span><br><span class="line"><span class="comment">    &gt; Mail: </span></span><br><span class="line"><span class="comment">    &gt; Created Time: Thu 13 Apr 2017 08:57:25 PM CST</span></span><br><span class="line"><span class="comment"> ************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ivec;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i)</span><br><span class="line">        ivec.push_back(i);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//遍历vector元素</span></span><br><span class="line">    <span class="comment">//1: 利用迭代器</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> it = ivec.<span class="built_in">begin</span>(); it != ivec.<span class="built_in">end</span>(); ++it)</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;*it&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//2: 利用下标操作符</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> i = <span class="number">0</span>; i &lt; ivec.<span class="built_in">size</span>(); ++i)</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;ivec[i]&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//3: 利用范围for循环</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> i : ivec)</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//修改vector中的元素（前提条件是vector中已有元素，且以下方式均不能改变已有元素的个数）</span></span><br><span class="line">    <span class="comment">//1: 利用迭代器</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> it = ivec.<span class="built_in">begin</span>(); it != ivec.<span class="built_in">end</span>(); ++it)</span><br><span class="line">    &#123;</span><br><span class="line">        *it = *it * <span class="number">2</span>;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;*it&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//2: 利用下标操作符</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> i = <span class="number">0</span>; i &lt; ivec.<span class="built_in">size</span>(); ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        ivec[i] = ivec[i] * <span class="number">2</span>;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;ivec[i]&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//3: 利用范围for循环</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;i : ivec)<span class="comment">//注意此处是引用</span></span><br><span class="line">    &#123;</span><br><span class="line">        i = i * <span class="number">2</span>;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</ul>
+<h3 id="PCA步骤解释"><a href="#PCA步骤解释" class="headerlink" title="PCA步骤解释"></a>PCA步骤解释</h3><ol>
+<li><h5 id="将原始数据按列组成n行m列的矩阵X"><a href="#将原始数据按列组成n行m列的矩阵X" class="headerlink" title="将原始数据按列组成n行m列的矩阵X"></a>将原始数据按列组成n行m列的矩阵X</h5><p>解释：没有啥可解释的，基本操作。</p>
 </li>
-<li><p>C++ std::vector指定位置插入</p>
-<p><strong>1.初始化vector，一般有这几种方式：</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">wstring</span>&gt; v1;                <span class="comment">//创建一个空的wstring类型的vector</span></span><br><span class="line"><span class="function"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">wstring</span>&gt; <span class="title">v2</span><span class="params">(<span class="number">3</span>, <span class="string">"c"</span>)</span></span>;       <span class="comment">//创建一个容量为3，全部初始化L"c"</span></span><br><span class="line"><span class="function"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">v3</span><span class="params">(<span class="number">5</span>)</span></span>;                      <span class="comment">//创建容量为5，数据类型为int的vector</span></span><br><span class="line"><span class="function"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">v4</span><span class="params">(v3)</span></span>;                     <span class="comment">//创建一个从v3拷贝过来的vector</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v5 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>&#125;;       <span class="comment">//C++11才支持，直接值初始化，最方便</span></span><br></pre></td></tr></table></figure>
-
-<p>第五种方法：  vector<int> v5{1,2,3.0,4,5,6,7};</p>
-<p>v5初始化为列表中元素的拷贝，列表中元素必须与v5的元素类型相容，本例中必须是与整数类型相容的类型，整形会直接拷贝，其他类型会进行类型转换</p>
-<p><strong>2.在指定位置插入元素：</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">v2.insert(v2.<span class="built_in">begin</span>()+<span class="number">4</span>, <span class="string">"3"</span>);   <span class="comment">//在指定位置，例如在第五个元素前插入一个元素</span></span><br><span class="line"> </span><br><span class="line">v2.insert(v2.<span class="built_in">end</span>(), <span class="string">"3"</span>);   <span class="comment">//在末尾插入一个元素</span></span><br><span class="line"> </span><br><span class="line">v2.push_back(<span class="string">"9"</span>);   <span class="comment">//在末尾插入一个元素</span></span><br><span class="line"> </span><br><span class="line">v2.insert(v2.<span class="built_in">begin</span>(), <span class="string">"3"</span>);   <span class="comment">//在开头插入一个元素</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>3.删除数据：</strong></p>
-<pre><code>v2.erase(v2.begin()); //删除开头的元素
-
-v2.erase(v2.begin(),v2.end); //删除[begin,end]区间的元素
-
-v2.pop_back();   //删除最后一个元素</code></pre><p>4.vector其他函数介绍：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">   函数                                   说明</span><br><span class="line"> </span><br><span class="line">c.assign(beg,<span class="built_in">end</span>)            <span class="comment">//将[beg; end)区间中的数据赋值给c。</span></span><br><span class="line"> </span><br><span class="line">c.assign(n,elem)             <span class="comment">//将n个elem的拷贝赋值给c。</span></span><br><span class="line">    </span><br><span class="line">c.at(idx)                    <span class="comment">//传回索引idx所指的数据，如果idx越界，抛出out_of_range。</span></span><br><span class="line">    </span><br><span class="line">c.back()                     <span class="comment">//传回最后一个数据，不检查这个数据是否存在。</span></span><br><span class="line">    </span><br><span class="line">c.<span class="built_in">begin</span>()                    <span class="comment">//传回迭代器中的第一个数据地址。</span></span><br><span class="line">    </span><br><span class="line">c.capacity()                 <span class="comment">//返回容器中数据个数。</span></span><br><span class="line">    </span><br><span class="line">c.<span class="built_in">clear</span>()                    <span class="comment">//移除容器中所有数据。</span></span><br><span class="line">    </span><br><span class="line">c.empty()                    <span class="comment">//判断容器是否为空。</span></span><br><span class="line"> </span><br><span class="line">c.<span class="built_in">end</span>()                      <span class="comment">//指向迭代器中的最后一个数据地址。</span></span><br><span class="line"> </span><br><span class="line">c.erase(pos)                 <span class="comment">//删除pos位置的数据，传回下一个数据的位置。</span></span><br><span class="line"> </span><br><span class="line">c.erase(beg,<span class="built_in">end</span>)             <span class="comment">// 删除[beg,end)区间的数据，传回下一个数据的位置。</span></span><br><span class="line"> </span><br><span class="line">c.front()                    <span class="comment">//传回第一个数据。</span></span><br><span class="line">    </span><br><span class="line">get_allocator                <span class="comment">//使用构造函数返回一个拷贝。</span></span><br><span class="line">    </span><br><span class="line">c.insert(pos,elem)           <span class="comment">//在pos位置插入一个elem拷贝，传回新数据位置。</span></span><br><span class="line"> </span><br><span class="line">c.insert(pos,n,elem)         <span class="comment">//在pos位置插入n个elem数据。无返回值。</span></span><br><span class="line"> </span><br><span class="line">c.insert(pos,beg,<span class="built_in">end</span>)        <span class="comment">//在pos位置插入在[beg,end)区间的数据。无返回值。</span></span><br><span class="line">    </span><br><span class="line">c.max_size()                 <span class="comment">//返回容器中最大数据的数量。</span></span><br><span class="line">    </span><br><span class="line">c.pop_back()                 <span class="comment">//删除最后一个数据。</span></span><br><span class="line">    </span><br><span class="line">c.push_back(elem)            <span class="comment">//在尾部加入一个数据。</span></span><br><span class="line"> </span><br><span class="line">c.rbegin()                   <span class="comment">//传回一个逆向队列的第一个数据。</span></span><br><span class="line">    </span><br><span class="line">c.rend()                     <span class="comment">//传回一个逆向队列的最后一个数据的下一个位置。</span></span><br><span class="line"> </span><br><span class="line">c.resize(num)                <span class="comment">//重新指定队列的长度。</span></span><br><span class="line"> </span><br><span class="line">c.reserve()                  <span class="comment">//保留适当的容量。</span></span><br><span class="line"> </span><br><span class="line">c.<span class="built_in">size</span>()                     <span class="comment">//返回容器中实际数据的个数。</span></span><br><span class="line"> </span><br><span class="line">c1.swap(c2)                  <span class="comment">//将c1和c2元素互换。</span></span><br><span class="line"> </span><br><span class="line">swap(c1,c2)                  <span class="comment">//同上操作。</span></span><br><span class="line">    </span><br><span class="line"><span class="built_in">vector</span>&lt;Elem&gt; c               <span class="comment">//创建一个空的vector。</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;Elem&gt; <span class="title">c1</span><span class="params">(c2)</span>          <span class="comment">//复制一个vector。</span></span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"><span class="built_in">vector</span> &lt;Elem&gt; <span class="title">c</span><span class="params">(n)</span>           <span class="comment">//创建一个vector，含有n个数据，数据均已缺省构造产生。</span></span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"><span class="built_in">vector</span> &lt;Elem&gt; <span class="title">c</span><span class="params">(n, elem)</span>     <span class="comment">//创建一个含有n个elem拷贝的vector。</span></span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"><span class="built_in">vector</span> &lt;Elem&gt; <span class="title">c</span><span class="params">(beg,<span class="built_in">end</span>)</span>     <span class="comment">//创建一个以[beg;end)区间的vector。</span></span></span><br><span class="line"><span class="function"> </span></span><br><span class="line">c.~ vector &lt;Elem&gt;()          //销毁所有数据，释放内存。</span><br><span class="line">   </span><br><span class="line"><span class="keyword">operator</span>[]                   <span class="comment">//返回容器中指定位置的一个引用。</span></span><br></pre></td></tr></table></figure>
-
+<li><h5 id="将X的每一行减去对应行的均值"><a href="#将X的每一行减去对应行的均值" class="headerlink" title="将X的每一行减去对应行的均值"></a>将X的每一行减去对应行的均值</h5><p>解释：这是为了在求协方差矩阵的时候方便，因为方差和协方差都有 【x - E(x)】一项，提前处理之后直接使用矩阵乘法即可。</p>
+</li>
+<li><h5 id="求出X的协方差矩阵C，即-X-乘-X转置"><a href="#求出X的协方差矩阵C，即-X-乘-X转置" class="headerlink" title="求出X的协方差矩阵C，即 X 乘 X转置"></a>求出X的协方差矩阵C，即 X 乘 X转置</h5><p>解释：没有啥可解释的，基本操作。</p>
+</li>
+<li><h5 id="求出协方差矩阵的所有特征值和对应的特征向量"><a href="#求出协方差矩阵的所有特征值和对应的特征向量" class="headerlink" title="求出协方差矩阵的所有特征值和对应的特征向量"></a>求出协方差矩阵的所有特征值和对应的特征向量</h5><p>解释：没有啥可解释的，基本操作。</p>
+</li>
+<li><h5 id="将特征向量按照其对应的特征值由大到小的顺序排列，去前k个组成矩阵H（注：k表示要将原来的矩阵X降维到k维）"><a href="#将特征向量按照其对应的特征值由大到小的顺序排列，去前k个组成矩阵H（注：k表示要将原来的矩阵X降维到k维）" class="headerlink" title="将特征向量按照其对应的特征值由大到小的顺序排列，去前k个组成矩阵H（注：k表示要将原来的矩阵X降维到k维）"></a>将特征向量按照其对应的特征值由大到小的顺序排列，去前k个组成矩阵H（注：k表示要将原来的矩阵X降维到k维）</h5><p>解释：排序就是为了方便取前k个特征值，矩阵H所代表的就是降维后的空间。</p>
+</li>
+<li><h5 id="Y-HX-，得到的Y即表示X降维到k维后的数据"><a href="#Y-HX-，得到的Y即表示X降维到k维后的数据" class="headerlink" title="Y = HX ，得到的Y即表示X降维到k维后的数据"></a>Y = HX ，得到的Y即表示X降维到k维后的数据</h5><p>解释：将X降维到H所表示的空间中。</p>
 </li>
 </ol>
+<h3 id="为什么要使用协方差矩阵的特征向量"><a href="#为什么要使用协方差矩阵的特征向量" class="headerlink" title="为什么要使用协方差矩阵的特征向量"></a>为什么要使用协方差矩阵的特征向量</h3><p>协方差矩阵的特征向量表示的是什么？</p>
+<ul>
+<li>答：协方差矩阵的特征向量所表示的方向是数据变化最大的方向。</li>
+</ul>
+<p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/image-20200710180017753.png" alt=""></p>
+<p>如上图所示，二维数据集的协方差矩阵经过计算后有两个特征向量u，v。其中，特征值大的对应的特征向量是u，小的对应的是v。因此，使用特征向量来作为降维后的基是合理的。</p>
+<h2 id="PCA简单实例"><a href="#PCA简单实例" class="headerlink" title="PCA简单实例"></a>PCA简单实例</h2><p><strong>接下来使用PCA进行一个图片的简单操作，观察降维后的结果。</strong></p>
+<p>下面是测试图片，我们将该图片降维到一维。</p>
+<p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/image-20200710180437236.png" alt=""></p>
+<p>在没有编写程序之前，讲过上面的分析，我们应该大体可以猜出来，结果大体应该是：</p>
+<p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/image-20200710180826185.png" alt=""></p>
+<p>大体应该投影到红线表示的向量上。</p>
+<p>下面是结果：</p>
+<p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/image-20200710181005022.png" alt=""></p>
+<p>可以看到是符合预期的，这符合PCA降维的原则。</p>
+<p>程序代码地址 欢迎点个star ：<a href="https://github.com/kai123wen/PCALearn/tree/master/PCA_1" target="_blank" rel="noopener">https://github.com/kai123wen/PCALearn/tree/master/PCA_1</a></p>
+<p>参考：</p>
+<ul>
+<li><p><a href="http://blog.codinglabs.org/articles/pca-tutorial.html" target="_blank" rel="noopener">http://blog.codinglabs.org/articles/pca-tutorial.html</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/hjq376247328/article/details/80640544" target="_blank" rel="noopener">https://blog.csdn.net/hjq376247328/article/details/80640544</a></p>
+</li>
+<li><p><a href="https://segmentfault.com/a/1190000003950550?utm_source=tag-newest" target="_blank" rel="noopener">https://segmentfault.com/a/1190000003950550?utm_source=tag-newest</a></p>
+</li>
+<li><p><a href="https://www.quora.com/What-is-an-eigenvector-of-a-covariance-matrix" target="_blank" rel="noopener">https://www.quora.com/What-is-an-eigenvector-of-a-covariance-matrix</a></p>
+</li>
+</ul>
 
       
     </div>
@@ -431,12 +473,6 @@ v2.pop_back();   //删除最后一个元素</code></pre><p>4.vector其他函数�
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/C/" rel="tag"># C++</a>
-          
-        </div>
-      
 
       
       
@@ -446,8 +482,8 @@ v2.pop_back();   //删除最后一个元素</code></pre><p>4.vector其他函数�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/29/%E5%AF%B9TCP%20%EF%BC%8CGBN%EF%BC%8CSR%E7%9A%84%E4%B8%80%E7%82%B9%E7%90%86%E8%A7%A3%E4%B8%8E%E7%9C%8B%E6%B3%95/" rel="next" title="对TCP ，GBN，SR的一点理解总结">
-                <i class="fa fa-chevron-left"></i> 对TCP ，GBN，SR的一点理解总结
+              <a href="/2020/04/28/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%20%E6%81%B6%E6%84%8F%E8%A8%80%E8%AE%BA%E8%AF%86%E5%88%AB/" rel="next" title="朴素贝叶斯 恶意言论识别">
+                <i class="fa fa-chevron-left"></i> 朴素贝叶斯 恶意言论识别
               </a>
             
           </div>
@@ -455,10 +491,6 @@ v2.pop_back();   //删除最后一个元素</code></pre><p>4.vector其他函数�
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E6%9D%8E%E6%B2%BB%E5%86%9B%EF%BC%89%E5%AE%9E%E9%AA%8C3-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/" rel="prev" title="操作系统（李治军）实验3 系统调用">
-                操作系统（李治军）实验3 系统调用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -616,7 +648,7 @@ v2.pop_back();   //删除最后一个元素</code></pre><p>4.vector其他函数�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-使用问题记录"><span class="nav-number">1.</span> <span class="nav-text">C++  使用问题记录</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PCA计算步骤"><span class="nav-number">1.</span> <span class="nav-text">PCA计算步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PCA原理"><span class="nav-number">2.</span> <span class="nav-text">PCA原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要提出PCA"><span class="nav-number">2.1.</span> <span class="nav-text">为什么要提出PCA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#降维原则1：维度间相关性尽可能小"><span class="nav-number">2.1.1.</span> <span class="nav-text">降维原则1：维度间相关性尽可能小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#降维原则2：维度内各数据间分散程度尽可能大"><span class="nav-number">2.1.2.</span> <span class="nav-text">降维原则2：维度内各数据间分散程度尽可能大</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#降维的目的与原则"><span class="nav-number">2.1.3.</span> <span class="nav-text">降维的目的与原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#保证两条原则的解决方法：协方差矩阵"><span class="nav-number">2.1.4.</span> <span class="nav-text">保证两条原则的解决方法：协方差矩阵</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PCA步骤解释"><span class="nav-number">2.2.</span> <span class="nav-text">PCA步骤解释</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#将原始数据按列组成n行m列的矩阵X"><span class="nav-number">2.2.0.1.</span> <span class="nav-text">将原始数据按列组成n行m列的矩阵X</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#将X的每一行减去对应行的均值"><span class="nav-number">2.2.0.2.</span> <span class="nav-text">将X的每一行减去对应行的均值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#求出X的协方差矩阵C，即-X-乘-X转置"><span class="nav-number">2.2.0.3.</span> <span class="nav-text">求出X的协方差矩阵C，即 X 乘 X转置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#求出协方差矩阵的所有特征值和对应的特征向量"><span class="nav-number">2.2.0.4.</span> <span class="nav-text">求出协方差矩阵的所有特征值和对应的特征向量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#将特征向量按照其对应的特征值由大到小的顺序排列，去前k个组成矩阵H（注：k表示要将原来的矩阵X降维到k维）"><span class="nav-number">2.2.0.5.</span> <span class="nav-text">将特征向量按照其对应的特征值由大到小的顺序排列，去前k个组成矩阵H（注：k表示要将原来的矩阵X降维到k维）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Y-HX-，得到的Y即表示X降维到k维后的数据"><span class="nav-number">2.2.0.6.</span> <span class="nav-text">Y &#x3D; HX ，得到的Y即表示X降维到k维后的数据</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要使用协方差矩阵的特征向量"><span class="nav-number">2.3.</span> <span class="nav-text">为什么要使用协方差矩阵的特征向量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PCA简单实例"><span class="nav-number">3.</span> <span class="nav-text">PCA简单实例</span></a></li></ol></div>
             
 
           </div>

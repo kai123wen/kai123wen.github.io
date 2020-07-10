@@ -1,6 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>利用PAC进行图像识别（一）</title>
+    <url>/2020/07/10/%E5%88%A9%E7%94%A8PAC%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<hr>
+<h2 id="PCA计算步骤"><a href="#PCA计算步骤" class="headerlink" title="PCA计算步骤"></a>PCA计算步骤</h2><hr>
+<p>开始之前先列出PCA的计算步骤，之后对步骤进行说明。</p>
+<ol>
+<li>将原始数据按列组成n行m列的矩阵X（注：n代表了特征维数；m代表了数据条数；为什么使用列向量表示一条数据：使用列向量使得在之后的矩阵相乘时更加方便，并且符合数学公式的表达方式，比如第6条中 Y = HX，其表示将X表示的数据降维到k维，即将X投影到H表示的空间中，线性代数中一般均采用左侧为待投影空间矩阵的方式）</li>
+<li>将X的每一行减去对应行的均值（注：这一过程称为：零均值化）</li>
+<li>求出X的协方差矩阵C，即 X 乘 X转置（注：虽然称为协方差矩阵，但是实际并没有除以数据条数来取平均，因为这样做也没什么用处）</li>
+<li>求出协方差矩阵的所有特征值和对应的特征向量（注：该协方差矩阵是实对称矩阵，因此所有特征值均是实数，这就保证了之后能够根据特征值大小来对特征向量进行排序）</li>
+<li>将特征向量按照其对应的特征值由大到小的顺序排列，去前k个组成矩阵H（注：k表示要将原来的矩阵X降维到k维）</li>
+<li>Y = HX ，得到的Y即表示X降维到k维后的数据（注：从这里也可以看出，对于两个矩阵相乘的本质，一种解释方法就是：右侧矩阵所代表的空间中的点投影到左侧矩阵所代表的的空间中）</li>
+</ol>
+<h2 id="PCA原理"><a href="#PCA原理" class="headerlink" title="PCA原理"></a>PCA原理</h2><h3 id="为什么要提出PCA"><a href="#为什么要提出PCA" class="headerlink" title="为什么要提出PCA"></a>为什么要提出PCA</h3><p>首先，PCA是一种数据降维方法。</p>
+<p>在机器学习中，很多情况下要处理的数据维数很高，甚至达到上万维，这种情况下机器学习要消耗大量的资源，有时设备无法支持，或者时间不允许，就必须对数据进行<strong>降维处理</strong>。</p>
+<h4 id="降维原则1：维度间相关性尽可能小"><a href="#降维原则1：维度间相关性尽可能小" class="headerlink" title="降维原则1：维度间相关性尽可能小"></a>降维原则1：维度间相关性尽可能小</h4><p>通过降维，希望能够去除一些没有用的数据，如相关性较大的数据。比如说一个数据集，有两列分别表示“男”，“女”，那么当一条数据中“男”是1，则“女”一定是0，这样的特征之间带有极强的相关性。在这种情况下，将“男”或者“女”去掉实际上没有任何信息损失。当然这是一种极端的情况。但是诸如网店数据中“下单数”和“成交单数”具有较强的相关关系，必要时二者取其一即可。</p>
+<h4 id="降维原则2：维度内各数据间分散程度尽可能大"><a href="#降维原则2：维度内各数据间分散程度尽可能大" class="headerlink" title="降维原则2：维度内各数据间分散程度尽可能大"></a>降维原则2：维度内各数据间分散程度尽可能大</h4><p>降维就意味着信息的丢失，因此在降维过程中要尽量使信息的损失降到最低。如何保证？</p>
+<p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/image-20200710155745093.png" alt=""></p>
+<p>假设我们有两个数据集，每个数据集均有两个特征。将这两个数据集表示在二维坐标系上如 图1 图2 所示。</p>
+<p>下面对这两个数据集进行降维处理，缩放到一维。直观来看，如果缩放到一维，图1明显将其投影到x1轴最好。图2明显将其投影到x2轴最好，这样能够使得数据尽可能分散，越分散保留的信息越多。</p>
+<h4 id="降维的目的与原则"><a href="#降维的目的与原则" class="headerlink" title="降维的目的与原则"></a>降维的目的与原则</h4><p>降维的目的是减少数据维数，其原则是使得保留下来的<strong>维度之间的相关性尽可能小</strong>；<strong>维度内的分散程度尽可能大</strong>。</p>
+<h4 id="保证两条原则的解决方法：协方差矩阵"><a href="#保证两条原则的解决方法：协方差矩阵" class="headerlink" title="保证两条原则的解决方法：协方差矩阵"></a>保证两条原则的解决方法：协方差矩阵</h4><p>怎样知道维度间相关性和维度内的分散程度（分散程度很自然使用方差描述）呢？答案是<strong>协方差矩阵</strong>！协方差矩阵度量的是维度与维度之间的关系，而非样本与样本之间。协方差矩阵的主对角线上的元素是各个维度上的<strong>方差</strong>，其他元素是两两维度间的<strong>协方差(即相关性)</strong>。</p>
+<ul>
+<li><p>对于<strong>原则1：维度间相关性尽可能小</strong>，翻译一下：协方差矩阵的非对角线元素之和最小。可以通过使协方差矩阵中非对角线元素都为<strong>0</strong>来实现。实现这一目的的方法就是：<strong>矩阵对角化</strong>。</p>
+</li>
+<li><p>对于<strong>原则2：维度内数据间分散程度尽可能大</strong>，翻译一下：协方差矩阵的对角线元素之和最大。通过对协方差矩阵对角化，我们得到对角矩阵，并且<strong>该对角矩阵对角线元素是协方差矩阵的特征值</strong>。因协方差矩阵是方阵，因此<strong>协方差矩阵的n个特征值之和等于协方差矩阵的对角线元素之和即各个维度的方差之和</strong>，由于我们是要降维（假设降到k维），因此我们只能取k个特征值作为新空间的基。如何保证各个维度方差之和最大？显然是要<strong>取最大的k个特征值</strong>。</p>
+</li>
+</ul>
+<h3 id="PCA步骤解释"><a href="#PCA步骤解释" class="headerlink" title="PCA步骤解释"></a>PCA步骤解释</h3><ol>
+<li><h5 id="将原始数据按列组成n行m列的矩阵X"><a href="#将原始数据按列组成n行m列的矩阵X" class="headerlink" title="将原始数据按列组成n行m列的矩阵X"></a>将原始数据按列组成n行m列的矩阵X</h5><p>解释：没有啥可解释的，基本操作。</p>
+</li>
+<li><h5 id="将X的每一行减去对应行的均值"><a href="#将X的每一行减去对应行的均值" class="headerlink" title="将X的每一行减去对应行的均值"></a>将X的每一行减去对应行的均值</h5><p>解释：这是为了在求协方差矩阵的时候方便，因为方差和协方差都有 【x - E(x)】一项，提前处理之后直接使用矩阵乘法即可。</p>
+</li>
+<li><h5 id="求出X的协方差矩阵C，即-X-乘-X转置"><a href="#求出X的协方差矩阵C，即-X-乘-X转置" class="headerlink" title="求出X的协方差矩阵C，即 X 乘 X转置"></a>求出X的协方差矩阵C，即 X 乘 X转置</h5><p>解释：没有啥可解释的，基本操作。</p>
+</li>
+<li><h5 id="求出协方差矩阵的所有特征值和对应的特征向量"><a href="#求出协方差矩阵的所有特征值和对应的特征向量" class="headerlink" title="求出协方差矩阵的所有特征值和对应的特征向量"></a>求出协方差矩阵的所有特征值和对应的特征向量</h5><p>解释：没有啥可解释的，基本操作。</p>
+</li>
+<li><h5 id="将特征向量按照其对应的特征值由大到小的顺序排列，去前k个组成矩阵H（注：k表示要将原来的矩阵X降维到k维）"><a href="#将特征向量按照其对应的特征值由大到小的顺序排列，去前k个组成矩阵H（注：k表示要将原来的矩阵X降维到k维）" class="headerlink" title="将特征向量按照其对应的特征值由大到小的顺序排列，去前k个组成矩阵H（注：k表示要将原来的矩阵X降维到k维）"></a>将特征向量按照其对应的特征值由大到小的顺序排列，去前k个组成矩阵H（注：k表示要将原来的矩阵X降维到k维）</h5><p>解释：排序就是为了方便取前k个特征值，矩阵H所代表的就是降维后的空间。</p>
+</li>
+<li><h5 id="Y-HX-，得到的Y即表示X降维到k维后的数据"><a href="#Y-HX-，得到的Y即表示X降维到k维后的数据" class="headerlink" title="Y = HX ，得到的Y即表示X降维到k维后的数据"></a>Y = HX ，得到的Y即表示X降维到k维后的数据</h5><p>解释：将X降维到H所表示的空间中。</p>
+</li>
+</ol>
+<h3 id="为什么要使用协方差矩阵的特征向量"><a href="#为什么要使用协方差矩阵的特征向量" class="headerlink" title="为什么要使用协方差矩阵的特征向量"></a>为什么要使用协方差矩阵的特征向量</h3><p>协方差矩阵的特征向量表示的是什么？</p>
+<ul>
+<li>答：协方差矩阵的特征向量所表示的方向是数据变化最大的方向。</li>
+</ul>
+<p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/image-20200710180017753.png" alt=""></p>
+<p>如上图所示，二维数据集的协方差矩阵经过计算后有两个特征向量u，v。其中，特征值大的对应的特征向量是u，小的对应的是v。因此，使用特征向量来作为降维后的基是合理的。</p>
+<h2 id="PCA简单实例"><a href="#PCA简单实例" class="headerlink" title="PCA简单实例"></a>PCA简单实例</h2><p><strong>接下来使用PCA进行一个图片的简单操作，观察降维后的结果。</strong></p>
+<p>下面是测试图片，我们将该图片降维到一维。</p>
+<p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/image-20200710180437236.png" alt=""></p>
+<p>在没有编写程序之前，讲过上面的分析，我们应该大体可以猜出来，结果大体应该是：</p>
+<p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/image-20200710180826185.png" alt=""></p>
+<p>大体应该投影到红线表示的向量上。</p>
+<p>下面是结果：</p>
+<p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/image-20200710181005022.png" alt=""></p>
+<p>可以看到是符合预期的，这符合PCA降维的原则。</p>
+<p>程序代码地址 欢迎点个star ：<a href="https://github.com/kai123wen/PCALearn/tree/master/PCA_1" target="_blank" rel="noopener">https://github.com/kai123wen/PCALearn/tree/master/PCA_1</a></p>
+<p>参考：</p>
+<ul>
+<li><p><a href="http://blog.codinglabs.org/articles/pca-tutorial.html" target="_blank" rel="noopener">http://blog.codinglabs.org/articles/pca-tutorial.html</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/hjq376247328/article/details/80640544" target="_blank" rel="noopener">https://blog.csdn.net/hjq376247328/article/details/80640544</a></p>
+</li>
+<li><p><a href="https://segmentfault.com/a/1190000003950550?utm_source=tag-newest" target="_blank" rel="noopener">https://segmentfault.com/a/1190000003950550?utm_source=tag-newest</a></p>
+</li>
+<li><p><a href="https://www.quora.com/What-is-an-eigenvector-of-a-covariance-matrix" target="_blank" rel="noopener">https://www.quora.com/What-is-an-eigenvector-of-a-covariance-matrix</a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>朴素贝叶斯 恶意言论识别</title>
+    <url>/2020/04/28/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%20%E6%81%B6%E6%84%8F%E8%A8%80%E8%AE%BA%E8%AF%86%E5%88%AB/</url>
+    <content><![CDATA[<h1 id="朴素贝叶斯-恶意言论识别"><a href="#朴素贝叶斯-恶意言论识别" class="headerlink" title="朴素贝叶斯 恶意言论识别"></a>朴素贝叶斯 恶意言论识别</h1><p>文章名字起得有点大:happy:，所谓的识别只是简单的对言论进行分类 -&gt;好言论/坏言论</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>详细代码地址：<a href="https://github.com/kai123wen/MachineLearningAlg/tree/master/NaiveBayes" target="_blank" rel="noopener">https://github.com/kai123wen/MachineLearningAlg/tree/master/NaiveBayes</a></p>
+<p>代码有详细注释</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤网站的恶意留言  侮辱性：1     非侮辱性：0</span></span><br><span class="line"><span class="comment"># 创建一个实验样本</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadDataSet</span><span class="params">()</span>:</span></span><br><span class="line">    postingList = [[<span class="string">'my'</span>, <span class="string">'dog'</span>, <span class="string">'has'</span>, <span class="string">'flea'</span>, <span class="string">'problems'</span>, <span class="string">'help'</span>, <span class="string">'please'</span>],</span><br><span class="line">                   [<span class="string">'maybe'</span>, <span class="string">'not'</span>, <span class="string">'take'</span>, <span class="string">'him'</span>, <span class="string">'to'</span>, <span class="string">'dog'</span>, <span class="string">'park'</span>, <span class="string">'stupid'</span>],</span><br><span class="line">                   [<span class="string">'my'</span>, <span class="string">'dalmation'</span>, <span class="string">'is'</span>, <span class="string">'so'</span>, <span class="string">'cute'</span>, <span class="string">'I'</span>, <span class="string">'love'</span>, <span class="string">'him'</span>],</span><br><span class="line">                   [<span class="string">'stop'</span>, <span class="string">'posting'</span>, <span class="string">'stupid'</span>, <span class="string">'worthless'</span>, <span class="string">'garbage'</span>],</span><br><span class="line">                   [<span class="string">'mr'</span>, <span class="string">'licks'</span>, <span class="string">'ate'</span>, <span class="string">'my'</span>, <span class="string">'steak'</span>, <span class="string">'how'</span>, <span class="string">'to'</span>, <span class="string">'stop'</span>, <span class="string">'him'</span>],</span><br><span class="line">                   [<span class="string">'quit'</span>, <span class="string">'buying'</span>, <span class="string">'worthless'</span>, <span class="string">'dog'</span>, <span class="string">'food'</span>, <span class="string">'stupid'</span>]]</span><br><span class="line">    classVec = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> postingList, classVec</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个包含在所有文档中出现的不重复词的列表</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">createVocabList</span><span class="params">(dataSet)</span>:</span></span><br><span class="line">    vocabSet = set([])  <span class="comment"># 创建一个空集</span></span><br><span class="line">    <span class="keyword">for</span> document <span class="keyword">in</span> dataSet:</span><br><span class="line">        vocabSet = vocabSet | set(document)  <span class="comment"># 创建两个集合的并集</span></span><br><span class="line">    <span class="keyword">return</span> list(vocabSet)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将文档词条转换成词向量</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">setOfWords2Vec</span><span class="params">(vocabList, inputSet)</span>:</span></span><br><span class="line">    returnVec = [<span class="number">0</span>] * len(vocabList)  <span class="comment"># 创建一个其中所含元素都为0的向量</span></span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> inputSet:</span><br><span class="line">        <span class="keyword">if</span> word <span class="keyword">in</span> vocabList:</span><br><span class="line">            <span class="comment"># returnVec[vocabList.index(word)] = 1     # index函数在字符串里找到字符第一次出现的位置  词集模型</span></span><br><span class="line">            returnVec[vocabList.index(word)] += <span class="number">1</span>  <span class="comment"># 文档的词袋模型    每个单词可以出现多次</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">"the word: %s is not in my Vocabulary!"</span> % word)</span><br><span class="line">    <span class="keyword">return</span> returnVec</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 朴素贝叶斯分类器训练函数   从词向量计算概率</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">trainNB0</span><span class="params">(trainMatrix, trainCategory)</span>:</span></span><br><span class="line">    numTrainDocs = len(trainMatrix)  <span class="comment"># 训练的句子的数目</span></span><br><span class="line">    numWords = len(trainMatrix[<span class="number">0</span>])  <span class="comment"># 所有词的数目</span></span><br><span class="line">    pAbusive = sum(trainCategory) / float(numTrainDocs)  <span class="comment"># 正例的数目</span></span><br><span class="line">    p0Num = ones(numWords);  <span class="comment"># 避免一个概率值为0,最后的乘积也为0</span></span><br><span class="line">    p1Num = ones(numWords);  <span class="comment"># 用来统计两类数据中，各词的词频</span></span><br><span class="line">    p0Denom = <span class="number">2.0</span>;  <span class="comment"># 用于统计0类中的总数</span></span><br><span class="line">    p1Denom = <span class="number">2.0</span>  <span class="comment"># 用于统计1类中的总数</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(numTrainDocs):  <span class="comment"># 对于每一个句子</span></span><br><span class="line">        <span class="keyword">if</span> trainCategory[i] == <span class="number">1</span>:</span><br><span class="line">            p1Num += trainMatrix[i]</span><br><span class="line">            p1Denom += sum(trainMatrix[i])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            p0Num += trainMatrix[i]</span><br><span class="line">            p0Denom += sum(trainMatrix[i])</span><br><span class="line">            <span class="comment"># p1Vect = p1Num / p1Denom</span></span><br><span class="line">            <span class="comment"># p0Vect = p0Num / p0Denom</span></span><br><span class="line">    p1Vect = log(p1Num / p1Denom)  <span class="comment"># 在类1中，每个次的发生概率</span></span><br><span class="line">    p0Vect = log(p0Num / p0Denom)  <span class="comment"># 避免下溢出或者浮点数舍入导致的错误   下溢出是由太多很小的数相乘得到的</span></span><br><span class="line">    <span class="keyword">return</span> p0Vect, p1Vect, pAbusive</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 朴素贝叶斯分类器</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">classifyNB</span><span class="params">(vec2Classify, p0Vec, p1Vec, pClass1)</span>:</span></span><br><span class="line">    p1 = sum(vec2Classify * p1Vec) + log(pClass1)</span><br><span class="line">    p0 = sum(vec2Classify * p0Vec) + log(<span class="number">1.0</span> - pClass1)</span><br><span class="line">    <span class="keyword">if</span> p1 &gt; p0:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">testingNB</span><span class="params">()</span>:</span></span><br><span class="line">    listOPosts, listClasses = loadDataSet()</span><br><span class="line">    myVocabList = createVocabList(listOPosts)</span><br><span class="line"></span><br><span class="line">    trainMat = []</span><br><span class="line">    <span class="keyword">for</span> postinDoc <span class="keyword">in</span> listOPosts:</span><br><span class="line">        trainMat.append(setOfWords2Vec(myVocabList, postinDoc))</span><br><span class="line"></span><br><span class="line">    p0V, p1V, pAb = trainNB0(array(trainMat), array(listClasses))</span><br><span class="line">    testEntry = [<span class="string">'love'</span>, <span class="string">'my'</span>, <span class="string">'dalmation'</span>]</span><br><span class="line">    thisDoc = array(setOfWords2Vec(myVocabList, testEntry))</span><br><span class="line">    print(testEntry, <span class="string">'classified as: '</span>, classifyNB(thisDoc, p0V, p1V, pAb))</span><br><span class="line"></span><br><span class="line">    testEntry = [<span class="string">'stupid'</span>, <span class="string">'garbage'</span>]</span><br><span class="line">    thisDoc = array(setOfWords2Vec(myVocabList, testEntry))</span><br><span class="line">    print(testEntry, <span class="string">'classified as: '</span>, classifyNB(thisDoc, p0V, p1V, pAb))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用测试方法----------------------------------------------------------------------</span></span><br><span class="line">testingNB()</span><br></pre></td></tr></table></figure>
+
+<h2 id="代码中的一些注意事项"><a href="#代码中的一些注意事项" class="headerlink" title="代码中的一些注意事项"></a>代码中的一些注意事项</h2><h3 id="词袋模型与词集模型"><a href="#词袋模型与词集模型" class="headerlink" title="词袋模型与词集模型"></a>词袋模型与词集模型</h3><p>代码中:</p>
+<p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200428083716.png" alt=""></p>
+<p>将一个句子（注意不是单词）转化为一个向量，这里有两种选择，词集模型、词袋模型</p>
+<h4 id="词袋模型"><a href="#词袋模型" class="headerlink" title="词袋模型"></a>词袋模型</h4><p>词袋模型能够把一个句子转化为向量表示，是比较简单直白的一种方法，它不考虑句子中单词的顺序，只考虑词表（vocabulary）中单词在这个句子中的出现<strong>次数</strong>。下面直接来看一个例子吧（例子直接用wiki上的例子）：</p>
+<blockquote>
+<p><strong>“John likes to watch movies, Mary likes movies too”</strong>  </p>
+<p><strong>“John also likes to watch football games”</strong></p>
+</blockquote>
+<p>对于这两个句子，我们要用词袋模型把它转化为向量表示，这两个句子形成的词表（不去停用词）为：</p>
+<blockquote>
+<p><strong>[‘also’, ‘football’, ‘games’, ‘john’, ‘likes’, ‘mary’, ‘movies’, ‘to’, ‘too’, ‘watch’]</strong></p>
+</blockquote>
+<p>因此，它们的向量表示为：<br><img src="https://img-blog.csdnimg.cn/20181201214325337.jpg" alt="BOW词向量"></p>
+<h4 id="词集模型"><a href="#词集模型" class="headerlink" title="词集模型"></a>词集模型</h4><p>看懂了词袋模型，接下来词集模型就很容易了。词集模型就是只要词集中单词在句子中出现，就标为1</p>
+<p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200428084945.png" alt=""></p>
+<p>关于这里两个模型的选取，如果侧重于单词出现频次，最好使用词袋模型；如果不考虑，那就简单使用词集模型。</p>
+<h3 id="朴素贝叶斯算法与贝叶斯公式之间关系"><a href="#朴素贝叶斯算法与贝叶斯公式之间关系" class="headerlink" title="朴素贝叶斯算法与贝叶斯公式之间关系"></a>朴素贝叶斯算法与贝叶斯公式之间关系</h3><p>之前一提及朴素贝叶斯，就想到贝叶斯公式，但是实际中贝叶斯公式和朴素贝叶斯还是点距离的。</p>
+<p>贝叶斯公式：</p>
+<p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200428085924.png" alt=""></p>
+<p>朴素贝叶斯之所以称这为朴素，是因为假设了各个特征是相互独立的，因此假定下公式成立：</p>
+<p><img src="https://gzhkevin-image.oss-cn-beijing.aliyuncs.com/img/20200428085944.png" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
     <title>实现ID3算法用于鸢尾花(Iris)数据分类及实现confusion matrix 评价分类结果</title>
     <url>/2020/04/27/%E5%AE%9E%E7%8E%B0ID3%E7%AE%97%E6%B3%95%E7%94%A8%E4%BA%8E%E9%B8%A2%E5%B0%BE%E8%8A%B1(Iris)%E6%95%B0%E6%8D%AE%E5%88%86%E7%B1%BB%E5%8F%8A%E5%AE%9E%E7%8E%B0confusion%20matrix%20%E8%AF%84%E4%BB%B7%E5%88%86%E7%B1%BB%E7%BB%93%E6%9E%9C/</url>
     <content><![CDATA[<h1 id="实现ID3算法用于鸢尾花-Iris-数据分类及实现confusion-matrix-评价分类结果"><a href="#实现ID3算法用于鸢尾花-Iris-数据分类及实现confusion-matrix-评价分类结果" class="headerlink" title="实现ID3算法用于鸢尾花(Iris)数据分类及实现confusion matrix 评价分类结果"></a>实现ID3算法用于鸢尾花(Iris)数据分类及实现confusion matrix 评价分类结果</h1><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>具体代码：<a href="https://github.com/kai123wen/MachineLearningAlg/tree/master/ID3HW" target="_blank" rel="noopener">https://github.com/kai123wen/MachineLearningAlg/tree/master/ID3HW</a></p>
